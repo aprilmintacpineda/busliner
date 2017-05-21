@@ -1,7 +1,7 @@
 # Bus Liner Company Web App
-Developed by April Mintac Pineda.
+###### Developed by April Mintac Pineda.
 
-###### Created with
+### Created with
 - Laravel 5.4.*
 - axios ^0.16.1
 - babel-polyfill ^6.23.0,
@@ -12,6 +12,6 @@ Developed by April Mintac Pineda.
 - react-router ^3.0.2,
 - redux ^3.6.0
 
-###### Main goal
+### Main goal
 
 The goal is to provide both the users and admins a friendly interface that is easy to understand, easy to use, and easy to interact with, and also to provide the company a web app, that allows their customers to make reservation for his/her long travel, that is secured and spam free.
