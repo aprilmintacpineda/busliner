@@ -1,0 +1,76 @@
+.topbar-wrapper
+  .space-holder, .topbar-outer-container
+    @media all and (max-width: $mobileWidth)
+      height: auto
+    height: 80px
+.topbar-outer-container
+  z-index: 100
+  position: fixed
+  background: #fff
+  border-bottom: 1px solid #d0d1d5
+  width: 100%
+  .topbar-inner-container
+    .logo
+      @media all and (max-width: $mobileWidth)
+        width: 100%
+        left: 0
+        top: 0
+        transform: none
+        padding: 20px 10px
+        position: relative
+      +vCenter
+      position: absolute
+      left: 10px
+      .toggle-menu
+        @media all and (max-width: $mobileWidth)
+          display: block
+        display: none
+        position: absolute
+        right: 10px
+        +vCenter
+        font-size: 30px
+      label
+        position: relative
+        padding-left: 30px
+        font-size: 30px
+        color: #006699
+        span
+          left: 0
+          position: absolute
+          +vCenter
+    .menu-toggled
+      display: none
+    .menu-toggled:checked ~ .links
+      display: block
+    .links
+      @media all and (max-width: $mobileWidth)
+        border-top: 1px solid #d0d1d5
+        display: none
+        top: 0
+        left: 0
+        transform: none
+        background: #fff
+        position: relative
+      position: absolute
+      right: 10px
+      +vCenter
+      +clearFloat
+      li
+        @media all and (max-width: $mobileWidth)
+          float: none
+          margin: 0
+        float: left
+        list-style: none
+        margin-left: 5px
+        a
+          @media all and (max-width: $mobileWidth)
+            border-radius: 0
+          display: block
+          text-decoration: none
+          padding: 10px
+          color: #006699
+          transition: background 0.3s
+          border-radius: 4px
+          &:hover
+            background: #006699
+            color: #fff

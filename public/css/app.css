@@ -1,2 +1,131 @@
-body {
-  background: #eee; }
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box; }
+
+.topbar-wrapper .space-holder, .topbar-wrapper .topbar-outer-container {
+  height: 80px; }
+  @media all and (max-width: 480px) {
+    .topbar-wrapper .space-holder, .topbar-wrapper .topbar-outer-container {
+      height: auto; } }
+
+.topbar-outer-container {
+  z-index: 100;
+  position: fixed;
+  background: #fff;
+  border-bottom: 1px solid #d0d1d5;
+  width: 100%; }
+  .topbar-outer-container .topbar-inner-container .logo {
+    top: 50%;
+    transform: translate(0, -50%);
+    position: absolute;
+    left: 10px; }
+    @media all and (max-width: 480px) {
+      .topbar-outer-container .topbar-inner-container .logo {
+        width: 100%;
+        left: 0;
+        top: 0;
+        transform: none;
+        padding: 20px 10px;
+        position: relative; } }
+    .topbar-outer-container .topbar-inner-container .logo .toggle-menu {
+      display: none;
+      position: absolute;
+      right: 10px;
+      top: 50%;
+      transform: translate(0, -50%);
+      font-size: 30px; }
+      @media all and (max-width: 480px) {
+        .topbar-outer-container .topbar-inner-container .logo .toggle-menu {
+          display: block; } }
+    .topbar-outer-container .topbar-inner-container .logo label {
+      position: relative;
+      padding-left: 30px;
+      font-size: 30px;
+      color: #006699; }
+      .topbar-outer-container .topbar-inner-container .logo label span {
+        left: 0;
+        position: absolute;
+        top: 50%;
+        transform: translate(0, -50%); }
+  .topbar-outer-container .topbar-inner-container .menu-toggled {
+    display: none; }
+  .topbar-outer-container .topbar-inner-container .menu-toggled:checked ~ .links {
+    display: block; }
+  .topbar-outer-container .topbar-inner-container .links {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translate(0, -50%); }
+    @media all and (max-width: 480px) {
+      .topbar-outer-container .topbar-inner-container .links {
+        border-top: 1px solid #d0d1d5;
+        display: none;
+        top: 0;
+        left: 0;
+        transform: none;
+        background: #fff;
+        position: relative; } }
+    .topbar-outer-container .topbar-inner-container .links:after {
+      clear: both;
+      content: '';
+      display: block; }
+    .topbar-outer-container .topbar-inner-container .links li {
+      float: left;
+      list-style: none;
+      margin-left: 5px; }
+      @media all and (max-width: 480px) {
+        .topbar-outer-container .topbar-inner-container .links li {
+          float: none;
+          margin: 0; } }
+      .topbar-outer-container .topbar-inner-container .links li a {
+        display: block;
+        text-decoration: none;
+        padding: 10px;
+        color: #006699;
+        transition: background 0.3s;
+        border-radius: 4px; }
+        @media all and (max-width: 480px) {
+          .topbar-outer-container .topbar-inner-container .links li a {
+            border-radius: 0; } }
+        .topbar-outer-container .topbar-inner-container .links li a:hover {
+          background: #006699;
+          color: #fff; }
+
+.welcome-banner {
+  background: url("http://localhost:8000/busliner.jpg") no-repeat fixed;
+  background-size: 100%;
+  width: 100%;
+  height: 500px;
+  position: relative; }
+  .welcome-banner .centered {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 50%; }
+    @media all and (max-width: 480px) {
+      .welcome-banner .centered {
+        width: 80%; } }
+    .welcome-banner .centered img {
+      width: 100px;
+      height: auto;
+      position: relative;
+      border: 1px solid #595959;
+      border-radius: 100%;
+      left: 50%;
+      transform: translate(-50%, 0); }
+    .welcome-banner .centered .welcome-text {
+      background: rgba(0, 0, 0, 0.5);
+      padding: 10px;
+      border-radius: 4px;
+      text-align: center;
+      border: 1px solid #bfbfbf; }
+      .welcome-banner .centered .welcome-text h1 {
+        font-weight: normal;
+        font-size: 40px;
+        color: #fff; }
+      .welcome-banner .centered .welcome-text h3 {
+        font-weight: normal;
+        font-size: 20px;
+        color: #d9d9d9; }
