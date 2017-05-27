@@ -80,6 +80,25 @@ class Home extends Component {
 
           <div className="map-holder" ref="locationMap" style={{height: '500px', width: '100%'}} />
         </div>
+
+        <div className="mission-vision">
+          <div className="wrapper">
+            <section>
+              <header>
+                <img src={settings.public_path + '/mission.png'} /> 
+                <h1>Our mission</h1>
+              </header>
+              <p>Mauris vitae ipsum gravida, vestibulum erat aliquet, ultricies neque. Suspendisse potenti. Vestibulum aliquam nibh vitae lorem convallis eleifend. Vestibulum tristique arcu et ligula feugiat sollicitudin. Morbi gravida vel leo pellentesque hendrerit. Vestibulum dapibus consectetur metus vel ornare. Fusce sagittis malesuada justo sit amet euismod. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Curabitur nibh ligula, condimentum quis feugiat id, fringilla ut nulla. Praesent pellentesque condimentum consectetur. Sed dignissim felis quis libero tristique, non ultricies metus gravida. Maecenas non elit ut lectus iaculis blandit eu in arcu. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec sit amet convallis diam, ut egestas dui. In dictum, nulla ut fermentum laoreet, nulla augue auctor mauris, nec bibendum arcu elit sit amet massa.</p>
+            </section>
+            <section>
+              <header>
+                <img src={settings.public_path + '/vision.png'} />
+                <h1>Our vision</h1>
+              </header>
+              <p>Maecenas non ipsum risus. Vivamus iaculis arcu in neque sollicitudin facilisis. Aliquam risus quam, scelerisque non rhoncus pellentesque, posuere sit amet risus. Nam iaculis arcu posuere, sodales elit non, vulputate arcu. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Maecenas cursus nisi at leo hendrerit, a varius velit condimentum. Donec sed ultricies dolor. Donec at orci efficitur, vulputate est in, elementum urna. Suspendisse potenti. In ullamcorper porttitor dui non faucibus. Pellentesque ut fringilla odio. Cras porttitor est quis odio ultricies, at commodo mi elementum. Pellentesque tristique elit dui, non hendrerit nulla ultricies posuere. Donec rutrum, enim eget sagittis dapibus, erat risus porta neque, at tristique sapien nibh sed nisi.</p>
+            </section>
+          </div>
+        </div>
       </div>
     );
   }
