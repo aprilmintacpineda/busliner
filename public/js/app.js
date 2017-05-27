@@ -13861,7 +13861,7 @@ var Home = function (_Component) {
         ),
         _react2.default.createElement(
           'div',
-          { className: 'location' },
+          { className: 'image-centered-container location' },
           _react2.default.createElement(
             'section',
             null,
@@ -13925,6 +13925,59 @@ var Home = function (_Component) {
                 'p',
                 null,
                 'Maecenas non ipsum risus. Vivamus iaculis arcu in neque sollicitudin facilisis. Aliquam risus quam, scelerisque non rhoncus pellentesque, posuere sit amet risus. Nam iaculis arcu posuere, sodales elit non, vulputate arcu. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Maecenas cursus nisi at leo hendrerit, a varius velit condimentum. Donec sed ultricies dolor. Donec at orci efficitur, vulputate est in, elementum urna. Suspendisse potenti. In ullamcorper porttitor dui non faucibus. Pellentesque ut fringilla odio. Cras porttitor est quis odio ultricies, at commodo mi elementum. Pellentesque tristique elit dui, non hendrerit nulla ultricies posuere. Donec rutrum, enim eget sagittis dapibus, erat risus porta neque, at tristique sapien nibh sed nisi.'
+              )
+            )
+          )
+        ),
+        _react2.default.createElement(
+          'div',
+          { className: 'connect-with-us' },
+          _react2.default.createElement(
+            'h1',
+            null,
+            'Connect with us'
+          ),
+          _react2.default.createElement(
+            'ul',
+            null,
+            _react2.default.createElement(
+              'li',
+              null,
+              _react2.default.createElement(
+                'a',
+                { href: '#', target: '_new' },
+                _react2.default.createElement('img', { src: _settings2.default.public_path + '/connect-fb.png' }),
+                _react2.default.createElement('span', { className: 'decor' })
+              )
+            ),
+            _react2.default.createElement(
+              'li',
+              null,
+              _react2.default.createElement(
+                'a',
+                { href: '#', target: '_new' },
+                _react2.default.createElement('img', { src: _settings2.default.public_path + '/connect-tw.png' }),
+                _react2.default.createElement('span', { className: 'decor' })
+              )
+            ),
+            _react2.default.createElement(
+              'li',
+              null,
+              _react2.default.createElement(
+                'a',
+                { href: '#', target: '_new' },
+                _react2.default.createElement('img', { src: _settings2.default.public_path + '/connect-yt.png' }),
+                _react2.default.createElement('span', { className: 'decor' })
+              )
+            ),
+            _react2.default.createElement(
+              'li',
+              null,
+              _react2.default.createElement(
+                'a',
+                { href: '#', target: '_new' },
+                _react2.default.createElement('img', { src: _settings2.default.public_path + '/connect-bg.png' }),
+                _react2.default.createElement('span', { className: 'decor' })
               )
             )
           )

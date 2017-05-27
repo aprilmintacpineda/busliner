@@ -72,7 +72,7 @@ class Home extends Component {
           </div>
         </div>
 
-        <div className="location">
+        <div className="image-centered-container location">
           <section>
             <header>
               <img src={settings.public_path + '/location.png'} />
@@ -100,6 +100,16 @@ class Home extends Component {
               <p>Maecenas non ipsum risus. Vivamus iaculis arcu in neque sollicitudin facilisis. Aliquam risus quam, scelerisque non rhoncus pellentesque, posuere sit amet risus. Nam iaculis arcu posuere, sodales elit non, vulputate arcu. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Maecenas cursus nisi at leo hendrerit, a varius velit condimentum. Donec sed ultricies dolor. Donec at orci efficitur, vulputate est in, elementum urna. Suspendisse potenti. In ullamcorper porttitor dui non faucibus. Pellentesque ut fringilla odio. Cras porttitor est quis odio ultricies, at commodo mi elementum. Pellentesque tristique elit dui, non hendrerit nulla ultricies posuere. Donec rutrum, enim eget sagittis dapibus, erat risus porta neque, at tristique sapien nibh sed nisi.</p>
             </section>
           </div>
+        </div>
+
+        <div className="connect-with-us">
+          <h1>Connect with us</h1>
+          <ul>
+            <li><a href="#" target="_new"><img src={settings.public_path + '/connect-fb.png'} /><span className="decor" /></a></li>
+            <li><a href="#" target="_new"><img src={settings.public_path + '/connect-tw.png'} /><span className="decor" /></a></li>
+            <li><a href="#" target="_new"><img src={settings.public_path + '/connect-yt.png'} /><span className="decor" /></a></li>
+            <li><a href="#" target="_new"><img src={settings.public_path + '/connect-bg.png'} /><span className="decor" /></a></li>
+          </ul>
         </div>
       </div>
     );
