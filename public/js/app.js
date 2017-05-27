@@ -13777,7 +13777,7 @@ var Home = function (_Component) {
         ),
         _react2.default.createElement(
           'div',
-          { className: 'service-short-description' },
+          { className: 'image-columned-container' },
           _react2.default.createElement(
             'div',
             { className: 'wrapper' },
@@ -13863,12 +13863,17 @@ var Home = function (_Component) {
           'div',
           { className: 'location' },
           _react2.default.createElement(
-            'header',
+            'section',
             null,
             _react2.default.createElement(
-              'h1',
+              'header',
               null,
-              'Our location'
+              _react2.default.createElement('img', { src: _settings2.default.public_path + '/location.png' }),
+              _react2.default.createElement(
+                'h1',
+                null,
+                'Our location'
+              )
             ),
             _react2.default.createElement(
               'p',
@@ -13880,7 +13885,7 @@ var Home = function (_Component) {
         ),
         _react2.default.createElement(
           'div',
-          { className: 'mission-vision' },
+          { className: 'image-columned-container' },
           _react2.default.createElement(
             'div',
             { className: 'wrapper' },

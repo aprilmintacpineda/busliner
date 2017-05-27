@@ -39,7 +39,7 @@ class Home extends Component {
           </div>
         </div>
 
-        <div className="service-short-description">
+        <div className="image-columned-container">
           <div className="wrapper">
             <section>
               <header>
@@ -73,15 +73,17 @@ class Home extends Component {
         </div>
 
         <div className="location">
-          <header>
-            <h1>Our location</h1>
+          <section>
+            <header>
+              <img src={settings.public_path + '/location.png'} />
+              <h1>Our location</h1>
+            </header>
             <p>Nullam porta nisi quis eleifend ornare. Pellentesque auctor volutpat lectus mattis convallis. Phasellus elit quam, vulputate a nulla id, luctus lacinia turpis. Maecenas in semper ligula. Ut non tellus magna. Nam lectus nisi, viverra ac mauris nec, accumsan tincidunt tortor. Maecenas varius enim vel dolor faucibus dictum. Vestibulum sed feugiat nisi. Proin maximus sapien nec lacus viverra, in pretium elit blandit. Maecenas vel urna facilisis, feugiat leo nec, convallis risus. Sed tristique nec tellus et venenatis.</p>
-          </header>
-
+          </section>
           <div className="map-holder" ref="locationMap" style={{height: '500px', width: '100%'}} />
         </div>
 
-        <div className="mission-vision">
+        <div className="image-columned-container">
           <div className="wrapper">
             <section>
               <header>
