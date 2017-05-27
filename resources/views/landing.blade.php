@@ -7,11 +7,13 @@
   <link rel="icon" type="image/jpg" href="{{ asset('favicon.jpg') }}">
   <link rel="stylesheet" type="text/css" href="{{ asset('css/font-awesome.min.css') }}">
   <link rel="stylesheet" type="text/css" href="{{ asset('css/app.css') }}">
-
   <title>{{ $title }}</title>
 </head>
 <body>
   <div id="main"></div>
   <script type="text/javascript" src="{{ asset('js/app.js') }}"></script>
+  @if(isset($map) && $map)
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCyhDDLqPWekONyGquAYZkPBcHfRwrP5c0&callback=window.initMap" async defer></script>
+  @endif
 </body>
 </html>

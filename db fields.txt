@@ -1,0 +1,19 @@
+customers
+  id
+  email
+  password
+  firstname
+  middlename (optional)
+  surname
+  gender
+  birthdate
+admins
+  id
+  emp_num
+  password
+  firstname
+  middlename (optional)
+  surname
+admin_roles
+  admin_id
+  privillege

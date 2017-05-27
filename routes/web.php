@@ -12,5 +12,5 @@
 */
 
 Route::get('/', 'LandingController@index');
-Route::get('{slug}', 'LandingController@index')
+Route::get('{slug}', 'LandingController@slug')
   ->where('slug', '.*?');

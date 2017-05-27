@@ -1,14 +1,32 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router';
+import PropTypes from 'prop-types';
 import settings from '../_settings';
 
 import Topbar from '../components/Topbar';
 
 class Home extends Component {
+  componentWillMount() {
+    window.initMap = () => {
+      let SMMegaMall = { lat: 14.583366, lng: 121.057135 };
+
+      let map = new google.maps.Map(this.refs.locationMap, {
+        zoom: 15,
+        center: SMMegaMall,
+        scrollwheel: false
+      });
+      
+      let marker = new google.maps.Marker({
+        position: SMMegaMall,
+        map: map
+      });
+    }
+  }
+
   render() {
     return (
-      <div>
+      <div className="home">
         <Topbar />
 
         <div className="welcome-banner">
@@ -16,12 +34,51 @@ class Home extends Component {
             <img src={settings.public_path + '/banner-icon.png'} />
             <div className="welcome-text">
               <h1>Bus Liner</h1>
-              <h3>Your safety is our priority.</h3>
+              <h3>The best travel buddy you will ever find.</h3>
             </div>
           </div>
         </div>
 
-        <div className="">
+        <div className="service-short-description">
+          <div className="wrapper">
+            <section>
+              <header>
+                <img src={settings.public_path + '/safe.png'} />
+                <h1>Absolutely safe</h1>
+              </header>
+              <p>Quisque auctor sed dolor tempus aliquet. Morbi at faucibus ipsum. Proin diam orci, aliquam a pharetra nec, commodo id lectus. Nulla nulla eros, elementum eu tempor et, feugiat vel risus. Duis ultricies non purus a mollis. Proin et purus commodo, fermentum justo at, lobortis mauris. Etiam facilisis sapien elit, vel finibus quam lobortis id. Donec elementum ullamcorper erat, vel dapibus ipsum blandit eu. Ut risus nisl, porta viverra lacinia id, hendrerit nec purus. Ut quis augue nulla. Praesent vitae enim et mauris ornare tristique. Aliquam velit velit, consectetur et risus sollicitudin, posuere commodo enim. Sed aliquet risus luctus nisi congue dictum.</p>
+            </section>
+            <section>
+              <header>
+                <img src={settings.public_path + '/reliable.png'} />
+                <h1>Extremely reliable</h1>
+              </header>
+              <p>Aliquam non mauris sagittis, fringilla leo a, porttitor purus. Integer luctus suscipit nunc, maximus tincidunt augue lobortis a. Nunc interdum lacus nec mauris porta bibendum. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Aliquam sagittis mollis placerat. In quis leo sapien. Curabitur elementum tempor euismod. Nam fringilla libero non massa auctor finibus. Maecenas ac purus est. Maecenas accumsan, nisi at sollicitudin rutrum, lorem purus fermentum mauris, id facilisis turpis tellus ac ante. Praesent eget velit rutrum felis pretium pellentesque. Fusce ut lectus orci. Sed eget magna euismod, vehicula augue et, facilisis felis.</p>
+            </section>
+            <section>
+              <header>
+                <img src={settings.public_path + '/secured.png'} />
+                <h1>Highly secured</h1>
+              </header>
+              <p>Proin fermentum diam elit, in tristique tellus hendrerit vitae. Sed et ultrices leo. Proin bibendum odio ac semper laoreet. Vivamus ut arcu nunc. Morbi at mauris lorem. Vestibulum venenatis massa diam, eget aliquet felis ullamcorper vestibulum. Duis placerat placerat ligula, quis pharetra augue hendrerit a. Suspendisse mollis a justo consequat posuere. Etiam efficitur urna et fermentum lacinia. Sed varius lorem et rhoncus laoreet. Integer egestas nulla at ligula sagittis maximus. Cras porta vehicula augue nec rhoncus.</p>
+            </section>
+            <section>
+              <header>
+                <img src={settings.public_path + '/full-customer-support.png'} />
+                <h1>24x7x365 customer support</h1>
+              </header>
+              <p>Pellentesque luctus, nisl vel malesuada aliquet, metus nisl ultrices quam, in finibus magna purus sit amet quam. Vestibulum porttitor vel lacus at tincidunt. Ut et consectetur nibh. Integer neque mauris, aliquam eu justo vitae, accumsan condimentum turpis. Sed blandit dictum lorem. Nullam rutrum consequat elit, eu imperdiet nunc bibendum id. Nullam enim purus, molestie ac metus sit amet, feugiat luctus lorem.</p>
+            </section>
+          </div>
+        </div>
+
+        <div className="location">
+          <header>
+            <h1>Our location</h1>
+            <p>Nullam porta nisi quis eleifend ornare. Pellentesque auctor volutpat lectus mattis convallis. Phasellus elit quam, vulputate a nulla id, luctus lacinia turpis. Maecenas in semper ligula. Ut non tellus magna. Nam lectus nisi, viverra ac mauris nec, accumsan tincidunt tortor. Maecenas varius enim vel dolor faucibus dictum. Vestibulum sed feugiat nisi. Proin maximus sapien nec lacus viverra, in pretium elit blandit. Maecenas vel urna facilisis, feugiat leo nec, convallis risus. Sed tristique nec tellus et venenatis.</p>
+          </header>
+
+          <div className="map-holder" ref="locationMap" style={{height: '500px', width: '100%'}} />
         </div>
       </div>
     );
