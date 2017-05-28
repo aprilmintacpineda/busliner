@@ -14,7 +14,8 @@
   position: fixed;
   background: #fff;
   border-bottom: 1px solid #d0d1d5;
-  width: 100%; }
+  width: 100%;
+  box-shadow: 0 0 5px #d0d1d5; }
   .topbar-outer-container .topbar-inner-container .logo {
     top: 50%;
     transform: translate(0, -50%);
@@ -91,6 +92,86 @@
         .topbar-outer-container .topbar-inner-container .links li a:hover {
           background: #006699;
           color: #fff; }
+
+.page-footer .columned-container {
+  padding: 20px;
+  background: #4d4d4d; }
+  .page-footer .columned-container:after {
+    clear: both;
+    content: '';
+    display: block; }
+  .page-footer .columned-container section {
+    float: left;
+    padding: 10px; }
+    .page-footer .columned-container section ul li {
+      list-style: none; }
+      .page-footer .columned-container section ul li a {
+        text-decoration: none;
+        color: #fff;
+        display: block;
+        padding: 3px;
+        border-radius: 4px;
+        transition: background 0.4s; }
+        .page-footer .columned-container section ul li a:hover {
+          background: #fff;
+          color: #4d4d4d; }
+
+.page-footer .copy-right {
+  padding: 10px;
+  color: gray;
+  font-weight: bold; }
+
+.page-footer .connect-with-us {
+  background: #006699;
+  padding: 30px 0; }
+  .page-footer .connect-with-us h1 {
+    margin-bottom: 20px;
+    color: #fff;
+    text-align: center; }
+  .page-footer .connect-with-us ul {
+    width: -webkit-max-content;
+    width: -moz-max-content;
+    width: -ms-max-content;
+    width: -o-max-content;
+    width: max-content;
+    margin: 0 auto; }
+    .page-footer .connect-with-us ul:after {
+      clear: both;
+      content: '';
+      display: block; }
+    .page-footer .connect-with-us ul li {
+      list-style: none;
+      float: left;
+      margin-right: 10px; }
+      .page-footer .connect-with-us ul li:last-child {
+        margin-right: 0; }
+      .page-footer .connect-with-us ul li a {
+        position: relative;
+        width: 50px;
+        height: 50px;
+        display: block;
+        cursor: pointer; }
+        .page-footer .connect-with-us ul li a:hover .decor {
+          opacity: 1; }
+        .page-footer .connect-with-us ul li a:hover img {
+          top: -20px; }
+        .page-footer .connect-with-us ul li a .decor {
+          position: absolute;
+          bottom: 0;
+          left: 0;
+          right: 0;
+          padding: 3px;
+          border-radius: 4px;
+          background: #ff9900;
+          opacity: 0;
+          transition: opacity 0.4s; }
+        .page-footer .connect-with-us ul li a img {
+          width: 50px;
+          height: auto;
+          position: absolute;
+          top: 0;
+          left: 0;
+          transition: top 0.4s; }
 
 .home .welcome-banner {
   background: url("http://localhost:8000/busliner.jpg") no-repeat fixed;
@@ -169,7 +250,7 @@
 .home .image-centered-container {
   padding-top: 30px; }
   .home .image-centered-container section {
-    width: 40%;
+    width: 80%;
     margin: 0 auto 30px auto; }
     @media all and (max-width: 480px) {
       .home .image-centered-container section {
@@ -195,53 +276,3 @@
   background: #f2f2f2; }
   .home .location .map-holder {
     border-top: 1px solid #d0d1d5; }
-
-.home .connect-with-us {
-  padding: 30px 0;
-  background: #006699; }
-  .home .connect-with-us h1 {
-    margin-bottom: 20px;
-    color: #fff;
-    text-align: center; }
-  .home .connect-with-us ul {
-    width: -webkit-max-content;
-    width: -moz-max-content;
-    width: -ms-max-content;
-    width: -o-max-content;
-    width: max-content;
-    margin: 0 auto; }
-    .home .connect-with-us ul:after {
-      clear: both;
-      content: '';
-      display: block; }
-    .home .connect-with-us ul li {
-      list-style: none;
-      float: left;
-      margin-right: 10px; }
-      .home .connect-with-us ul li a {
-        position: relative;
-        width: 50px;
-        height: 50px;
-        display: block;
-        cursor: pointer; }
-        .home .connect-with-us ul li a:hover .decor {
-          opacity: 1; }
-        .home .connect-with-us ul li a:hover img {
-          top: -20px; }
-        .home .connect-with-us ul li a .decor {
-          position: absolute;
-          bottom: 0;
-          left: 0;
-          right: 0;
-          padding: 3px;
-          border-radius: 4px;
-          background: #ff9900;
-          opacity: 0;
-          transition: opacity 0.4s; }
-        .home .connect-with-us ul li a img {
-          width: 50px;
-          height: auto;
-          position: absolute;
-          top: 0;
-          left: 0;
-          transition: top 0.4s; }

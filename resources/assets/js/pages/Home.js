@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 import settings from '../_settings';
 
 import Topbar from '../components/Topbar';
+import Footer from '../components/Footer';
 
 class Home extends Component {
   componentWillMount() {
@@ -12,7 +13,7 @@ class Home extends Component {
       let SMMegaMall = { lat: 14.583366, lng: 121.057135 };
 
       let map = new google.maps.Map(this.refs.locationMap, {
-        zoom: 15,
+        zoom: 17,
         center: SMMegaMall,
         scrollwheel: false
       });
@@ -102,15 +103,7 @@ class Home extends Component {
           </div>
         </div>
 
-        <div className="connect-with-us">
-          <h1>Connect with us</h1>
-          <ul>
-            <li><a href="#" target="_new"><img src={settings.public_path + '/connect-fb.png'} /><span className="decor" /></a></li>
-            <li><a href="#" target="_new"><img src={settings.public_path + '/connect-tw.png'} /><span className="decor" /></a></li>
-            <li><a href="#" target="_new"><img src={settings.public_path + '/connect-yt.png'} /><span className="decor" /></a></li>
-            <li><a href="#" target="_new"><img src={settings.public_path + '/connect-bg.png'} /><span className="decor" /></a></li>
-          </ul>
-        </div>
+        <Footer />
       </div>
     );
   }

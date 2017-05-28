@@ -21,8 +21,8 @@ class Topbar extends Component {
 
             <ul className="links">
               <li><Link to="/">Home</Link></li>
-              <li><Link to="/contact-us">Make reservation</Link></li>
-              <li><Link to="/reserve">Contact us</Link></li>
+              <li><Link to="/reserve">Make reservation</Link></li>
+              <li><Link to="/contact-us">Contact us</Link></li>
             </ul>
           </div>
         </header>

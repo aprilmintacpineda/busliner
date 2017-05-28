@@ -13708,6 +13708,10 @@ var _Topbar = __webpack_require__(132);
 
 var _Topbar2 = _interopRequireDefault(_Topbar);
 
+var _Footer = __webpack_require__(284);
+
+var _Footer2 = _interopRequireDefault(_Footer);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -13734,7 +13738,7 @@ var Home = function (_Component) {
         var SMMegaMall = { lat: 14.583366, lng: 121.057135 };
 
         var map = new google.maps.Map(_this2.refs.locationMap, {
-          zoom: 15,
+          zoom: 17,
           center: SMMegaMall,
           scrollwheel: false
         });
@@ -13929,59 +13933,7 @@ var Home = function (_Component) {
             )
           )
         ),
-        _react2.default.createElement(
-          'div',
-          { className: 'connect-with-us' },
-          _react2.default.createElement(
-            'h1',
-            null,
-            'Connect with us'
-          ),
-          _react2.default.createElement(
-            'ul',
-            null,
-            _react2.default.createElement(
-              'li',
-              null,
-              _react2.default.createElement(
-                'a',
-                { href: '#', target: '_new' },
-                _react2.default.createElement('img', { src: _settings2.default.public_path + '/connect-fb.png' }),
-                _react2.default.createElement('span', { className: 'decor' })
-              )
-            ),
-            _react2.default.createElement(
-              'li',
-              null,
-              _react2.default.createElement(
-                'a',
-                { href: '#', target: '_new' },
-                _react2.default.createElement('img', { src: _settings2.default.public_path + '/connect-tw.png' }),
-                _react2.default.createElement('span', { className: 'decor' })
-              )
-            ),
-            _react2.default.createElement(
-              'li',
-              null,
-              _react2.default.createElement(
-                'a',
-                { href: '#', target: '_new' },
-                _react2.default.createElement('img', { src: _settings2.default.public_path + '/connect-yt.png' }),
-                _react2.default.createElement('span', { className: 'decor' })
-              )
-            ),
-            _react2.default.createElement(
-              'li',
-              null,
-              _react2.default.createElement(
-                'a',
-                { href: '#', target: '_new' },
-                _react2.default.createElement('img', { src: _settings2.default.public_path + '/connect-bg.png' }),
-                _react2.default.createElement('span', { className: 'decor' })
-              )
-            )
-          )
-        )
+        _react2.default.createElement(_Footer2.default, null)
       );
     }
   }]);
@@ -14102,7 +14054,7 @@ var Topbar = function (_Component) {
                 null,
                 _react2.default.createElement(
                   _reactRouter.Link,
-                  { to: '/contact-us' },
+                  { to: '/reserve' },
                   'Make reservation'
                 )
               ),
@@ -14111,7 +14063,7 @@ var Topbar = function (_Component) {
                 null,
                 _react2.default.createElement(
                   _reactRouter.Link,
-                  { to: '/reserve' },
+                  { to: '/contact-us' },
                   'Contact us'
                 )
               )
@@ -30306,6 +30258,307 @@ module.exports = function(module) {
 	return module;
 };
 
+
+/***/ }),
+/* 284 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(8);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _settings = __webpack_require__(131);
+
+var _settings2 = _interopRequireDefault(_settings);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var Footer = function (_Component) {
+  _inherits(Footer, _Component);
+
+  function Footer() {
+    _classCallCheck(this, Footer);
+
+    return _possibleConstructorReturn(this, (Footer.__proto__ || Object.getPrototypeOf(Footer)).apply(this, arguments));
+  }
+
+  _createClass(Footer, [{
+    key: 'render',
+    value: function render() {
+      return _react2.default.createElement(
+        'footer',
+        { className: 'page-footer' },
+        _react2.default.createElement(
+          'div',
+          { className: 'connect-with-us' },
+          _react2.default.createElement(
+            'h1',
+            null,
+            'Connect with us'
+          ),
+          _react2.default.createElement(
+            'ul',
+            null,
+            _react2.default.createElement(
+              'li',
+              null,
+              _react2.default.createElement(
+                'a',
+                { href: '#', target: '_new' },
+                _react2.default.createElement('img', { src: _settings2.default.public_path + '/connect-fb.png' }),
+                _react2.default.createElement('span', { className: 'decor' })
+              )
+            ),
+            _react2.default.createElement(
+              'li',
+              null,
+              _react2.default.createElement(
+                'a',
+                { href: '#', target: '_new' },
+                _react2.default.createElement('img', { src: _settings2.default.public_path + '/connect-tw.png' }),
+                _react2.default.createElement('span', { className: 'decor' })
+              )
+            ),
+            _react2.default.createElement(
+              'li',
+              null,
+              _react2.default.createElement(
+                'a',
+                { href: '#', target: '_new' },
+                _react2.default.createElement('img', { src: _settings2.default.public_path + '/connect-yt.png' }),
+                _react2.default.createElement('span', { className: 'decor' })
+              )
+            ),
+            _react2.default.createElement(
+              'li',
+              null,
+              _react2.default.createElement(
+                'a',
+                { href: '#', target: '_new' },
+                _react2.default.createElement('img', { src: _settings2.default.public_path + '/connect-bg.png' }),
+                _react2.default.createElement('span', { className: 'decor' })
+              )
+            )
+          )
+        ),
+        _react2.default.createElement(
+          'div',
+          { className: 'columned-container' },
+          _react2.default.createElement(
+            'section',
+            null,
+            _react2.default.createElement(
+              'ul',
+              null,
+              _react2.default.createElement(
+                'li',
+                null,
+                _react2.default.createElement(
+                  'a',
+                  { href: '#' },
+                  'Sed justo erat'
+                )
+              ),
+              _react2.default.createElement(
+                'li',
+                null,
+                _react2.default.createElement(
+                  'a',
+                  { href: '#' },
+                  'Nunc rhoncus'
+                )
+              ),
+              _react2.default.createElement(
+                'li',
+                null,
+                _react2.default.createElement(
+                  'a',
+                  { href: '#' },
+                  'Etiam quis justo orci'
+                )
+              ),
+              _react2.default.createElement(
+                'li',
+                null,
+                _react2.default.createElement(
+                  'a',
+                  { href: '#' },
+                  'Aenean nec dui pretium'
+                )
+              ),
+              _react2.default.createElement(
+                'li',
+                null,
+                _react2.default.createElement(
+                  'a',
+                  { href: '#' },
+                  'Quisque faucibus'
+                )
+              ),
+              _react2.default.createElement(
+                'li',
+                null,
+                _react2.default.createElement(
+                  'a',
+                  { href: '#' },
+                  'Ut pretium urna'
+                )
+              )
+            )
+          ),
+          _react2.default.createElement(
+            'section',
+            null,
+            _react2.default.createElement(
+              'ul',
+              null,
+              _react2.default.createElement(
+                'li',
+                null,
+                _react2.default.createElement(
+                  'a',
+                  { href: '#' },
+                  'Lorem ipsum dolor'
+                )
+              ),
+              _react2.default.createElement(
+                'li',
+                null,
+                _react2.default.createElement(
+                  'a',
+                  { href: '#' },
+                  'Nunc aliquet'
+                )
+              ),
+              _react2.default.createElement(
+                'li',
+                null,
+                _react2.default.createElement(
+                  'a',
+                  { href: '#' },
+                  'Vestibulum sollicitudin'
+                )
+              ),
+              _react2.default.createElement(
+                'li',
+                null,
+                _react2.default.createElement(
+                  'a',
+                  { href: '#' },
+                  'Quisque a aliquet'
+                )
+              ),
+              _react2.default.createElement(
+                'li',
+                null,
+                _react2.default.createElement(
+                  'a',
+                  { href: '#' },
+                  'Donec mollis enim'
+                )
+              ),
+              _react2.default.createElement(
+                'li',
+                null,
+                _react2.default.createElement(
+                  'a',
+                  { href: '#' },
+                  'Phasellus pellentesque'
+                )
+              )
+            )
+          ),
+          _react2.default.createElement(
+            'section',
+            null,
+            _react2.default.createElement(
+              'ul',
+              null,
+              _react2.default.createElement(
+                'li',
+                null,
+                _react2.default.createElement(
+                  'a',
+                  { href: '#' },
+                  'In vitae risus'
+                )
+              ),
+              _react2.default.createElement(
+                'li',
+                null,
+                _react2.default.createElement(
+                  'a',
+                  { href: '#' },
+                  'Pellentesque semper'
+                )
+              ),
+              _react2.default.createElement(
+                'li',
+                null,
+                _react2.default.createElement(
+                  'a',
+                  { href: '#' },
+                  'Nunc condimentum'
+                )
+              ),
+              _react2.default.createElement(
+                'li',
+                null,
+                _react2.default.createElement(
+                  'a',
+                  { href: '#' },
+                  'Integer varius'
+                )
+              ),
+              _react2.default.createElement(
+                'li',
+                null,
+                _react2.default.createElement(
+                  'a',
+                  { href: '#' },
+                  'Nullam tincidunt'
+                )
+              ),
+              _react2.default.createElement(
+                'li',
+                null,
+                _react2.default.createElement(
+                  'a',
+                  { href: '#' },
+                  'Nulla scelerisque'
+                )
+              )
+            )
+          )
+        ),
+        _react2.default.createElement(
+          'div',
+          { className: 'copy-right' },
+          '\xA9 Bus Liner corp. All rights reserved 2017'
+        )
+      );
+    }
+  }]);
+
+  return Footer;
+}(_react.Component);
+
+exports.default = Footer;
 
 /***/ })
 /******/ ]);
