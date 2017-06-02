@@ -21,7 +21,7 @@ After cloning this repo on your machine, please do the following:
 
 - **composer install** to install all php dependencies
 - **php artisan key:generate** to generate a key
-- **post-root-package-install** to generate a *.env* file
+- **composer run post-root-package-install** to generate a *.env* file
 - **npm install** to install all javascript dependencies
 - **npm run build** to bundle all the files
 
