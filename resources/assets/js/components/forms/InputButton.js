@@ -11,15 +11,19 @@ class InputButton extends Component {
 
   render() {
     return (
-      <div onClick={() => !this.props.disabled? this.props.onClick() : false}>
+      <div>
         {this.props.sending?
-          <div className={this.props.disabled? 'button icon-active disabled' : 'button icon-active'}>
+          <div
+            className={this.props.disabled? 'button icon-active disabled' : 'button icon-active'}
+            onClick={() => !this.props.disabled? this.props.onClick() : false}>
             <div className="sending">
               <i className="fa fa-spinner fa-spin" aria-hidden="true"></i>
             </div>
             {this.props.value}
           </div>
-        : <div className={this.props.disabled? 'button disabled' : 'button'}>
+        : <div
+          className={this.props.disabled? 'button disabled' : 'button'}
+          onClick={() => !this.props.disabled? this.props.onClick() : false}>
             {this.props.value}
           </div> }
       </div>

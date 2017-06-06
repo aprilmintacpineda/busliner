@@ -14733,12 +14733,14 @@ var InputButton = function (_Component) {
 
       return _react2.default.createElement(
         'div',
-        { onClick: function onClick() {
-            return !_this2.props.disabled ? _this2.props.onClick() : false;
-          } },
+        null,
         this.props.sending ? _react2.default.createElement(
           'div',
-          { className: this.props.disabled ? 'button icon-active disabled' : 'button icon-active' },
+          {
+            className: this.props.disabled ? 'button icon-active disabled' : 'button icon-active',
+            onClick: function onClick() {
+              return !_this2.props.disabled ? _this2.props.onClick() : false;
+            } },
           _react2.default.createElement(
             'div',
             { className: 'sending' },
@@ -14747,7 +14749,11 @@ var InputButton = function (_Component) {
           this.props.value
         ) : _react2.default.createElement(
           'div',
-          { className: this.props.disabled ? 'button disabled' : 'button' },
+          {
+            className: this.props.disabled ? 'button disabled' : 'button',
+            onClick: function onClick() {
+              return !_this2.props.disabled ? _this2.props.onClick() : false;
+            } },
           this.props.value
         )
       );
