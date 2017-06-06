@@ -13,7 +13,7 @@
   <div id="main"></div>
   <script type="text/javascript" src="{{ asset('js/app.js') }}"></script>
   @if(isset($map) && $map)
-    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCyhDDLqPWekONyGquAYZkPBcHfRwrP5c0&callback=window.initMap" async defer></script>
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCyhDDLqPWekONyGquAYZkPBcHfRwrP5c0&callback=window.initMap" defer async></script>
   @endif
 </body>
 </html>

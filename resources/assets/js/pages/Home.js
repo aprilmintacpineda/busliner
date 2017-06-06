@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router';
 import PropTypes from 'prop-types';
+
 import settings from '../_settings';
 
 import Topbar from '../components/Topbar';
@@ -9,6 +10,8 @@ import Footer from '../components/Footer';
 
 class Home extends Component {
   componentWillMount() {
+    document.title = 'Reach your destination with maximum security.';
+
     window.initMap = () => {
       let SMMegaMall = { lat: 14.583366, lng: 121.057135 };
 
@@ -112,5 +115,5 @@ class Home extends Component {
 export default connect(store => ({
 
 }), {
-
+  
 })(Home);

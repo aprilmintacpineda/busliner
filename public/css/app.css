@@ -5,9 +5,6 @@
 
 .topbar-wrapper .space-holder, .topbar-wrapper .topbar-outer-container {
   height: 80px; }
-  @media all and (max-width: 480px) {
-    .topbar-wrapper .space-holder, .topbar-wrapper .topbar-outer-container {
-      height: auto; } }
 
 .topbar-outer-container {
   z-index: 100;
@@ -103,6 +100,9 @@
   .page-footer .columned-container section {
     float: left;
     padding: 10px; }
+    @media all and (max-width: 480px) {
+      .page-footer .columned-container section {
+        float: none; } }
     .page-footer .columned-container section ul li {
       list-style: none; }
       .page-footer .columned-container section ul li a {
@@ -276,3 +276,128 @@
   background: #f2f2f2; }
   .home .location .map-holder {
     border-top: 1px solid #d0d1d5; }
+
+.sign-up .sign-form, .sign-in .sign-form {
+  padding: 30px 0; }
+  .sign-up .sign-form ul, .sign-in .sign-form ul {
+    width: -webkit-max-content;
+    width: -moz-max-content;
+    width: -ms-max-content;
+    width: -o-max-content;
+    width: max-content;
+    margin: 30px auto; }
+    @media all and (max-width: 480px) {
+      .sign-up .sign-form ul, .sign-in .sign-form ul {
+        margin: 0;
+        width: 100%;
+        padding: 10px 30px; } }
+    .sign-up .sign-form ul li, .sign-in .sign-form ul li {
+      list-style: none;
+      margin-bottom: 10px; }
+      .sign-up .sign-form ul li:last-child, .sign-in .sign-form ul li:last-child {
+        margin-bottom: 0; }
+      .sign-up .sign-form ul li .input-area-wrapper, .sign-in .sign-form ul li .input-area-wrapper {
+        position: relative; }
+        .sign-up .sign-form ul li .input-area-wrapper .error-list, .sign-in .sign-form ul li .input-area-wrapper .error-list {
+          position: absolute;
+          padding: 10px;
+          top: 50%;
+          transform: translate(0, -50%);
+          width: -webkit-max-content;
+          width: -moz-max-content;
+          width: -ms-max-content;
+          width: -o-max-content;
+          width: max-content;
+          left: 100%;
+          margin-left: 16px;
+          background: #fff;
+          border: 1px solid #cc3300;
+          color: #fff; }
+          @media all and (max-width: 480px) {
+            .sign-up .sign-form ul li .input-area-wrapper .error-list, .sign-in .sign-form ul li .input-area-wrapper .error-list {
+              position: relative;
+              top: 100%;
+              left: 0;
+              margin: 0; } }
+          .sign-up .sign-form ul li .input-area-wrapper .error-list:after, .sign-in .sign-form ul li .input-area-wrapper .error-list:after {
+            content: '';
+            display: block;
+            position: absolute;
+            top: 50%;
+            transform: translate(0, -50%);
+            left: -13px;
+            height: 0;
+            width: 0;
+            border-top: 8px solid transparent;
+            border-bottom: 8px solid transparent;
+            border-right: 12px solid #cc3300; }
+            @media all and (max-width: 480px) {
+              .sign-up .sign-form ul li .input-area-wrapper .error-list:after, .sign-in .sign-form ul li .input-area-wrapper .error-list:after {
+                left: 50%;
+                transform: translate(-50%, 0);
+                border-left: 8px solid transparent;
+                border-right: 8px solid transparent;
+                border-bottom: 12px solid #cc3300;
+                top: -21px; } }
+          .sign-up .sign-form ul li .input-area-wrapper .error-list .errors, .sign-in .sign-form ul li .input-area-wrapper .error-list .errors {
+            color: red; }
+      .sign-up .sign-form ul li .input-type-box, .sign-in .sign-form ul li .input-type-box {
+        position: relative;
+        width: -webkit-max-content;
+        width: -moz-max-content;
+        width: -ms-max-content;
+        width: -o-max-content;
+        width: max-content; }
+        @media all and (max-width: 480px) {
+          .sign-up .sign-form ul li .input-type-box, .sign-in .sign-form ul li .input-type-box {
+            width: 100%; } }
+      .sign-up .sign-form ul li .button.icon-active, .sign-in .sign-form ul li .button.icon-active {
+        padding-left: 35px;
+        background: #2d862d !important;
+        color: #40bf40; }
+      .sign-up .sign-form ul li .button.disabled, .sign-in .sign-form ul li .button.disabled {
+        opacity: 0.6;
+        cursor: not-allowed; }
+      .sign-up .sign-form ul li .button, .sign-in .sign-form ul li .button {
+        position: relative;
+        padding: 10px;
+        border: 1px solid #2d862d;
+        background: #40bf40;
+        width: -webkit-max-content;
+        width: -moz-max-content;
+        width: -ms-max-content;
+        width: -o-max-content;
+        width: max-content;
+        transition: width 0.4s;
+        color: #fff;
+        cursor: pointer; }
+        .sign-up .sign-form ul li .button .sending, .sign-in .sign-form ul li .button .sending {
+          position: absolute;
+          top: 50%;
+          transform: translate(0, -50%);
+          left: 10px; }
+      .sign-up .sign-form ul li input[type="text"], .sign-up .sign-form ul li input[type="password"], .sign-in .sign-form ul li input[type="text"], .sign-in .sign-form ul li input[type="password"] {
+        padding: 10px;
+        border: 0;
+        border-bottom: 1px solid #d0d1d5;
+        background: #fff;
+        outline: none;
+        width: 450px; }
+        @media all and (max-width: 480px) {
+          .sign-up .sign-form ul li input[type="text"], .sign-up .sign-form ul li input[type="password"], .sign-in .sign-form ul li input[type="text"], .sign-in .sign-form ul li input[type="password"] {
+            width: 100%; } }
+        .sign-up .sign-form ul li input[type="text"]:focus ~ .decor, .sign-up .sign-form ul li input[type="password"]:focus ~ .decor, .sign-in .sign-form ul li input[type="text"]:focus ~ .decor, .sign-in .sign-form ul li input[type="password"]:focus ~ .decor {
+          width: 100%; }
+      .sign-up .sign-form ul li .decor, .sign-in .sign-form ul li .decor {
+        position: absolute;
+        bottom: 0;
+        height: 1px;
+        width: 0;
+        transition: width 0.4s;
+        left: 50%;
+        transform: translate(-50%, 0);
+        background: #006699; }
+  .sign-up .sign-form h1, .sign-in .sign-form h1 {
+    color: gray;
+    text-align: center;
+    font-weight: normal; }

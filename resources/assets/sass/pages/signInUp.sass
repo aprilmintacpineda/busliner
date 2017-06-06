@@ -1,0 +1,99 @@
+.sign-up, .sign-in
+  .sign-form
+    padding: 30px 0
+    ul
+      @media all and (max-width: $mobileWidth)
+        margin: 0
+        width: 100%
+        padding: 10px 30px
+      +fitWidth
+      margin: 30px auto
+      li
+        list-style: none
+        margin-bottom: 10px
+        &:last-child
+          margin-bottom: 0
+        .input-area-wrapper
+          position: relative
+          .error-list
+            @media all and (max-width: $mobileWidth)
+              position: relative
+              top: 100%
+              left: 0
+              margin: 0
+            position: absolute
+            padding: 10px
+            +vCenter
+            +fitWidth
+            left: 100%
+            margin-left: 16px
+            background: #fff
+            border: 1px solid #cc3300
+            color: #fff
+            &:after
+              @media all and (max-width: $mobileWidth)
+                +hCenter
+                border-left: 8px solid transparent
+                border-right: 8px solid transparent
+                border-bottom: 12px solid #cc3300
+                top: -21px
+              content: ''
+              display: block
+              position: absolute
+              +vCenter
+              left: -13px
+              height: 0
+              width: 0
+              border-top: 8px solid transparent
+              border-bottom: 8px solid transparent
+              border-right: 12px solid #cc3300
+            .errors
+              color: red
+        .input-type-box
+          @media all and (max-width: $mobileWidth)
+            width: 100%
+          position: relative
+          +fitWidth
+        .button.icon-active
+          padding-left: 35px
+          background: #2d862d !important
+          color: #40bf40
+        .button.disabled
+          opacity: 0.6
+          cursor: not-allowed
+        .button
+          position: relative
+          padding: 10px
+          border: 1px solid #2d862d
+          background: #40bf40
+          +fitWidth
+          transition: width 0.4s
+          color: #fff
+          cursor: pointer
+          .sending
+            position: absolute
+            +vCenter
+            left: 10px
+        input[type="text"], input[type="password"]
+          @media all and (max-width: $mobileWidth)
+            width: 100%
+          padding: 10px
+          border: 0
+          border-bottom: 1px solid #d0d1d5
+          background: #fff
+          outline: none
+          width: 450px
+          &:focus ~ .decor
+            width: 100%
+        .decor
+          position: absolute
+          bottom: 0
+          height: 1px
+          width: 0
+          transition: width 0.4s
+          +hCenter
+          background: #006699
+    h1
+      color: gray
+      text-align: center
+      font-weight: normal

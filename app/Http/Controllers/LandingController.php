@@ -8,12 +8,24 @@ class LandingController extends Controller
 {
   public function index() {
     return view('landing', [
-      'title' => 'Safe travel with us!',
+      'title' => 'Reach your destination with maximum security.',
       'map' => true
     ]);
   }
 
-  public function slug() {
-    return abort(404);
+  public function slug($slug) {
+    switch($slug) {
+      case 'sign-up':
+        $title = 'Create your account and reserve a seat now.';
+      break;
+
+      default:
+        $title = 'Reach your destination with maximum security.';
+      break;
+    }
+
+    return view('landing', [
+      'title' => $title
+    ]);
   }
 }
