@@ -40,8 +40,14 @@ export function changePasswordAgain(value) {
   }
 }
 
-export function submit() {
+export function clearRequestError() {
   return {
-    type: 'SUBMIT'
+    type: 'SEND_ERROR_CLEAR'
+  }
+}
+
+export function send() {
+  return {
+    type: 'SEND_START'
   }
 }

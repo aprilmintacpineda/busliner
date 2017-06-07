@@ -26,6 +26,7 @@ export default {
   request: {
     sending: false,
     status: null,
+    error: null,
     allow_submit: false
   }
 }

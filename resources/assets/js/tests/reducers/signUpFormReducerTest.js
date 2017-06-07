@@ -2,7 +2,7 @@ import initial_state from '../../reducers/initial_states/sign-up-form';
 import subject from '../../reducers/signUpFormReducer';
 import { expect } from 'chai';
 
-describe('signUpFormReducer', () => {
+describe('reducers/signUpFormReducer', () => {
   it('has initial state', () => {
     expect(subject(undefined, {
       type: 'INIT'
@@ -179,5 +179,73 @@ describe('signUpFormReducer', () => {
         value: 'a'
       }
     });
+  });
+
+  it('handles SEND_START with error checking', () => {
+    expect(subject({
+      ...initial_state,
+      request: {
+        ...initial_state.request,
+        allow_submit: true
+      }
+    }, {
+      type: 'SEND_START'
+    })).to.deep.equal({
+      ...initial_state,
+      request: {
+        ...initial_state.request,
+        allow_submit: true,
+        sending: true
+      }
+    });
+  });
+
+  it('handles SEND_FAILED', () => {
+    expect(subject({
+      ...initial_state,
+      request: {
+        sending: true,
+        status: null,
+        error: null,
+        allow_submit: true
+      }
+    }, {
+      type: 'SEND_FAILED',
+      message: '405 : Method Not Allowed'
+    })).to.deep.equal({
+      ...initial_state,
+      request: {
+        ...initial_state.request,
+        sending: false,
+        status: 'failed',
+        error: '405 : Method Not Allowed',
+        allow_submit: true
+      }
+    });
+  });
+
+  it('handles SEND_ERROR_CLEAR', () => {
+    expect(subject({
+      ...initial_state,
+      request: {
+        ...initial_state.request,
+        sending: false,
+        status: 'failed',
+        error: '405 : Method Not Allowed',
+        allow_submit: true
+      }
+    }, {
+      type: 'SEND_ERROR_CLEAR'
+    })).to.deep.equal({
+      ...initial_state,
+      request: {
+        ...initial_state.request,
+        allow_submit: true
+      }
+    });
+  });
+
+  it('handles SEND_SUCCESSFUL with field errors', () => {
+    
   });
 });

@@ -1,12 +1,27 @@
 import initial_state from './initial_states/sign-up-form';
 
 function validateName(what, name) {
-  let errors = [];
+  let errors = [],
+        names = name.split(' '),
+        excessiveSpaces = false,
+        invalidName = false;
 
   if(!name.trim().length) {
     errors.push(what + ' is required.');
-  } else if(!/^[\w ]+$/.test(name)) {
-    errors.push(what + ' is invalid.');
+  } else {
+    for(let substr of names) {
+      if(!substr.length || /( {2,})/.test(substr)) {
+        if(!excessiveSpaces) {
+          errors.push(what + ' contains excessive spaces.');
+          excessiveSpaces = true;
+        }
+      } else if(!/^[a-zA-Z ]+$/.test(substr)) {
+        if(!invalidName) {
+          errors.push(what + ' is invalid.');
+          invalidName = true;
+        }
+      }
+    }
   }
 
   return errors;
@@ -199,6 +214,45 @@ export default function signUpForm(state = initial_state, action) {
         request: {
           ...state.request,
           allow_submit: allowSubmit(newState)
+        }
+      }
+    break;
+
+    case 'SEND_START':
+      if(state.request.allow_submit && !state.request.sending) {
+        return {
+          ...state,
+          request: {
+            ...initial_state.request,
+            sending: true,
+            allow_submit: state.request.allow_submit
+          }
+        }
+      }
+    break;
+
+    case 'SEND_FAILED':
+      return {
+        ...state,
+        request: {
+          ...state.request,
+          sending: false,
+          status: 'failed',
+          error: action.message
+        }
+      }
+    break;
+
+    case 'SEND_SUCCESSFUL':
+
+    break;
+
+    case 'SEND_ERROR_CLEAR':
+      return {
+        ...state,
+        request: {
+          ...initial_state.request,
+          allow_submit: state.request.allow_submit
         }
       }
     break;

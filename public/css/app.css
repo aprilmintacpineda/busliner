@@ -173,6 +173,55 @@
           left: 0;
           transition: top 0.4s; }
 
+.modal-wrapper {
+  position: absolute;
+  background: rgba(0, 0, 0, 0.6);
+  width: 100vw;
+  height: 100vh;
+  z-index: 101; }
+  .modal-wrapper .modal-container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: -webkit-max-content;
+    width: -moz-max-content;
+    width: -ms-max-content;
+    width: -o-max-content;
+    width: max-content;
+    max-width: 80%;
+    background: #fff;
+    box-shadow: #fff;
+    border: 1px solid #d0d1d5;
+    padding: 10px;
+    border-radius: 4px; }
+    .modal-wrapper .modal-container .title h1 {
+      font-weight: normal; }
+    .modal-wrapper .modal-container .message h3 {
+      font-weight: normal;
+      padding: 10px 0;
+      border-bottom: 1px solid #d0d1d5;
+      margin-bottom: 10px; }
+    .modal-wrapper .modal-container .btns-wrapper:after {
+      clear: both;
+      content: '';
+      display: block; }
+    .modal-wrapper .modal-container .btns-wrapper .btn-dismiss {
+      border: 1px solid #ff6600;
+      background: #ff944d;
+      color: #fff;
+      padding: 10px;
+      width: -webkit-max-content;
+      width: -moz-max-content;
+      width: -ms-max-content;
+      width: -o-max-content;
+      width: max-content;
+      float: right;
+      cursor: pointer;
+      opacity: 0.8; }
+      .modal-wrapper .modal-container .btns-wrapper .btn-dismiss:hover {
+        opacity: 1; }
+
 .home .welcome-banner {
   background: url("http://localhost:8000/busliner.jpg") no-repeat fixed;
   background-size: 100% 100%;
@@ -308,7 +357,7 @@
           width: -ms-max-content;
           width: -o-max-content;
           width: max-content;
-          left: 100%;
+          left: 70%;
           margin-left: 16px;
           background: #fff;
           border: 1px solid #cc3300;
@@ -378,6 +427,7 @@
           left: 10px; }
       .sign-up .sign-form ul li input[type="text"], .sign-up .sign-form ul li input[type="password"], .sign-in .sign-form ul li input[type="text"], .sign-in .sign-form ul li input[type="password"] {
         padding: 10px;
+        padding-right: 30%;
         border: 0;
         border-bottom: 1px solid #d0d1d5;
         background: #fff;

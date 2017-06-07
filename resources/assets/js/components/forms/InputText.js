@@ -19,6 +19,7 @@ class InputText extends Component {
       <div className="input-area-wrapper">
         <div className="input-type-box">
           <input
+            ref="input"
             type={this.props.password? 'password' : 'text'}
             value={this.props.value}
             onChange={changeEvent => this.props.onChange(changeEvent.target.value)}

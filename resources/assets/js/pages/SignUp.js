@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 
 import Topbar from '../components/Topbar';
 import Footer from '../components/Footer';
+import PopMessage from '../components/PopMessage';
 // forms
 import InputText from '../components/forms/InputText';
 import InputButton from '../components/forms/InputButton';
@@ -18,6 +19,13 @@ class SignUp extends Component {
   render() {
     return (
       <div className="sign-up">
+        {this.props.form.request.error?
+          <PopMessage
+            title="Opsss... We got an error."
+            message={this.props.form.request.error}
+            onClick={this.props.clearRequestError} />
+        : null}
+
         <Topbar />
 
         <div className="sign-form">
@@ -89,8 +97,8 @@ class SignUp extends Component {
             <li>
               <InputButton
               disabled={this.props.form.request.sending || !this.props.form.request.allow_submit}
-              onClick={() => console.log('submit')}
-              sending={false}
+              onClick={() => this.props.send()}
+              sending={this.props.form.request.sending}
               value="Create my account" />
             </li>
           </ul>
@@ -110,5 +118,7 @@ export default connect(store => ({
   changeSurname: actions.changeSurname,
   changeEmail: actions.changeEmail,
   changePassword: actions.changePassword,
-  changePasswordAgain: actions.changePasswordAgain
+  changePasswordAgain: actions.changePasswordAgain,
+  send: actions.send,
+  clearRequestError: actions.clearRequestError
 })(SignUp);
