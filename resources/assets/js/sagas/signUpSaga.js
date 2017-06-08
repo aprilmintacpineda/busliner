@@ -16,6 +16,11 @@ export function* signUpSagaWorker(action) {
         type: 'SEND_FAILED',
         message: 'We couldn\'t connect to the server, please check your internet connection.'
       });
+    } else if(exception.response.status == 422) {
+      yield put({
+        type: 'SEND_FAILED',
+        response: exception.response.data
+      });
     } else {
       yield put({
         type: 'SEND_FAILED',

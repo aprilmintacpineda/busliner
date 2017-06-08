@@ -20,17 +20,19 @@ class PopMessage extends Component {
     return (
       <div className="modal-wrapper">
         <div className="modal-container">
-          <div className="title">
-            <h1>{this.props.title}</h1>
-          </div>
+          <div className="modal">
+            <div className="title">
+              <h1>{this.props.title}</h1>
+            </div>
 
-          <div className="message">
-            <h3>{this.props.message}</h3>
-          </div>
+            <div className="message">
+              <h3>{this.props.message}</h3>
+            </div>
 
-          <div className="btns-wrapper">
-            <div className="btn-dismiss" onClick={this.props.onClick}>
-              Dismiss
+            <div className="btns-wrapper">
+              <div className="btn-dismiss" onClick={this.props.onClick}>
+                Dismiss
+              </div>
             </div>
           </div>
         </div>

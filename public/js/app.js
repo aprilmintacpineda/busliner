@@ -20445,6 +20445,9 @@ var SignUp = function (_Component) {
         this.props.form.request.error ? _react2.default.createElement(_PopMessage2.default, {
           title: 'Opsss... We got an error.',
           message: this.props.form.request.error,
+          onClick: this.props.clearRequestError }) : this.props.form.request.status == 'successful' ? _react2.default.createElement(_PopMessage2.default, {
+          title: 'Yay! Thank you!',
+          message: 'You have successfully created your account. We have sent a verification code to your email. Please check your email to verify your account.',
           onClick: this.props.clearRequestError }) : null,
         _react2.default.createElement(_Topbar2.default, null),
         _react2.default.createElement(
@@ -20465,6 +20468,7 @@ var SignUp = function (_Component) {
                 _InputText2.default,
                 {
                   disabled: this.props.form.request.sending,
+                  maxlength: 75,
                   value: this.props.form.first_name.value,
                   placeholder: 'Your first name',
                   errors: this.props.form.first_name.errors,
@@ -20481,6 +20485,7 @@ var SignUp = function (_Component) {
                 _InputText2.default,
                 {
                   disabled: this.props.form.request.sending,
+                  maxlength: 75,
                   value: this.props.form.middle_name.value,
                   placeholder: 'Your middle name',
                   errors: this.props.form.middle_name.errors,
@@ -20497,6 +20502,7 @@ var SignUp = function (_Component) {
                 _InputText2.default,
                 {
                   disabled: this.props.form.request.sending,
+                  maxlength: 75,
                   value: this.props.form.surname.value,
                   placeholder: 'Your surname',
                   errors: this.props.form.surname.errors,
@@ -20513,6 +20519,7 @@ var SignUp = function (_Component) {
                 _InputText2.default,
                 {
                   disabled: this.props.form.request.sending,
+                  maxlength: 75,
                   value: this.props.form.email.value,
                   placeholder: 'Your email',
                   errors: this.props.form.email.errors,
@@ -20529,6 +20536,7 @@ var SignUp = function (_Component) {
                 _InputText2.default,
                 {
                   disabled: this.props.form.request.sending,
+                  maxlength: 75,
                   value: this.props.form.password.value,
                   placeholder: 'Your desired password',
                   errors: this.props.form.password.errors,
@@ -20546,6 +20554,7 @@ var SignUp = function (_Component) {
                 _InputText2.default,
                 {
                   disabled: this.props.form.request.sending,
+                  maxlength: 75,
                   value: this.props.form.password_again.value,
                   placeholder: 'Your desired password again',
                   errors: this.props.form.password_again.errors,
@@ -21570,29 +21579,33 @@ var PopMessage = function (_Component) {
           { className: 'modal-container' },
           _react2.default.createElement(
             'div',
-            { className: 'title' },
-            _react2.default.createElement(
-              'h1',
-              null,
-              this.props.title
-            )
-          ),
-          _react2.default.createElement(
-            'div',
-            { className: 'message' },
-            _react2.default.createElement(
-              'h3',
-              null,
-              this.props.message
-            )
-          ),
-          _react2.default.createElement(
-            'div',
-            { className: 'btns-wrapper' },
+            { className: 'modal' },
             _react2.default.createElement(
               'div',
-              { className: 'btn-dismiss', onClick: this.props.onClick },
-              'Dismiss'
+              { className: 'title' },
+              _react2.default.createElement(
+                'h1',
+                null,
+                this.props.title
+              )
+            ),
+            _react2.default.createElement(
+              'div',
+              { className: 'message' },
+              _react2.default.createElement(
+                'h3',
+                null,
+                this.props.message
+              )
+            ),
+            _react2.default.createElement(
+              'div',
+              { className: 'btns-wrapper' },
+              _react2.default.createElement(
+                'div',
+                { className: 'btn-dismiss', onClick: this.props.onClick },
+                'Dismiss'
+              )
             )
           )
         )
@@ -21751,6 +21764,7 @@ var InputText = function (_Component) {
           'div',
           { className: 'input-type-box' },
           _react2.default.createElement('input', {
+            maxLength: this.props.maxlength,
             ref: 'input',
             type: this.props.password ? 'password' : 'text',
             value: this.props.value,
@@ -21780,7 +21794,8 @@ InputText.propTypes = {
   errors: _propTypes2.default.array.isRequired,
   disabled: _propTypes2.default.bool.isRequired,
   children: _propTypes2.default.element,
-  password: _propTypes2.default.bool
+  password: _propTypes2.default.bool,
+  maxlength: _propTypes2.default.number.isRequired
 };
 exports.default = InputText;
 
@@ -21948,7 +21963,7 @@ function validateName(what, name) {
             errors.push(what + ' contains excessive spaces.');
             excessiveSpaces = true;
           }
-        } else if (!/^[a-zA-Z ]+$/.test(substr)) {
+        } else if (!/^[a-zA-Z ]+$/.test(substr) || substr.length <= 2 || substr.length > 75) {
           if (!invalidName) {
             errors.push(what + ' is invalid.');
             invalidName = true;
@@ -21991,6 +22006,10 @@ function validatePassword(password, passwordAgain) {
 
   if (!password.trim().length && passwordAgain.trim().length || !password.trim().length) {
     errors.push('Password is required.');
+  } else if (password.length < 6) {
+    errors.push('Password is too weak.');
+  } else if (password.length > 255) {
+    errors.push('Password is too long.');
   }
 
   return errors;
@@ -22012,6 +22031,29 @@ function validatePasswordAgain(password, passwordAgain) {
 
 function allowSubmit(newState) {
   return newState.first_name.value.trim().length && newState.middle_name.value.trim().length && newState.surname.value.trim().length && newState.email.value.trim().length && newState.password.value.trim().length && newState.password_again.value.trim().length && newState.password.value == newState.password_again.value && !newState.request.sending && !newState.first_name.errors.length && !newState.middle_name.errors.length && !newState.surname.errors.length && !newState.email.errors.length && !newState.password.errors.length && !newState.password_again.errors.length ? true : false;
+}
+
+function mapErrors(state, errors) {
+  return _extends({}, state, {
+    first_name: _extends({}, state.first_name, {
+      errors: errors.first_name ? errors.first_name : []
+    }),
+    middle_name: _extends({}, state.middle_name, {
+      errors: errors.middle_name ? errors.middle_name : []
+    }),
+    surname: _extends({}, state.surname, {
+      errors: errors.surname ? errors.surname : []
+    }),
+    email: _extends({}, state.email, {
+      errors: errors.email ? errors.email : []
+    }),
+    password: _extends({}, state.password, {
+      errors: errors.password ? errors.password : []
+    }),
+    password_again: _extends({}, state.password_again, {
+      errors: errors.password_again ? errors.password_again : []
+    })
+  });
 }
 
 function signUpForm() {
@@ -22144,6 +22186,14 @@ function signUpForm() {
       break;
 
     case 'SEND_FAILED':
+      if (action.response) {
+        return _extends({}, mapErrors(state, action.response), {
+          request: _extends({}, state.request, {
+            sending: false
+          })
+        });
+      }
+
       return _extends({}, state, {
         request: _extends({}, state.request, {
           sending: false,
@@ -22154,7 +22204,11 @@ function signUpForm() {
       break;
 
     case 'SEND_SUCCESSFUL':
-
+      return _extends({}, _signUpForm2.default, {
+        request: _extends({}, _signUpForm2.default.request, {
+          status: 'successful'
+        })
+      });
       break;
 
     case 'SEND_ERROR_CLEAR':
@@ -22280,7 +22334,7 @@ function signUpSagaWorker(action) {
           return (0, _effects.put)({ type: 'SEND_SUCCESSFUL' });
 
         case 9:
-          _context.next = 20;
+          _context.next = 25;
           break;
 
         case 11:
@@ -22299,17 +22353,33 @@ function signUpSagaWorker(action) {
           });
 
         case 16:
-          _context.next = 20;
+          _context.next = 25;
           break;
 
         case 18:
-          _context.next = 20;
+          if (!(_context.t0.response.status == 422)) {
+            _context.next = 23;
+            break;
+          }
+
+          _context.next = 21;
+          return (0, _effects.put)({
+            type: 'SEND_FAILED',
+            response: _context.t0.response.data
+          });
+
+        case 21:
+          _context.next = 25;
+          break;
+
+        case 23:
+          _context.next = 25;
           return (0, _effects.put)({
             type: 'SEND_FAILED',
             message: 'We have encountered an unexpected error while processing your request. The server responded with the following `' + _context.t0.response.status + ' : ' + _context.t0.response.statusText + '`'
           });
 
-        case 20:
+        case 25:
         case 'end':
           return _context.stop();
       }

@@ -24,6 +24,11 @@ class SignUp extends Component {
             title="Opsss... We got an error."
             message={this.props.form.request.error}
             onClick={this.props.clearRequestError} />
+        : this.props.form.request.status == 'successful'?
+          <PopMessage
+            title="Yay! Thank you!"
+            message="You have successfully created your account. We have sent a verification code to your email. Please check your email to verify your account."
+            onClick={this.props.clearRequestError} />
         : null}
 
         <Topbar />
@@ -35,6 +40,7 @@ class SignUp extends Component {
             <li>
               <InputText
               disabled={this.props.form.request.sending}
+              maxlength={75}
               value={this.props.form.first_name.value}
               placeholder="Your first name"
               errors={this.props.form.first_name.errors}
@@ -45,6 +51,7 @@ class SignUp extends Component {
             <li>
               <InputText
               disabled={this.props.form.request.sending}
+              maxlength={75}
               value={this.props.form.middle_name.value}
               placeholder="Your middle name"
               errors={this.props.form.middle_name.errors}
@@ -55,6 +62,7 @@ class SignUp extends Component {
             <li>
               <InputText
               disabled={this.props.form.request.sending}
+              maxlength={75}
               value={this.props.form.surname.value}
               placeholder="Your surname"
               errors={this.props.form.surname.errors}
@@ -65,6 +73,7 @@ class SignUp extends Component {
             <li>
               <InputText
               disabled={this.props.form.request.sending}
+              maxlength={75}
               value={this.props.form.email.value}
               placeholder="Your email"
               errors={this.props.form.email.errors}
@@ -75,6 +84,7 @@ class SignUp extends Component {
             <li>
               <InputText
               disabled={this.props.form.request.sending}
+              maxlength={75}
               value={this.props.form.password.value}
               placeholder="Your desired password"
               errors={this.props.form.password.errors}
@@ -86,6 +96,7 @@ class SignUp extends Component {
             <li>
               <InputText
               disabled={this.props.form.request.sending}
+              maxlength={75}
               value={this.props.form.password_again.value}
               placeholder="Your desired password again"
               errors={this.props.form.password_again.errors}

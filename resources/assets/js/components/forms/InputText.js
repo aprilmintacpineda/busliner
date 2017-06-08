@@ -10,6 +10,7 @@ class InputText extends Component {
     disabled: PropTypes.bool.isRequired,
     children: PropTypes.element,
     password: PropTypes.bool,
+    maxlength: PropTypes.number.isRequired
   }
 
   render() {
@@ -19,6 +20,7 @@ class InputText extends Component {
       <div className="input-area-wrapper">
         <div className="input-type-box">
           <input
+            maxLength={this.props.maxlength}
             ref="input"
             type={this.props.password? 'password' : 'text'}
             value={this.props.value}

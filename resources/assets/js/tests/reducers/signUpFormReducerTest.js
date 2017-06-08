@@ -159,7 +159,7 @@ describe('reducers/signUpFormReducer', () => {
       ...initial_state,
       password: {
         ...initial_state.password,
-        value: 'asd'
+        value: 'asdasd'
       },
       password_again: {
         ...initial_state.password_again,
@@ -172,7 +172,7 @@ describe('reducers/signUpFormReducer', () => {
       ...initial_state,
       password: {
         ...initial_state.password,
-        value: 'asd'
+        value: 'asdasd'
       },
       password_again: {
         errors: ['Passwords do not match.'],
@@ -222,6 +222,40 @@ describe('reducers/signUpFormReducer', () => {
         allow_submit: true
       }
     });
+
+    expect(subject({
+      ...initial_state,
+      request: {
+        ...initial_state.request,
+        sending: true
+      }
+    }, {
+      type: 'SEND_FAILED',
+      response: {
+        first_name: ['First name is required.'],
+        middle_name: ['Middle name is required.'],
+        surname: ['Surname is required.'],
+        email: ['Email is required.']
+      }
+    })).to.deep.equal({
+      ...initial_state,
+      first_name: {
+        ...initial_state.first_name,
+        errors: ['First name is required.']
+      },
+      middle_name: {
+        ...initial_state.middle_name,
+        errors: ['Middle name is required.']
+      },
+      surname: {
+        ...initial_state.surname,
+        errors: ['Surname is required.'],
+      },
+      email: {
+        ...initial_state.email,
+        errors: ['Email is required.']
+      }
+    });
   });
 
   it('handles SEND_ERROR_CLEAR', () => {
@@ -246,6 +280,20 @@ describe('reducers/signUpFormReducer', () => {
   });
 
   it('handles SEND_SUCCESSFUL with field errors', () => {
-    
+    expect(subject({
+      ...initial_state,
+      request: {
+        ...initial_state.request,
+        sending: true,
+      }
+    }, {
+      type: 'SEND_SUCCESSFUL'
+    })).to.deep.equal({
+      ...initial_state,
+      request: {
+        ...initial_state.request,
+        status: 'successful'
+      }
+    });
   });
 });

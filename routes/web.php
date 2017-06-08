@@ -11,6 +11,14 @@
 |
 */
 
+/*
+|--------------------------------------------------------------------------
+| Sign up routes
+|--------------------------------------------------------------------------
+| routes used for ajax sign-up
+*/
+Route::post('sign-up', 'SignUpController@store');
+
 Route::get('/', 'LandingController@index');
 Route::get('{slug}', 'LandingController@slug')
   ->where('slug', '.*?');

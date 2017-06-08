@@ -15,7 +15,7 @@ function validateName(what, name) {
           errors.push(what + ' contains excessive spaces.');
           excessiveSpaces = true;
         }
-      } else if(!/^[a-zA-Z ]+$/.test(substr)) {
+      } else if(!/^[a-zA-Z ]+$/.test(substr) || substr.length <= 2 || substr.length > 75) {
         if(!invalidName) {
           errors.push(what + ' is invalid.');
           invalidName = true;
@@ -44,6 +44,10 @@ function validatePassword(password, passwordAgain) {
 
   if((!password.trim().length && passwordAgain.trim().length) || !password.trim().length) {
     errors.push('Password is required.');
+  } else if(password.length < 6) {
+    errors.push('Password is too weak.');
+  } else if(password.length > 255) {
+    errors.push('Password is too long.');
   }
 
   return errors;
@@ -78,6 +82,36 @@ function allowSubmit(newState) {
     !newState.email.errors.length &&
     !newState.password.errors.length &&
     !newState.password_again.errors.length) ? true : false;
+}
+
+function mapErrors(state, errors) {
+  return {
+    ...state,
+    first_name: {
+      ...state.first_name,
+      errors: errors.first_name? errors.first_name : []
+    },
+    middle_name: {
+      ...state.middle_name,
+      errors: errors.middle_name? errors.middle_name : []
+    },
+    surname: {
+      ...state.surname,
+      errors: errors.surname? errors.surname : []
+    },
+    email: {
+      ...state.email,
+      errors: errors.email? errors.email : []
+    },
+    password: {
+      ...state.password,
+      errors: errors.password? errors.password : []
+    },
+    password_again: {
+      ...state.password_again,
+      errors: errors.password_again? errors.password_again : []
+    }
+  }
 }
 
 export default function signUpForm(state = initial_state, action) {
@@ -232,6 +266,16 @@ export default function signUpForm(state = initial_state, action) {
     break;
 
     case 'SEND_FAILED':
+      if(action.response) {
+        return {
+          ...mapErrors(state, action.response),
+          request: {
+            ...state.request,
+            sending: false
+          }
+        }
+      }
+
       return {
         ...state,
         request: {
@@ -244,7 +288,13 @@ export default function signUpForm(state = initial_state, action) {
     break;
 
     case 'SEND_SUCCESSFUL':
-
+      return {
+        ...initial_state,
+        request: {
+          ...initial_state.request,
+          status: 'successful'
+        }
+      }
     break;
 
     case 'SEND_ERROR_CLEAR':

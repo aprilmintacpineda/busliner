@@ -3,6 +3,46 @@
   padding: 0;
   box-sizing: border-box; }
 
+@-webkit-keyframes grow {
+  0% {
+    transform: scale(0); }
+  60% {
+    transform: scale(1.3); }
+  100% {
+    transform: scale(1); } }
+
+@-moz-keyframes grow {
+  0% {
+    transform: scale(0); }
+  60% {
+    transform: scale(1.3); }
+  100% {
+    transform: scale(1); } }
+
+@-ms-keyframes grow {
+  0% {
+    transform: scale(0); }
+  60% {
+    transform: scale(1.3); }
+  100% {
+    transform: scale(1); } }
+
+@-o-keyframes grow {
+  0% {
+    transform: scale(0); }
+  60% {
+    transform: scale(1.3); }
+  100% {
+    transform: scale(1); } }
+
+@keyframes grow {
+  0% {
+    transform: scale(0); }
+  60% {
+    transform: scale(1.3); }
+  100% {
+    transform: scale(1); } }
+
 .topbar-wrapper .space-holder, .topbar-wrapper .topbar-outer-container {
   height: 80px; }
 
@@ -189,12 +229,16 @@
     width: -ms-max-content;
     width: -o-max-content;
     width: max-content;
-    max-width: 80%;
-    background: #fff;
-    box-shadow: #fff;
-    border: 1px solid #d0d1d5;
-    padding: 10px;
-    border-radius: 4px; }
+    max-width: 80%; }
+    .modal-wrapper .modal-container .modal {
+      animation: grow 350ms;
+      background: #fff;
+      box-shadow: #fff;
+      border: 1px solid #d0d1d5;
+      padding: 10px;
+      border-radius: 4px;
+      width: 100%;
+      height: 100%; }
     .modal-wrapper .modal-container .title h1 {
       font-weight: normal; }
     .modal-wrapper .modal-container .message h3 {
