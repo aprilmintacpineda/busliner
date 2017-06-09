@@ -13,6 +13,11 @@ import InputButton from '../components/forms/InputButton';
 import { clearPopMessage } from '../actions/popMessageActions';
 
 class SignIn extends Component {
+  componentWillMount() {
+    document.title = 'Sign in now and start securing your travel.';
+    window.scrollTo(0, 0);
+  }
+
   render() {
     return (
       <div className="sign-in">
@@ -27,11 +32,11 @@ class SignIn extends Component {
         <Topbar />
 
         <div className="sign-form">
-          <h1>Sign in now and start securing your travel!</h1>
+          <h1>Sign in now and start securing your travel.</h1>
 
           <ul>
             <li>
-              <p>Don't have an account yet? <Link to="/sign-up">Create an account now!</Link></p>
+              <p>Don't have an account yet? <Link to="/sign-up" className="link-default">Create an account now!</Link></p>
             </li>
             <li>
               <InputText

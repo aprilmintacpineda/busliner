@@ -3,6 +3,26 @@
   padding: 0;
   box-sizing: border-box; }
 
+a.link-default {
+  color: #006699;
+  text-decoration: none; }
+  a.link-default:hover {
+    text-decoration: underline; }
+
+.button-default {
+  display: inline-block;
+  padding: 10px;
+  opacity: 0.7;
+  transition: opacity 0.4s;
+  text-decoration: none; }
+  .button-default:hover {
+    opacity: 1; }
+
+.button-default.button-green {
+  color: #fff;
+  border: 1px solid #2d862d;
+  background: #40bf40; }
+
 @-webkit-keyframes grow {
   0% {
     transform: scale(0); }
@@ -266,6 +286,39 @@
       .modal-wrapper .modal-container .btns-wrapper .btn-dismiss:hover {
         opacity: 1; }
 
+.error-body-wrapper {
+  position: relative;
+  width: 100vw;
+  height: 100vh; }
+  .error-body-wrapper .error-body {
+    position: absolute;
+    width: -webkit-max-content;
+    width: -moz-max-content;
+    width: -ms-max-content;
+    width: -o-max-content;
+    width: max-content;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 10px;
+    border-radius: 4px; }
+    @media all and (max-width: 480px) {
+      .error-body-wrapper .error-body {
+        width: 100%;
+        position: relative; } }
+    .error-body-wrapper .error-body h1 {
+      font-weight: normal;
+      padding-bottom: 10px;
+      margin-bottom: 10px;
+      border-bottom: 1px solid #d0d1d5; }
+    .error-body-wrapper .error-body img {
+      width: 100%;
+      height: auto; }
+    .error-body-wrapper .error-body p {
+      margin-bottom: 10px; }
+      .error-body-wrapper .error-body p:last-child {
+        margin-bottom: 0; }
+
 .home .welcome-banner {
   background: url("http://localhost:8000/busliner.jpg") no-repeat fixed;
   background-size: 100% 100%;
@@ -389,11 +442,6 @@
       margin-bottom: 10px; }
       .sign-up .sign-form ul li:last-child, .sign-in .sign-form ul li:last-child {
         margin-bottom: 0; }
-      .sign-up .sign-form ul li a, .sign-in .sign-form ul li a {
-        color: #006699;
-        text-decoration: none; }
-        .sign-up .sign-form ul li a:hover, .sign-in .sign-form ul li a:hover {
-          text-decoration: underline; }
       .sign-up .sign-form ul li .input-area-wrapper, .sign-in .sign-form ul li .input-area-wrapper {
         position: relative; }
         .sign-up .sign-form ul li .input-area-wrapper .error-list, .sign-in .sign-form ul li .input-area-wrapper .error-list {
@@ -466,7 +514,6 @@
         width: -ms-max-content;
         width: -o-max-content;
         width: max-content;
-        transition: width 0.4s;
         color: #fff;
         cursor: pointer; }
         .sign-up .sign-form ul li .button .sending, .sign-in .sign-form ul li .button .sending {

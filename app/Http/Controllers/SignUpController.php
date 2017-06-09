@@ -48,13 +48,6 @@ class SignUpController extends Controller
       ]);
     }
 
-    return view('landing', [
-      'title' => 'Page Not Found'
-    ])->with([
-      'pop_message' => [
-        'title' => 'Opsss... We got an error.',
-        'message' => 'This page isn\' available. The link you followed may be broken, or the page may have been removed.'
-      ]
-    ]);
+    return abort(404);
   }
 }

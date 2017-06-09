@@ -14,6 +14,7 @@ import * as actions from '../actions/signUpActions';
 class SignUp extends Component {
   componentWillMount() {
     document.title = 'Create your account and reserve a seat now.';
+    window.scrollTo(0, 0);
   }
 
   render() {
