@@ -21,6 +21,8 @@ class CreateReservationsTable extends Migration
             $table->string('cancel_reason', 255)->nullable();
             $table->timestamp('cancelled_at')->nullable();
             $table->timestamps();
+
+            $table->primary('id');
         });
     }
 

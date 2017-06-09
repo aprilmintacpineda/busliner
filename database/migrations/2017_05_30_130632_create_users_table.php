@@ -23,6 +23,8 @@ class CreateUsersTable extends Migration
             $table->string('verify_token', 255);
             $table->boolean('is_verified')->default(false);
             $table->timestamps();
+
+            $table->primary('id');
         });
     }
 

@@ -15,14 +15,10 @@
 |--------------------------------------------------------------------------
 | Sign up routes
 |--------------------------------------------------------------------------
-| routes used for ajax sign-up
+| routes used for ajax sign-up, email verification
 */
-
-Route::get('test', function() {
-  return view('emails.verifyRegistration');
-});
-
 Route::post('sign-up', 'SignUpController@store');
+Route::get('sign-up/verify/{verify_token}', 'SignUpController@verify');
 
 Route::get('/', 'LandingController@index');
 Route::get('{slug}', 'LandingController@slug')

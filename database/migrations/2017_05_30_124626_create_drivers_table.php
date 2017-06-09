@@ -19,6 +19,8 @@ class CreateDriversTable extends Migration
             $table->string('middle_name', 75);
             $table->string('surname', 75);
             $table->timestamps();
+
+            $table->primary('id');
         });
     }
 

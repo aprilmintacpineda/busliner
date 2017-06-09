@@ -25,6 +25,8 @@ class CreateLinesTable extends Migration
             $table->string('destination', 255);
             $table->datetime('schedule');
             $table->timestamps();
+
+            $table->primary('id');
         });
     }
 

@@ -21828,6 +21828,10 @@ var _SignUp = __webpack_require__(263);
 
 var _SignUp2 = _interopRequireDefault(_SignUp);
 
+var _SignIn = __webpack_require__(631);
+
+var _SignIn2 = _interopRequireDefault(_SignIn);
+
 var _createStore = __webpack_require__(261);
 
 var _createStore2 = _interopRequireDefault(_createStore);
@@ -21850,7 +21854,8 @@ _axios2.default.interceptors.request.use(function (config) {
     _reactRouter.Router,
     { history: _reactRouter.browserHistory },
     _react2.default.createElement(_reactRouter.Route, { path: '/', component: _Home2.default }),
-    _react2.default.createElement(_reactRouter.Route, { path: '/sign-up', component: _SignUp2.default })
+    _react2.default.createElement(_reactRouter.Route, { path: '/sign-up', component: _SignUp2.default }),
+    _react2.default.createElement(_reactRouter.Route, { path: '/sign-in', component: _SignIn2.default })
   )
 ), document.querySelector('#main'));
 
@@ -21871,10 +21876,15 @@ var _signUpFormReducer = __webpack_require__(289);
 
 var _signUpFormReducer2 = _interopRequireDefault(_signUpFormReducer);
 
+var _popMessageReducer = __webpack_require__(632);
+
+var _popMessageReducer2 = _interopRequireDefault(_popMessageReducer);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 exports.default = (0, _redux.combineReducers)({
-  signUpForm: _signUpFormReducer2.default
+  signUpForm: _signUpFormReducer2.default,
+  popMessage: _popMessageReducer2.default
 });
 
 /***/ }),
@@ -45571,6 +45581,230 @@ module.exports = function(module) {
 	return module;
 };
 
+
+/***/ }),
+/* 631 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(14);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactRedux = __webpack_require__(111);
+
+var _reactRouter = __webpack_require__(112);
+
+var _Topbar = __webpack_require__(178);
+
+var _Topbar2 = _interopRequireDefault(_Topbar);
+
+var _Footer = __webpack_require__(177);
+
+var _Footer2 = _interopRequireDefault(_Footer);
+
+var _PopMessage = __webpack_require__(283);
+
+var _PopMessage2 = _interopRequireDefault(_PopMessage);
+
+var _InputText = __webpack_require__(285);
+
+var _InputText2 = _interopRequireDefault(_InputText);
+
+var _InputButton = __webpack_require__(284);
+
+var _InputButton2 = _interopRequireDefault(_InputButton);
+
+var _popMessageActions = __webpack_require__(633);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+// forms
+
+
+// actions
+
+
+var SignIn = function (_Component) {
+  _inherits(SignIn, _Component);
+
+  function SignIn() {
+    _classCallCheck(this, SignIn);
+
+    return _possibleConstructorReturn(this, (SignIn.__proto__ || Object.getPrototypeOf(SignIn)).apply(this, arguments));
+  }
+
+  _createClass(SignIn, [{
+    key: 'render',
+    value: function render() {
+      var _this2 = this;
+
+      return _react2.default.createElement(
+        'div',
+        { className: 'sign-in' },
+        this.props.popMessage.pop ? _react2.default.createElement(_PopMessage2.default, {
+          title: this.props.popMessage.title,
+          message: this.props.popMessage.message,
+          onClick: function onClick() {
+            return _this2.props.clearPopMessage();
+          }
+        }) : null,
+        _react2.default.createElement(_Topbar2.default, null),
+        _react2.default.createElement(
+          'div',
+          { className: 'sign-form' },
+          _react2.default.createElement(
+            'h1',
+            null,
+            'Sign in now and start securing your travel!'
+          ),
+          _react2.default.createElement(
+            'ul',
+            null,
+            _react2.default.createElement(
+              'li',
+              null,
+              _react2.default.createElement(
+                'p',
+                null,
+                'Don\'t have an account yet? ',
+                _react2.default.createElement(
+                  _reactRouter.Link,
+                  { to: '/sign-up' },
+                  'Create an account now!'
+                )
+              )
+            ),
+            _react2.default.createElement(
+              'li',
+              null,
+              _react2.default.createElement(
+                _InputText2.default,
+                {
+                  disabled: false,
+                  maxlength: 75,
+                  value: '',
+                  placeholder: 'Your email',
+                  errors: [],
+                  onChange: function onChange(value) {
+                    return console.log(value);
+                  } },
+                _react2.default.createElement('span', { className: 'decor' })
+              )
+            ),
+            _react2.default.createElement(
+              'li',
+              null,
+              _react2.default.createElement(
+                _InputText2.default,
+                {
+                  disabled: false,
+                  maxlength: 75,
+                  value: '',
+                  placeholder: 'Your password',
+                  errors: [],
+                  onChange: function onChange(value) {
+                    return console.log(value);
+                  },
+                  password: true },
+                _react2.default.createElement('span', { className: 'decor' })
+              )
+            ),
+            _react2.default.createElement(
+              'li',
+              null,
+              _react2.default.createElement(_InputButton2.default, {
+                disabled: false,
+                onClick: function onClick() {
+                  return console.log('submit');
+                },
+                sending: false,
+                value: 'Sign in' })
+            )
+          )
+        ),
+        _react2.default.createElement(_Footer2.default, null)
+      );
+    }
+  }]);
+
+  return SignIn;
+}(_react.Component);
+
+exports.default = (0, _reactRedux.connect)(function (store) {
+  return {
+    popMessage: _extends({}, store.popMessage)
+  };
+}, {
+  clearPopMessage: _popMessageActions.clearPopMessage
+})(SignIn);
+
+/***/ }),
+/* 632 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+exports.default = popMessage;
+var initial_state = window && window.pop_message ? _extends({}, window.pop_message, {
+  pop: true
+}) : {
+  pop: false
+};
+
+function popMessage() {
+  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : initial_state;
+  var action = arguments[1];
+
+  switch (action.type) {
+    case 'CLEAR_POP_MESSAGE':
+      return {
+        pop: false
+      };
+      break;
+  }
+
+  return state;
+}
+
+/***/ }),
+/* 633 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.clearPopMessage = clearPopMessage;
+function clearPopMessage() {
+  return {
+    type: 'CLEAR_POP_MESSAGE'
+  };
+}
 
 /***/ })
 /******/ ]);

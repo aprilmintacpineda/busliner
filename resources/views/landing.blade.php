@@ -12,6 +12,11 @@
 </head>
 <body>
   <div id="main"></div>
+  @if(Session::has('pop_message'))
+    <script type="text/javascript">
+      window.pop_message = {!! json_encode(Session::get('pop_message')) !!}
+    </script>
+  @endif
   <script type="text/javascript" src="{{ asset('js/app.js') }}"></script>
   @if(isset($map) && $map)
     <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCyhDDLqPWekONyGquAYZkPBcHfRwrP5c0&callback=window.initMap" defer async></script>

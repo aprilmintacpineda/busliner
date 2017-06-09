@@ -389,6 +389,11 @@
       margin-bottom: 10px; }
       .sign-up .sign-form ul li:last-child, .sign-in .sign-form ul li:last-child {
         margin-bottom: 0; }
+      .sign-up .sign-form ul li a, .sign-in .sign-form ul li a {
+        color: #006699;
+        text-decoration: none; }
+        .sign-up .sign-form ul li a:hover, .sign-in .sign-form ul li a:hover {
+          text-decoration: underline; }
       .sign-up .sign-form ul li .input-area-wrapper, .sign-in .sign-form ul li .input-area-wrapper {
         position: relative; }
         .sign-up .sign-form ul li .input-area-wrapper .error-list, .sign-in .sign-form ul li .input-area-wrapper .error-list {
