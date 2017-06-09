@@ -22187,9 +22187,12 @@ function signUpForm() {
 
     case 'SEND_FAILED':
       if (action.response) {
-        return _extends({}, mapErrors(state, action.response), {
+        newState = _extends({}, state, mapErrors(state, action.response));
+
+        return _extends({}, newState, {
           request: _extends({}, state.request, {
-            sending: false
+            sending: false,
+            allow_submit: allowSubmit(newState)
           })
         });
       }

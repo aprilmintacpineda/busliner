@@ -17,6 +17,11 @@
 |--------------------------------------------------------------------------
 | routes used for ajax sign-up
 */
+
+Route::get('test', function() {
+  return view('emails.verifyRegistration');
+});
+
 Route::post('sign-up', 'SignUpController@store');
 
 Route::get('/', 'LandingController@index');

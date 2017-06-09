@@ -267,11 +267,17 @@ export default function signUpForm(state = initial_state, action) {
 
     case 'SEND_FAILED':
       if(action.response) {
+        newState = {
+          ...state,
+          ...mapErrors(state, action.response)
+        }
+
         return {
-          ...mapErrors(state, action.response),
+          ...newState,
           request: {
             ...state.request,
-            sending: false
+            sending: false,
+            allow_submit: allowSubmit(newState)
           }
         }
       }

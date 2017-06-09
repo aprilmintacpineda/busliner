@@ -254,6 +254,10 @@ describe('reducers/signUpFormReducer', () => {
       email: {
         ...initial_state.email,
         errors: ['Email is required.']
+      },
+      request: {
+        ...initial_state.request,
+        allow_submit: false
       }
     });
   });
