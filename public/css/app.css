@@ -128,6 +128,39 @@ a.link-default {
       clear: both;
       content: '';
       display: block; }
+    .topbar-outer-container .topbar-inner-container .links .dropdown-menu {
+      position: relative;
+      color: #006699;
+      transition: background 0.3s;
+      border-radius: 4px;
+      cursor: pointer;
+      padding: 10px; }
+      .topbar-outer-container .topbar-inner-container .links .dropdown-menu:hover {
+        background: #006699;
+        color: #fff; }
+      .topbar-outer-container .topbar-inner-container .links .dropdown-menu:hover ul {
+        display: block; }
+      .topbar-outer-container .topbar-inner-container .links .dropdown-menu ul {
+        display: none;
+        background: #fff;
+        position: absolute;
+        border: 1px solid #d0d1d5;
+        box-shadow: 0 0 5px #d0d1d5; }
+        .topbar-outer-container .topbar-inner-container .links .dropdown-menu ul li {
+          float: none;
+          margin: 0; }
+          .topbar-outer-container .topbar-inner-container .links .dropdown-menu ul li .separator {
+            border-bottom: 1px solid #d0d1d5;
+            height: 1px;
+            width: 100%;
+            display: block; }
+          .topbar-outer-container .topbar-inner-container .links .dropdown-menu ul li a {
+            display: block;
+            border-radius: 0; }
+            .topbar-outer-container .topbar-inner-container .links .dropdown-menu ul li a:hover {
+              background: none;
+              color: #006699;
+              text-decoration: underline; }
     .topbar-outer-container .topbar-inner-container .links li {
       float: left;
       list-style: none;
@@ -504,6 +537,8 @@ a.link-default {
       .sign-up .sign-form ul li .button.disabled, .sign-in .sign-form ul li .button.disabled {
         opacity: 0.6;
         cursor: not-allowed; }
+      .sign-up .sign-form ul li .input-button-wrapper .errors, .sign-in .sign-form ul li .input-button-wrapper .errors {
+        color: red; }
       .sign-up .sign-form ul li .button, .sign-in .sign-form ul li .button {
         position: relative;
         padding: 10px;

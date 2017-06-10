@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-import Topbar from '../components/Topbar';
+import Topbar from '../containers/Topbar';
 import Footer from '../components/Footer';
 import PopMessage from '../components/PopMessage';
 // forms
@@ -12,15 +12,33 @@ import InputButton from '../components/forms/InputButton';
 import * as actions from '../actions/signUpActions';
 
 class SignUp extends Component {
+  constructor(props) {
+    super(props);
+
+    this.redirectIfLoggedIn = this.redirectIfLoggedIn.bind(this);
+  }
+
+  redirectIfLoggedIn(props) {
+    if(props.user.logged_in) {
+      props.router.push('/user/' + props.user.id);
+    }
+  }
+  
   componentWillMount() {
+    this.redirectIfLoggedIn(this.props);
+
     document.title = 'Create your account and reserve a seat now.';
     window.scrollTo(0, 0);
+  }
+
+  componentWillUpdate(nextProps) {
+    this.redirectIfLoggedIn(nextProps);
   }
 
   render() {
     return (
       <div className="sign-up">
-        {this.props.form.request.error?
+        {this.props.form.request.status == 'failed'?
           <PopMessage
             title="Opsss... We got an error."
             message={this.props.form.request.error}
@@ -123,7 +141,8 @@ class SignUp extends Component {
 }
 
 export default connect(store => ({
-  form: {...store.signUpForm}
+  form: {...store.signUpForm},
+  user: {...store.user}
 }), {
   changeName: actions.changeName,
   changeMiddleName: actions.changeMiddleName,

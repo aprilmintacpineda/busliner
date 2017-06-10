@@ -3,7 +3,6 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Support\Facades\Input;
 use Illuminate\Contracts\Validation\Validator;
 
 class SignUpRequest extends FormRequest

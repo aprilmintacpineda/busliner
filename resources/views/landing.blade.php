@@ -14,7 +14,12 @@
   <div id="main"></div>
   @if(Session::has('pop_message'))
     <script type="text/javascript">
-      window.pop_message = {!! json_encode(Session::get('pop_message')) !!}
+      window.pop_message = {!! json_encode(Session::get('pop_message')) !!};
+    </script>
+  @endif
+  @if(isset($logged_in_user))
+    <script type="text/javascript">
+      window.logged_in_user = {!! json_encode($logged_in_user) !!};
     </script>
   @endif
   <script type="text/javascript" src="{{ asset('js/app.js') }}"></script>

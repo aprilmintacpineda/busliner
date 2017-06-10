@@ -6,12 +6,18 @@ class InputButton extends Component {
     value: PropTypes.string.isRequired,
     onClick: PropTypes.func.isRequired,
     sending: PropTypes.bool.isRequired,
-    disabled: PropTypes.bool.isRequired
+    disabled: PropTypes.bool.isRequired,
+    errors: PropTypes.array
   }
 
   render() {
+    let errors = this.props.errors?
+      this.props.errors.map((error, index) => <p className="errors" key={index}>{error}</p>)
+    : null;
+
     return (
-      <div>
+      <div className="input-button-wrapper">
+        {errors}
         {this.props.sending?
           <div
             className={this.props.disabled? 'button icon-active disabled' : 'button icon-active'}

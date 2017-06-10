@@ -16,4 +16,10 @@ class User extends Authenticatable
     'surname',
     'verify_token'
   ];
+
+  protected $hidden = [
+    'password',
+    'email',
+    'verify_token'
+  ];
 }

@@ -14,6 +14,9 @@ function mapErrors(state, errors) {
     password: {
       ...state.password,
       errors: errors.password? errors.password : []
+    },
+    submit: {
+      errors: errors.submit? errors.submit : []
     }
   }
 }
@@ -69,6 +72,9 @@ export default function signInForm(state = initial_state, action) {
     case 'SIGNIN_SEND_START':
       return {
         ...state,
+        submit: {
+          errors: []
+        },
         request: {
           ...initial_state.request,
           allow_submit: state.request.allow_submit,
@@ -87,13 +93,19 @@ export default function signInForm(state = initial_state, action) {
       if(action.response) {
         newState = {
           ...state,
-          ...mapErrors(state, action.response)
+          ...mapErrors(state, action.response),
+          request: {
+            ...state.request,
+            sending: false
+          }
         }
 
         return {
           ...newState,
           request: {
             ...newState.request,
+            status: null,
+            error: null,
             allow_submit: allowSubmit(newState)
           }
         }

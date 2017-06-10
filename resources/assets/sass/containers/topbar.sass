@@ -54,6 +54,39 @@
       right: 10px
       +vCenter
       +clearFloat
+      .dropdown-menu
+        position: relative
+        color: #006699
+        transition: background 0.3s
+        border-radius: 4px
+        cursor: pointer
+        padding: 10px
+        &:hover
+          background: #006699
+          color: #fff
+        &:hover ul
+          display: block
+        ul
+          display: none
+          background: #fff
+          position: absolute
+          border: 1px solid #d0d1d5
+          box-shadow: 0 0 5px #d0d1d5
+          li
+            float: none
+            margin: 0
+            .separator
+              border-bottom: 1px solid #d0d1d5
+              height: 1px
+              width: 100%
+              display: block
+            a
+              display: block
+              border-radius: 0
+              &:hover
+                background: none
+                color: #006699
+                text-decoration: underline
       li
         @media all and (max-width: $mobileWidth)
           float: none

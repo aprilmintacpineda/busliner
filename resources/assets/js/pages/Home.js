@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 
 import settings from '../_settings';
 
-import Topbar from '../components/Topbar';
+import Topbar from '../containers/Topbar';
 import Footer from '../components/Footer';
 
 class Home extends Component {

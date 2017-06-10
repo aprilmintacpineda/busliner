@@ -22,11 +22,11 @@ describe('sagas/signUpSagaWorker', () => {
     expect(iterator.next(data).value).to.deep.equal(call(axios.post, '/sign-up', data));
   });
 
-  it('yields a SEND_SUCCESSFUL action when completed', () => {
-    expect(iterator.next(mockResponse).value).to.deep.equal(put({ type: 'SEND_SUCCESSFUL' }));
+  it('yields a SIGNUP_SEND_SUCCESSFUL action when completed', () => {
+    expect(iterator.next(mockResponse).value).to.deep.equal(put({ type: 'SIGNUP_SEND_SUCCESSFUL' }));
   });
 
-  it('yields a SEND_FAILED action when failed', () => {
+  it('yields a SIGNUP_SEND_FAILED action when failed', () => {
     let exception = {
       response: {
         status: 405,
@@ -35,7 +35,7 @@ describe('sagas/signUpSagaWorker', () => {
     }
 
     expect(iterator.throw(exception).value).to.deep.equal(put({
-      type: 'SEND_FAILED',
+      type: 'SIGNUP_SEND_FAILED',
       message: 'We have encountered an unexpected error while processing your request. The server responded with the following `' + exception.response.status + ' : ' + exception.response.statusText + '`'
     }));
   });

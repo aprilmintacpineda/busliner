@@ -7,6 +7,9 @@ export default {
     value: '',
     errors: []
   },
+  submit: {
+    errors: []
+  },
   request: {
     sending: false,
     allow_submit: false,
