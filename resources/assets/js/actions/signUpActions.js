@@ -1,53 +1,53 @@
 export function changeName(value) {
   return {
-    type: 'CHANGE_FIRST_NAME',
+    type: 'SIGNUP_CHANGE_FIRST_NAME',
     value
   }
 }
 
 export function changeMiddleName(value) {
   return {
-    type: 'CHANGE_MIDDLE_NAME',
+    type: 'SIGNUP_CHANGE_MIDDLE_NAME',
     value
   }
 }
 
 export function changeSurname(value) {
   return {
-    type: 'CHANGE_SURNAME',
+    type: 'SIGNUP_CHANGE_SURNAME',
     value
   }
 }
 
 export function changeEmail(value) {
   return {
-    type: 'CHANGE_EMAIL',
+    type: 'SIGNUP_CHANGE_EMAIL',
     value
   }
 }
 
 export function changePassword(value) {
   return {
-    type: 'CHANGE_PASSWORD',
+    type: 'SIGNUP_CHANGE_PASSWORD',
     value
   }
 }
 
 export function changePasswordAgain(value) {
   return {
-    type: 'CHANGE_PASSWORD_AGAIN',
+    type: 'SIGNUP_CHANGE_PASSWORD_AGAIN',
     value
   }
 }
 
 export function clearRequestError() {
   return {
-    type: 'SEND_ERROR_CLEAR'
+    type: 'SIGNUP_SEND_ERROR_CLEAR'
   }
 }
 
 export function send() {
   return {
-    type: 'SEND_START'
+    type: 'SIGNUP_SEND_START'
   }
 }

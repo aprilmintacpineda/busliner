@@ -9,9 +9,9 @@ describe('reducers/signUpFormReducer', () => {
     })).to.deep.equal(initial_state);
   });
 
-  it('handles CHANGE_FIRST_NAME with error checking', () => {
+  it('handles SIGNUP_CHANGE_FIRST_NAME with error checking', () => {
     expect(subject(initial_state, {
-      type: 'CHANGE_FIRST_NAME',
+      type: 'SIGNUP_CHANGE_FIRST_NAME',
       value: ''
     })).to.deep.equal({
       ...initial_state,
@@ -22,7 +22,7 @@ describe('reducers/signUpFormReducer', () => {
     });
 
     expect(subject(initial_state, {
-      type: 'CHANGE_FIRST_NAME',
+      type: 'SIGNUP_CHANGE_FIRST_NAME',
       value: 'april-'
     })).to.deep.equal({
       ...initial_state,
@@ -33,9 +33,9 @@ describe('reducers/signUpFormReducer', () => {
     });
   });
 
-  it('handles CHANGE_MIDDLE_NAME with error checking', () => {
+  it('handles SIGNUP_CHANGE_MIDDLE_NAME with error checking', () => {
     expect(subject(initial_state, {
-      type: 'CHANGE_MIDDLE_NAME',
+      type: 'SIGNUP_CHANGE_MIDDLE_NAME',
       value: ''
     })).to.deep.equal({
       ...initial_state,
@@ -46,7 +46,7 @@ describe('reducers/signUpFormReducer', () => {
     });
 
     expect(subject(initial_state, {
-      type: 'CHANGE_MIDDLE_NAME',
+      type: 'SIGNUP_CHANGE_MIDDLE_NAME',
       value: 'april-'
     })).to.deep.equal({
       ...initial_state,
@@ -57,9 +57,9 @@ describe('reducers/signUpFormReducer', () => {
     });
   });
 
-  it('handles CHANGE_SURNAME with error checking', () => {
+  it('handles SIGNUP_CHANGE_SURNAME with error checking', () => {
     expect(subject(initial_state, {
-      type: 'CHANGE_SURNAME',
+      type: 'SIGNUP_CHANGE_SURNAME',
       value: ''
     })).to.deep.equal({
       ...initial_state,
@@ -70,7 +70,7 @@ describe('reducers/signUpFormReducer', () => {
     });
 
     expect(subject(initial_state, {
-      type: 'CHANGE_SURNAME',
+      type: 'SIGNUP_CHANGE_SURNAME',
       value: 'april-'
     })).to.deep.equal({
       ...initial_state,
@@ -81,9 +81,9 @@ describe('reducers/signUpFormReducer', () => {
     });
   });
 
-  it('handles CHANGE_EMAIL with error checking', () => {
+  it('handles SIGNUP_CHANGE_EMAIL with error checking', () => {
     expect(subject(initial_state, {
-      type: 'CHANGE_EMAIL',
+      type: 'SIGNUP_CHANGE_EMAIL',
       value: ''
     })).to.deep.equal({
       ...initial_state,
@@ -94,7 +94,7 @@ describe('reducers/signUpFormReducer', () => {
     });
 
     expect(subject(initial_state, {
-      type: 'CHANGE_EMAIL',
+      type: 'SIGNUP_CHANGE_EMAIL',
       value: 'april-'
     })).to.deep.equal({
       ...initial_state,
@@ -105,9 +105,9 @@ describe('reducers/signUpFormReducer', () => {
     });
   });
 
-  it('handles CHANGE_PASSWORD with error checking', () => {
+  it('handles SIGNUP_CHANGE_PASSWORD with error checking', () => {
     expect(subject(initial_state, {
-      type: 'CHANGE_PASSWORD',
+      type: 'SIGNUP_CHANGE_PASSWORD',
       value: ''
     })).to.deep.equal({
       ...initial_state,
@@ -118,7 +118,7 @@ describe('reducers/signUpFormReducer', () => {
     });
 
     expect(subject(initial_state, {
-      type: 'CHANGE_PASSWORD',
+      type: 'SIGNUP_CHANGE_PASSWORD',
       value: 'Blah Blah'
     })).to.deep.equal({
       ...initial_state,
@@ -139,7 +139,7 @@ describe('reducers/signUpFormReducer', () => {
         value: 'asdasd'
       }
     }, {
-      type: 'CHANGE_PASSWORD',
+      type: 'SIGNUP_CHANGE_PASSWORD',
       value: 'Blah Blah'
     })).to.deep.equal({
       ...initial_state,
@@ -154,7 +154,7 @@ describe('reducers/signUpFormReducer', () => {
     });
   });
 
-  it('handles CHANGE_PASSWORD_AGAIN with error checking', () => {
+  it('handles SIGNUP_CHANGE_PASSWORD_AGAIN with error checking', () => {
     expect(subject({
       ...initial_state,
       password: {
@@ -166,7 +166,7 @@ describe('reducers/signUpFormReducer', () => {
         value: 'a'
       }
     }, {
-      type: 'CHANGE_PASSWORD_AGAIN',
+      type: 'SIGNUP_CHANGE_PASSWORD_AGAIN',
       value: 'a'
     })).to.deep.equal({
       ...initial_state,
@@ -181,7 +181,7 @@ describe('reducers/signUpFormReducer', () => {
     });
   });
 
-  it('handles SEND_START with error checking', () => {
+  it('handles SIGNUP_SEND_START with error checking', () => {
     expect(subject({
       ...initial_state,
       request: {
@@ -189,7 +189,7 @@ describe('reducers/signUpFormReducer', () => {
         allow_submit: true
       }
     }, {
-      type: 'SEND_START'
+      type: 'SIGNUP_SEND_START'
     })).to.deep.equal({
       ...initial_state,
       request: {
@@ -200,7 +200,7 @@ describe('reducers/signUpFormReducer', () => {
     });
   });
 
-  it('handles SEND_FAILED', () => {
+  it('handles SIGNUP_SEND_FAILED', () => {
     expect(subject({
       ...initial_state,
       request: {
@@ -210,7 +210,7 @@ describe('reducers/signUpFormReducer', () => {
         allow_submit: true
       }
     }, {
-      type: 'SEND_FAILED',
+      type: 'SIGNUP_SEND_FAILED',
       message: '405 : Method Not Allowed'
     })).to.deep.equal({
       ...initial_state,
@@ -230,7 +230,7 @@ describe('reducers/signUpFormReducer', () => {
         sending: true
       }
     }, {
-      type: 'SEND_FAILED',
+      type: 'SIGNUP_SEND_FAILED',
       response: {
         first_name: ['First name is required.'],
         middle_name: ['Middle name is required.'],
@@ -262,7 +262,7 @@ describe('reducers/signUpFormReducer', () => {
     });
   });
 
-  it('handles SEND_ERROR_CLEAR', () => {
+  it('handles SIGNUP_SEND_ERROR_CLEAR', () => {
     expect(subject({
       ...initial_state,
       request: {
@@ -273,7 +273,7 @@ describe('reducers/signUpFormReducer', () => {
         allow_submit: true
       }
     }, {
-      type: 'SEND_ERROR_CLEAR'
+      type: 'SIGNUP_SEND_ERROR_CLEAR'
     })).to.deep.equal({
       ...initial_state,
       request: {
@@ -283,7 +283,7 @@ describe('reducers/signUpFormReducer', () => {
     });
   });
 
-  it('handles SEND_SUCCESSFUL with field errors', () => {
+  it('handles SIGNUP_SEND_SUCCESSFUL with field errors', () => {
     expect(subject({
       ...initial_state,
       request: {
@@ -291,7 +291,7 @@ describe('reducers/signUpFormReducer', () => {
         sending: true,
       }
     }, {
-      type: 'SEND_SUCCESSFUL'
+      type: 'SIGNUP_SEND_SUCCESSFUL'
     })).to.deep.equal({
       ...initial_state,
       request: {
