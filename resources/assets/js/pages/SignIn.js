@@ -11,6 +11,7 @@ import InputButton from '../components/forms/InputButton';
 
 // actions
 import { clearPopMessage } from '../actions/popMessageActions';
+import * as actions from '../actions/signInActions';
 
 class SignIn extends Component {
   componentWillMount() {
@@ -40,32 +41,32 @@ class SignIn extends Component {
             </li>
             <li>
               <InputText
-              disabled={false}
+              disabled={this.props.form.request.sending}
               maxlength={75}
-              value={''}
+              value={this.props.form.email.value}
               placeholder="Your email"
-              errors={[]}
-              onChange={value => console.log(value)}>
+              errors={this.props.form.email.errors}
+              onChange={value => this.props.changeEmail(value)}>
                 <span className="decor" />
               </InputText>
             </li>
             <li>
               <InputText
-              disabled={false}
+              disabled={this.props.form.request.sending}
               maxlength={75}
-              value={''}
+              value={this.props.form.password.value}
               placeholder="Your password"
-              errors={[]}
-              onChange={value => console.log(value)}
+              errors={this.props.form.password.errors}
+              onChange={value => this.props.changePassword(value)}
               password={true}>
                 <span className="decor" />
               </InputText>
             </li>
             <li>
               <InputButton
-              disabled={false}
-              onClick={() => console.log('submit')}
-              sending={false}
+              disabled={this.props.form.request.sending || !this.props.form.request.allow_submit}
+              onClick={() => this.props.send()}
+              sending={this.props.form.request.sending}
               value="Sign in" />
             </li>
           </ul>
@@ -78,7 +79,12 @@ class SignIn extends Component {
 }
 
 export default connect(store => ({
-  popMessage: {...store.popMessage}
+  popMessage: {...store.popMessage},
+  form: {...store.signInForm}
 }), {
-  clearPopMessage
+  clearPopMessage,
+  changeEmail: actions.changeEmail,
+  changePassword: actions.changePassword,
+  clearRequestError: actions.clearRequestError,
+  send: actions.send
 })(SignIn);

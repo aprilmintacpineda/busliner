@@ -10,19 +10,19 @@ import signUpSagaWatcher from '../../../sagas/signUpSaga';
 let iterator = signUpSagaWatcher();
 
 describe('sagas/signUpSagaWatcher', () => {
-  it('watches for SEND_START action to be dispatched', () => {
-    expect(iterator.next().value).to.deep.equal(take('SEND_START'));
+  it('watches for SIGNUP_SEND_START action to be dispatched', () => {
+    expect(iterator.next().value).to.deep.equal(take('SIGNUP_SEND_START'));
   });
 
   it('forks the worker when an action was received', () => {
     let action = {
-      type: 'SEND_START'
+      type: 'SIGNUP_SEND_START'
     }
 
     expect(iterator.next(action).value).to.deep.equal(fork(signUpSagaWorker, action));
   });
 
-  it('watches AGAIN for SEND_START action to be dispatched', () => {
-    expect(iterator.next().value).to.deep.equal(take('SEND_START'));
+  it('watches AGAIN for SIGNUP_SEND_START action to be dispatched', () => {
+    expect(iterator.next().value).to.deep.equal(take('SIGNUP_SEND_START'));
   });
 });
