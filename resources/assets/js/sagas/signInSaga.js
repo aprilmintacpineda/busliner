@@ -8,10 +8,10 @@ export function* signInSagaWorker(action) {
     let data = yield select(formValues);
     let response = yield call(axios.post, '/sign-in', data);
     yield put({ type: 'SIGNIN_SEND_SUCCESSFUL' });
-    yield put({ type: 'USER_LOGIN', data: response.data });
+    yield put({ type: 'USER_LOGIN', data: {...response.data} });
   } catch(exception) {
     if(!exception.response && exception.message.toLowerCase() == 'network error') {
-        yield put({
+      yield put({
         type: 'SIGNIN_SEND_FAILED',
         message: 'We couldn\'t connect to the server, please check your internet connection.'
       });

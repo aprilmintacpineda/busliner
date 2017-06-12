@@ -7,6 +7,7 @@ import axios from 'axios';
 import Home from './pages/Home';
 import SignUp from './pages/SignUp';
 import SignIn from './pages/SignIn';
+import Lines from './pages/Lines';
 // user
 import Dashboard from './pages/user/Dashboard';
 
@@ -25,6 +26,8 @@ render(
       <Route path="/sign-up" component={SignUp} />
       <Route path="/sign-in" component={SignIn} />
       
+      <Route path="/travel-lines" component={Lines} />
+
       <Route path="/user/:id" component={Dashboard} />
     </Router>
   </Provider>,

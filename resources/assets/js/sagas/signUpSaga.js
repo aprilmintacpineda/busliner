@@ -12,7 +12,7 @@ export function* signUpSagaWorker(action) {
     yield put({ type: 'SIGNUP_SEND_SUCCESSFUL' });
   } catch(exception) {
     if(!exception.response && exception.message.toLowerCase() == 'network error') {
-        yield put({
+      yield put({
         type: 'SIGNUP_SEND_FAILED',
         message: 'We couldn\'t connect to the server, please check your internet connection.'
       });

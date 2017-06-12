@@ -15,15 +15,14 @@ class Topbar extends Component {
             <li><a href={'/user/' + this.props.user.id + '/logout'}>Log out</a></li>
           </ul>
         </li>
-        <li><Link to="/">Home</Link></li>
-        <li><Link to="/reserve">Make reservation</Link></li>
+        <li><Link to="/travel-lines/">Make reservation</Link></li>
         <li><Link to="/contact-us">Contact us</Link></li>
       </ul>
     : <ul className="links">
       <li><Link to="/">Home</Link></li>
       <li><Link to="/sign-in">Sign in</Link></li>
       <li><Link to="/sign-up">Sign up</Link></li>
-      <li><Link to="/reserve">Make reservation</Link></li>
+      <li><Link to="/travel-lines/">Make reservation</Link></li>
       <li><Link to="/contact-us">Contact us</Link></li>
     </ul>;
 

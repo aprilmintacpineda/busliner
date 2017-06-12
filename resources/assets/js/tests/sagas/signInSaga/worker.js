@@ -21,10 +21,14 @@ describe('sagas/signInSagaWorker', () => {
 
   it('dispatches a SIGNIN_SEND_SUCCESSFUL and USER_LOGIN', () => {
     expect(iterator.next({
-      id: 1
+      data: {
+        id: 1
+      }
     }).value).to.deep.equal(put({ type: 'SIGNIN_SEND_SUCCESSFUL' }));
 
-    expect(iterator.next().value).to.deep.equal(put({ type: 'USER_LOGIN' }));
+    expect(iterator.next().value).to.deep.equal(put({ type: 'USER_LOGIN', data: {
+      id: 1
+    } }));
   });
 
   it('dispatches a SIGNIN_SEND_FAILED', () => {

@@ -144,6 +144,7 @@ a.link-default {
         display: none;
         background: #fff;
         position: absolute;
+        right: 0;
         border: 1px solid #d0d1d5;
         box-shadow: 0 0 5px #d0d1d5; }
         .topbar-outer-container .topbar-inner-container .links .dropdown-menu ul li {
