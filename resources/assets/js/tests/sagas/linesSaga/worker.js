@@ -19,11 +19,15 @@ describe('sagas/linesSagaWorker', () => {
   it('dispatches LINES_FETCH_DATA_SUCCESSFUL when successful', () => {
     expect(iterator.next({
       data: [{
-        id: 1
+        id: 1,
+        sample: 'test'
       }]
-    }).value).to.deep.equal(put({ type: 'LINES_FETCH_DATA_SUCCESSFUL', data: [{
-      id: 1
-    }] }));
+    }).value).to.deep.equal(put({ type: 'LINES_FETCH_DATA_SUCCESSFUL', data: [
+      {
+        id: 1,
+        sample: 'test'
+      }
+    ] }));
   });
 
   it('dispatches LINES_FETCH_DATA_FAILED when failed', () => {

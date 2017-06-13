@@ -7,7 +7,7 @@ import Footer from '../components/Footer';
 import PopMessage from '../components/PopMessage';
 
 import settings from '../_settings';
-
+import { toFormalDateTime } from '../helpers/DateTime';
 import * as actions from '../actions/linesActions';
 
 class Lines extends Component {
@@ -18,6 +18,23 @@ class Lines extends Component {
   }
 
   render() {
+    let lines = this.props.lines.data.map((line, index) => (
+      <div className="line-wrapper" key={index}>
+        <img src={settings.public_path + '/terminal.jpg'} />
+
+        <div className="line-details">
+          <h1>To {line.destination}</h1>
+          <p>Schedule: {toFormalDateTime(line.schedule)}</p>
+          <div className="buttons">
+            <Link to={'/travel-lines/' + line.id}>
+              More Details
+              <span className="decor" />
+            </Link>
+          </div>
+        </div>
+      </div>
+    ));
+
     return (
       <div className="travel-lines">
         {this.props.lines.request.error?
@@ -30,7 +47,9 @@ class Lines extends Component {
 
         <Topbar />
 
-        Lines
+        <div className="travel-lines-schedules-wrapper">
+          {lines}
+        </div>
 
         <Footer />
       </div>

@@ -21,6 +21,8 @@ class CreateLinesTable extends Migration
             $table->timestamp('cancelled_at')->nullable();
             $table->boolean('is_completed')->default(false);
             $table->timestamp('completed_at')->nullable();
+            $table->boolean('has_left')->default(false);
+            $table->timestamp('left_at')->nullable();
             $table->integer('max_passengers')->unsigned();
             $table->string('destination', 255);
             $table->datetime('schedule');

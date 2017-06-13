@@ -1,0 +1,53 @@
+.travel-lines-schedules-wrapper
+  max-width: 1000px
+  margin: 0 auto
+  padding: 10px
+  +clearFloat
+  .line-wrapper
+    @media all and (max-width: $mediumWidth)
+      width: 50%
+    @media all and (max-width: $mobileWidth)
+      width: 100%
+    width: 25%
+    float: left
+    padding: 10px
+    &:hover
+      background: #f2f2f2
+    img
+      width: 100%
+      height: 200px
+      display: block
+      border: 1px solid transparent
+    .line-details
+      position: relative
+      padding: 10px
+      padding-bottom: 60px
+      h1
+        font-weight: normal
+      .buttons
+        position: absolute
+        bottom: 0
+        left: 10px
+        a
+          display: inline-block
+          padding: 10px
+          text-decoration: none
+          background: #006699
+          color: #fff
+          cursor: pointer
+          transition: background 0.4s
+          &:hover
+            background: transparent
+            color: #006699
+          &:hover .decor
+            opacity: 1
+          .decor
+            border-radius: 4px
+            position: absolute
+            bottom: 0
+            left: 0
+            padding: 3px
+            background: #ff9900
+            width: 100%
+            opacity: 0
+            transition: opacity 0.4s

@@ -1,5 +1,5 @@
 .topbar-wrapper
-  .space-holder, .topbar-outer-container
+  .space-holder, .topbar-outer-container, .topbar-inner-container
     height: 80px
 .topbar-outer-container
   z-index: 100
@@ -9,6 +9,9 @@
   width: 100%
   box-shadow: 0 0 5px #d0d1d5
   .topbar-inner-container
+    position: relative
+    max-width: 1000px
+    margin: 0 auto
     .logo
       @media all and (max-width: $mobileWidth)
         width: 100%

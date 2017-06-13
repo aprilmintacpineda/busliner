@@ -11,6 +11,8 @@
 |
 */
 
+use App\Http\Middleware\VerifyCsrfToken;
+
 /*
 |--------------------------------------------------------------------------
 | Sign up, sign in routes

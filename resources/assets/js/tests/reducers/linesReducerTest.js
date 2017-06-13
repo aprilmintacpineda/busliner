@@ -25,20 +25,24 @@ describe('reducers/linesReducer', () => {
   it('handles LINES_FETCH_DATA_SUCCESSFUL', () => {
     expect(subject(initial_state, {
       type: 'LINES_FETCH_DATA_SUCCESSFUL',
-      data: [{
-        id: 1,
-        driver_id: 1
-      }]
+      data: [
+        {
+          id: 1,
+          driver_id: 1
+        }
+      ]
     })).to.deep.equal({
       ...initial_state,
       request: {
         ...initial_state.request,
         page: initial_state.request.page + 1
       },
-      data: [{
-        id: 1,
-        driver_id: 1
-      }]
+      data: [
+        {
+          id: 1,
+          driver_id: 1
+        }
+      ]
     });
   });
 

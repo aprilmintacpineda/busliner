@@ -7,6 +7,6 @@ class Generator {
   }
 
   public static function current_timestamp() {
-    return date('Y-d-m H:i:s');
+    return date('Y-m-d H:i:s');
   }
 }
