@@ -20,7 +20,7 @@ class Lines extends Component {
   render() {
     let lines = this.props.lines.data.map((line, index) => (
       <div className="line-wrapper" key={index}>
-        <img src={settings.public_path + '/terminal.jpg'} />
+        <img src={settings.storage_path + '/' + line.cover_image} />
 
         <div className="line-details">
           <h1>To {line.destination}</h1>

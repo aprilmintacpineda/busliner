@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateDriversTable extends Migration
+class CreatePhotosTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,15 +13,14 @@ class CreateDriversTable extends Migration
      */
     public function up()
     {
-        Schema::create('drivers', function (Blueprint $table) {
+        Schema::create('photos', function (Blueprint $table) {
             $table->integer('id')->unsigned();
-            $table->string('first_name', 75);
-            $table->string('middle_name', 75);
-            $table->string('surname', 75);
-            $table->string('cover_image', 255);
+            $table->integer('line_id')->unsigned();
+            $table->string('file_name', 255);
             $table->timestamps();
 
             $table->primary('id');
+            $table->foreign('line_id')->references('id')->on('lines');
         });
     }
 
@@ -32,6 +31,6 @@ class CreateDriversTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('drivers');
+        Schema::dropIfExists('photos');
     }
 }

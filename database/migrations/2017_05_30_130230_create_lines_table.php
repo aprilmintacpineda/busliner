@@ -26,9 +26,11 @@ class CreateLinesTable extends Migration
             $table->integer('max_passengers')->unsigned();
             $table->string('destination', 255);
             $table->datetime('schedule');
+            $table->string('cover_image', 255);
             $table->timestamps();
 
             $table->primary('id');
+            $table->foreign('driver_id')->references('id')->on('drivers');
         });
     }
 

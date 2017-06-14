@@ -23,6 +23,8 @@ class CreateReservationsTable extends Migration
             $table->timestamps();
 
             $table->primary('id');
+            $table->foreign('line_id')->references('id')->on('lines');
+            $table->foreign('user_id')->references('id')->on('users');
         });
     }
 

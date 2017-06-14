@@ -19,6 +19,8 @@ class Line extends Component {
   }
 
   render() {
+    console.log(this.props.line);
+
     return (
       <div className="travel-line">
         <Topbar />
@@ -30,7 +32,11 @@ class Line extends Component {
                 <i className="fa fa-circle-o-notch fa-3x fast-spin"></i>
               </div>
             </div>
-          : <p>Show</p>}
+          : this.props.line.request.error == 404?
+            <E404 />
+          : <div>
+              
+            </div>}
         </div>
 
         <Footer />

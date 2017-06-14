@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 
 use App\Line;
 
@@ -23,6 +24,14 @@ class LinesController extends Controller
   }
 
   public function show($id) {
-    return Line::find($id);
+    try {
+      $line = Line::findOrFail($id);
+      $line->photos;
+      $line->driver;
+
+      return $line;
+    } catch(ModelNotFoundException $exception) {
+      return abort(404);
+    }
   }
 }

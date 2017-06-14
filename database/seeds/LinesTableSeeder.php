@@ -14,13 +14,14 @@ class LinesTableSeeder extends Seeder
    */
   public function run()
   {
-    Driver::all()->each(function($item) {
+    Driver::all()->each(function($driver) {
       $line = new Line;
       $line->id = Generator::id();
-      $line->driver_id = $item->id;
+      $line->driver_id = $driver->id;
       $line->max_passengers = 30;
       $line->destination = 'Batangas';
       $line->schedule = date('Y-m-d H:i:s', time() + (86400 * 3));
+      $line->cover_image = 'terminal.jpg';
       $line->save();
     });
   }

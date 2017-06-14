@@ -4751,8 +4751,11 @@ module.exports = reactProdInvariant;
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
+var domain = 'http://localhost:8000';
+
 exports.default = {
-  public_path: 'http://localhost:8000'
+  public_path: domain,
+  storage_path: domain + '/storage'
 };
 
 /***/ }),
@@ -20935,6 +20938,8 @@ var Line = function (_Component) {
   }, {
     key: 'render',
     value: function render() {
+      console.log(this.props.line);
+
       return _react2.default.createElement(
         'div',
         { className: 'travel-line' },
@@ -20950,11 +20955,7 @@ var Line = function (_Component) {
               { className: 'loading' },
               _react2.default.createElement('i', { className: 'fa fa-circle-o-notch fa-3x fast-spin' })
             )
-          ) : _react2.default.createElement(
-            'p',
-            null,
-            'Show'
-          )
+          ) : this.props.line.request.error == 404 ? _react2.default.createElement(_E2.default, null) : _react2.default.createElement('div', null)
         ),
         _react2.default.createElement(_Footer2.default, null)
       );
@@ -21053,7 +21054,7 @@ var Lines = function (_Component) {
         return _react2.default.createElement(
           'div',
           { className: 'line-wrapper', key: index },
-          _react2.default.createElement('img', { src: _settings2.default.public_path + '/terminal.jpg' }),
+          _react2.default.createElement('img', { src: _settings2.default.storage_path + '/' + line.cover_image }),
           _react2.default.createElement(
             'div',
             { className: 'line-details' },
@@ -22706,6 +22707,10 @@ function send() {
 "use strict";
 
 
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 var _react = __webpack_require__(11);
@@ -22738,10 +22743,10 @@ var E404 = function (_Component) {
     value: function render() {
       return _react2.default.createElement(
         'div',
-        { 'class': 'error-body-wrapper' },
+        { className: 'error-body-wrapper' },
         _react2.default.createElement(
           'div',
-          { 'class': 'error-body' },
+          { className: 'error-body' },
           _react2.default.createElement('img', { src: _settings2.default.public_path + '/vader404.jpg' }),
           _react2.default.createElement(
             'h1',
@@ -22752,15 +22757,6 @@ var E404 = function (_Component) {
             'p',
             null,
             'The link you followed may be broken or the page may have been removed.'
-          ),
-          _react2.default.createElement(
-            'p',
-            null,
-            _react2.default.createElement(
-              'a',
-              { 'class': 'button-default button-green', href: '{{ url(\'/\') }}' },
-              'Take me to the homepage.'
-            )
           )
         )
       );
@@ -22769,6 +22765,8 @@ var E404 = function (_Component) {
 
   return E404;
 }(_react.Component);
+
+exports.default = E404;
 
 /***/ }),
 /* 296 */
@@ -23713,7 +23711,7 @@ function lineSagaWorker(action) {
           });
 
         case 10:
-          _context.next = 21;
+          _context.next = 26;
           break;
 
         case 12:
@@ -23732,17 +23730,33 @@ function lineSagaWorker(action) {
           });
 
         case 17:
-          _context.next = 21;
+          _context.next = 26;
           break;
 
         case 19:
-          _context.next = 21;
+          if (!(_context.t0.response.status == 404)) {
+            _context.next = 24;
+            break;
+          }
+
+          _context.next = 22;
+          return (0, _effects.put)({
+            type: 'LINE_FETCH_DATA_FAILED',
+            message: 404
+          });
+
+        case 22:
+          _context.next = 26;
+          break;
+
+        case 24:
+          _context.next = 26;
           return (0, _effects.put)({
             type: 'LINE_FETCH_DATA_FAILED',
             message: 'We have encountered an unexpected error while processing your request. The server responded with the following `' + _context.t0.response.status + ' : ' + _context.t0.response.statusText + '`'
           });
 
-        case 21:
+        case 26:
         case 'end':
           return _context.stop();
       }

@@ -20,6 +20,11 @@ export function* lineSagaWorker(action) {
         type: 'LINE_FETCH_DATA_FAILED',
         message: 'We couldn\'t connect to the server, please check your internet connection.'
       });
+    } else if(exception.response.status == 404) {
+      yield put({
+        type: 'LINE_FETCH_DATA_FAILED',
+        message: 404
+      });
     } else {
       yield put({
         type: 'LINE_FETCH_DATA_FAILED',
