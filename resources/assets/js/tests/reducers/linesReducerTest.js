@@ -47,7 +47,13 @@ describe('reducers/linesReducer', () => {
   });
 
   it('handles LINES_FETCH_DATA_FAILED', () => {
-    expect(subject(initial_state, {
+    expect(subject({
+      ...initial_state,
+      request: {
+        ...initial_state.request,
+        sending: false
+      }
+    }, {
       type: 'LINES_FETCH_DATA_FAILED',
       message: 'A DUMMY ERROR MESSAGE.'
     })).to.deep.equal({

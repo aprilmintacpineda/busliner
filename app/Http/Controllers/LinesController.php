@@ -21,4 +21,8 @@ class LinesController extends Controller
       ->orderBy('destination', 'asc')
       ->get();
   }
+
+  public function show($id) {
+    return Line::find($id);
+  }
 }

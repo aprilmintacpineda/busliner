@@ -48,7 +48,11 @@ class Lines extends Component {
         <Topbar />
 
         <div className="travel-lines-schedules-wrapper">
-          {lines}
+          {this.props.lines.request.sending?
+            <div className="loading-content">
+              <i className="fa fa-circle-o-notch fa-3x fast-spin"></i>
+            </div>
+          : lines}
         </div>
 
         <Footer />

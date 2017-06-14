@@ -31,6 +31,7 @@ export default function lines(state = initial_state, action) {
         ...state,
         request: {
           ...state.request,
+          sending: false,
           status: 'failed',
           error: action.message
         }

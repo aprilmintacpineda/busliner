@@ -63,6 +63,13 @@ a.link-default {
   100% {
     transform: scale(1); } }
 
+.fast-spin {
+  -webkit-animation: fa-spin 400ms infinite linear;
+  -moz-animation: fa-spin 400ms infinite linear;
+  -ms-animation: fa-spin 400ms infinite linear;
+  -o-animation: fa-spin 400ms infinite linear;
+  animation: fa-spin 400ms infinite linear; }
+
 .topbar-wrapper .space-holder, .topbar-wrapper .topbar-outer-container, .topbar-wrapper .topbar-inner-container {
   height: 80px; }
 
@@ -596,6 +603,16 @@ a.link-default {
     clear: both;
     content: '';
     display: block; }
+  .travel-lines-schedules-wrapper .loading-content {
+    position: relative;
+    height: 400px;
+    width: 100%; }
+    .travel-lines-schedules-wrapper .loading-content i {
+      display: block;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%); }
   .travel-lines-schedules-wrapper .line-wrapper {
     width: 25%;
     float: left;
@@ -646,3 +663,13 @@ a.link-default {
             width: 100%;
             opacity: 0;
             transition: opacity 0.4s; }
+
+.travel-line .loading-content {
+  position: relative;
+  height: 400px;
+  width: 100%; }
+  .travel-line .loading-content i {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); }

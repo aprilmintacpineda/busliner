@@ -24,6 +24,7 @@ Route::get('sign-up/verify/{verify_token}', 'SignUpController@verify');
 Route::post('sign-in', 'SignInController@attempt');
 
 Route::get('/lines/{page}', 'LinesController@get');
+Route::get('/line/{id}', 'LinesController@show');
 
 Route::get('/', 'LandingController@index');
 Route::get('{slug}', 'LandingController@slug')
