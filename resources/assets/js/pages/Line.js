@@ -26,7 +26,9 @@ class Line extends Component {
         <div className="line-wrapper">
           {this.props.line.request.sending?
             <div className="loading-content">
-              <i className="fa fa-circle-o-notch fa-3x fast-spin"></i>
+              <div className="loading">
+                <i className="fa fa-circle-o-notch fa-3x fast-spin"></i>
+              </div>
             </div>
           : <p>Show</p>}
         </div>

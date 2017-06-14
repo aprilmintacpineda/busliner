@@ -37,7 +37,7 @@ class Lines extends Component {
 
     return (
       <div className="travel-lines">
-        {this.props.lines.request.error?
+        {this.props.lines.request.error && this.props.lines.data.length?
           <PopMessage
             title="Opsss... We got an error."
             message={this.props.lines.request.error}
@@ -50,7 +50,14 @@ class Lines extends Component {
         <div className="travel-lines-schedules-wrapper">
           {this.props.lines.request.sending?
             <div className="loading-content">
-              <i className="fa fa-circle-o-notch fa-3x fast-spin"></i>
+              <div className="loading">
+                <i className="fa fa-circle-o-notch fa-3x fast-spin"></i>
+              </div>
+            </div>
+          : this.props.lines.request.error && !this.props.lines.data.length?
+            <div className="error-container">
+              <h1>Opsss... We got an error.</h1>
+              <p>{this.props.lines.request.error}</p>
             </div>
           : lines}
         </div>
