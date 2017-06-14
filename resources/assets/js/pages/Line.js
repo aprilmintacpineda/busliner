@@ -3,8 +3,10 @@ import { connect } from 'react-redux';
 
 import Topbar from '../containers/Topbar';
 import Footer from '../components/Footer';
+import Carousel from '../components/Carousel';
 import E404 from '../components/errors/E404';
 
+import settings from '../_settings';
 import * as actions from '../actions/lineActions';
 
 class Line extends Component {
@@ -19,7 +21,11 @@ class Line extends Component {
   }
 
   render() {
-    console.log(this.props.line);
+    console.log(this.props.line.data.photos);
+
+    let images = this.props.line.data.photos.map((photo, index) => (
+      <img key={index} src={settings.storage_path + '/' + photo.file_name} />
+    ));
 
     return (
       <div className="travel-line">
@@ -35,7 +41,9 @@ class Line extends Component {
           : this.props.line.request.error == 404?
             <E404 />
           : <div>
-              
+              <Carousel
+                items={images}
+                speed={20} />
             </div>}
         </div>
 

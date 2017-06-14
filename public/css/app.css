@@ -343,6 +343,47 @@ a.link-default {
       .modal-wrapper .modal-container .btns-wrapper .btn-dismiss:hover {
         opacity: 1; }
 
+.carousel-wrapper {
+  position: relative; }
+  .carousel-wrapper .carousel-container {
+    overflow: hidden;
+    width: 100%;
+    height: 400px; }
+    .carousel-wrapper .carousel-container .carousel-items {
+      display: inline-block;
+      width: 500%;
+      height: 100%; }
+      .carousel-wrapper .carousel-container .carousel-items li {
+        display: inline-block;
+        width: 20%;
+        height: 100%; }
+        .carousel-wrapper .carousel-container .carousel-items li img {
+          width: 100%;
+          height: 100%;
+          display: block; }
+  .carousel-wrapper .icon {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); }
+  .carousel-wrapper .carousel-btn-backward, .carousel-wrapper .carousel-btn-forward {
+    width: 50px;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.2); }
+    .carousel-wrapper .carousel-btn-backward:hover, .carousel-wrapper .carousel-btn-forward:hover {
+      background: rgba(0, 0, 0, 0.5);
+      cursor: pointer; }
+    .carousel-wrapper .carousel-btn-backward:hover .icon, .carousel-wrapper .carousel-btn-forward:hover .icon {
+      color: #fff; }
+  .carousel-wrapper .carousel-btn-backward {
+    position: absolute;
+    left: 0;
+    top: 0; }
+  .carousel-wrapper .carousel-btn-forward {
+    position: absolute;
+    right: 0;
+    top: 0; }
+
 .error-body-wrapper {
   position: relative;
   width: 100%;

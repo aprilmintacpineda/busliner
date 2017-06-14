@@ -4,5 +4,7 @@ export default {
     status: null,
     error: null
   },
-  data: {}
+  data: {
+    photos: []
+  }
 }
