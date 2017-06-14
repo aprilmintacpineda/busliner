@@ -52,13 +52,5 @@ class DriversTableSeeder extends Seeder
         $driver->surname = 'Makakita';
         $driver->cover_image = 'driver.jpg';
         $driver->save();
-
-        $driver = new Driver;
-        $driver->id = Generator::id();
-        $driver->first_name = 'Mang Tonio';
-        $driver->middle_name = 'Nang';
-        $driver->surname = 'Iiwan';
-        $driver->cover_image = 'driver.jpg';
-        $driver->save();
     }
 }

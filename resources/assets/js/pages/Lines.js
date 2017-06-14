@@ -18,12 +18,14 @@ class Lines extends Component {
   }
 
   render() {
+    console.log(this.props.lines.data);
+
     let lines = this.props.lines.data.map((line, index) => (
       <div className="line-wrapper" key={index}>
-        <img src={settings.storage_path + '/' + line.cover_image} />
+        <img src={settings.storage_path + '/' + line.terminal.cover_image} />
 
         <div className="line-details">
-          <h1>To {line.destination}</h1>
+          <h1>To {line.terminal.terminal_name}</h1>
           <p>Schedule: {toFormalDateTime(line.schedule)}</p>
           <div className="buttons">
             <Link to={'/travel-lines/' + line.id}>

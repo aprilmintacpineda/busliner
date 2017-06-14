@@ -16,4 +16,8 @@ class Line extends Model
   public function photos() {
     return $this->hasMany(Photo::class, 'line_id', 'id');
   }
+
+  public function terminal() {
+    return $this->hasOne(Terminal::class, 'id', 'terminal_id');
+  }
 }

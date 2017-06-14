@@ -369,7 +369,8 @@ a.link-default {
   .carousel-wrapper .carousel-btn-backward, .carousel-wrapper .carousel-btn-forward {
     width: 50px;
     height: 100%;
-    background: rgba(0, 0, 0, 0.2); }
+    background: rgba(0, 0, 0, 0.2);
+    transition: background 0.4s; }
     .carousel-wrapper .carousel-btn-backward:hover, .carousel-wrapper .carousel-btn-forward:hover {
       background: rgba(0, 0, 0, 0.5);
       cursor: pointer; }

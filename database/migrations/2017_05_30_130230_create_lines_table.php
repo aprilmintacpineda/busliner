@@ -24,9 +24,8 @@ class CreateLinesTable extends Migration
             $table->boolean('has_left')->default(false);
             $table->timestamp('left_at')->nullable();
             $table->integer('max_passengers')->unsigned();
-            $table->string('destination', 255);
+            $table->integer('terminal_id')->unsigned();
             $table->datetime('schedule');
-            $table->string('cover_image', 255);
             $table->timestamps();
 
             $table->primary('id');

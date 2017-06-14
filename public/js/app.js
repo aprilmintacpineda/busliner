@@ -21068,11 +21068,13 @@ var Lines = function (_Component) {
     value: function render() {
       var _this2 = this;
 
+      console.log(this.props.lines.data);
+
       var lines = this.props.lines.data.map(function (line, index) {
         return _react2.default.createElement(
           'div',
           { className: 'line-wrapper', key: index },
-          _react2.default.createElement('img', { src: _settings2.default.storage_path + '/' + line.cover_image }),
+          _react2.default.createElement('img', { src: _settings2.default.storage_path + '/' + line.terminal.cover_image }),
           _react2.default.createElement(
             'div',
             { className: 'line-details' },
@@ -21080,7 +21082,7 @@ var Lines = function (_Component) {
               'h1',
               null,
               'To ',
-              line.destination
+              line.terminal.terminal_name
             ),
             _react2.default.createElement(
               'p',

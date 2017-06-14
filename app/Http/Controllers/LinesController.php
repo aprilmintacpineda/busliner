@@ -12,15 +12,20 @@ class LinesController extends Controller
   public function get($page) {
     $limit = 10;
     $offset = ($page * $limit) - $limit;
-
-    return Line::where([
+    $lines = Line::where([
         ['is_cancelled', false],
         ['is_completed', false],
         ['has_left', false]
       ])->offset($offset)
       ->limit($limit)
-      ->orderBy('destination', 'asc')
+      ->orderBy('schedule', 'desc')
       ->get();
+
+    foreach($lines as $line) {
+      $line->terminal;
+    }
+
+    return $lines;
   }
 
   public function show($id) {
