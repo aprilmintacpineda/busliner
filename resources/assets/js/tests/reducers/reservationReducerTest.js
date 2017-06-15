@@ -34,13 +34,15 @@ describe('reducers/reservationReducer', () => {
         sending: true
       }
     }, {
-      type: 'RESERVATION_SEND_SUCCESSFUL'
+      type: 'RESERVATION_SEND_SUCCESSFUL',
+      message: 'blah blah blah'
     })).to.deep.equal({
       ...initial_state,
       request: {
         ...initial_state.request,
         sending: false,
-        status: 'successful'
+        status: 'successful',
+        message: 'blah blah blah'
       }
     });
   });
@@ -64,5 +66,18 @@ describe('reducers/reservationReducer', () => {
         error: 'something bad happened'
       }
     });
+  });
+
+  it('handles RESERVATION_REQUEST_CLEAR', () => {
+    expect(subject({
+      ...initial_state,
+      request: {
+        ...initial_state.request,
+        status: 'successful',
+        message: 'blah blah blah blah'
+      }
+    }, {
+      type: 'RESERVATION_REQUEST_CLEAR'
+    })).to.deep.equal(initial_state);
   });
 });

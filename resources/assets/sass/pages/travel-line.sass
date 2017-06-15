@@ -33,6 +33,28 @@
   .right-column
     padding-left: 5px
     +clearFloat
+    .button.icon-active
+      padding-left: 35px
+      background: #ff5c33 !important
+      color: #ff3300
+    .button.disabled
+      opacity: 0.6
+      cursor: not-allowed
+    .input-button-wrapper
+      .errors
+        color: red
+    .button
+      position: relative
+      padding: 10px
+      border: 1px solid #ff3300
+      background: #ff5c33
+      +fitWidth
+      color: #fff
+      cursor: pointer
+      .sending
+        position: absolute
+        +vCenter
+        left: 10px
     .reserve-form-wrapper
       li
         margin-bottom: 5px

@@ -2,6 +2,16 @@ import initial_state from './initial_states/line';
 
 export default function line(state = initial_state, action) {
   switch(action.type) {
+    case 'LINE_HAS_RESERVED':
+      return {
+        ...state,
+        data: {
+          ...state.data,
+          reserved: true
+        }
+      }
+    break;
+
     case 'LINE_FETCH_DATA_START':
       return {
         ...state,

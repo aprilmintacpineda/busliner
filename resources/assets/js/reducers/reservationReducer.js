@@ -2,6 +2,12 @@ import initial_state from './initial_states/reservation';
 
 export default function reservation(state = initial_state, action) {
   switch(action.type) {
+    case 'RESERVATION_REQUEST_CLEAR':
+      return {
+        ...initial_state
+      }
+    break;
+
     case 'RESERVATION_CHANGE_SEATS':
       return {
         ...state,
@@ -24,7 +30,8 @@ export default function reservation(state = initial_state, action) {
         ...initial_state,
         request: {
           ...initial_state.request,
-          status: 'successful'
+          status: 'successful',
+          message: action.message
         }
       }
     break;

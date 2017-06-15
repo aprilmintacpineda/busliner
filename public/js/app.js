@@ -20901,6 +20901,10 @@ var _Carousel = __webpack_require__(295);
 
 var _Carousel2 = _interopRequireDefault(_Carousel);
 
+var _PopMessage = __webpack_require__(118);
+
+var _PopMessage2 = _interopRequireDefault(_PopMessage);
+
 var _InputNumber = __webpack_require__(659);
 
 var _InputNumber2 = _interopRequireDefault(_InputNumber);
@@ -20977,6 +20981,10 @@ var Line = function (_Component) {
         'div',
         { className: 'travel-line' },
         _react2.default.createElement(_Topbar2.default, null),
+        this.props.reservation.request.status == 'successful' ? _react2.default.createElement(_PopMessage2.default, {
+          title: 'Reservation successful',
+          message: this.props.reservation.request.message,
+          onClick: this.props.clearReservationMessage }) : null,
         this.props.line.request.sending ? _react2.default.createElement(
           'div',
           { className: 'loading-content' },
@@ -21134,7 +21142,13 @@ var Line = function (_Component) {
                 _react2.default.createElement(
                   'div',
                   { className: 'indented-info' },
-                  _react2.default.createElement(
+                  this.props.line.data.reserved ? _react2.default.createElement(_InputButton2.default, {
+                    value: 'Cancel my reservation',
+                    sending: false,
+                    disabled: false,
+                    onClick: function onClick() {
+                      return console.log('test');
+                    } }) : _react2.default.createElement(
                     'ul',
                     { className: 'reserve-form-wrapper' },
                     _react2.default.createElement(
@@ -21210,7 +21224,8 @@ exports.default = (0, _reactRedux.connect)(function (store) {
   clearData: lineActions.clearData,
 
   changeSeats: reservationActions.changeSeats,
-  sendReservation: reservationActions.send
+  sendReservation: reservationActions.send,
+  clearReservationMessage: reservationActions.clearReservationMessage
 })(Line);
 
 /***/ }),
@@ -23385,7 +23400,8 @@ exports.default = {
     error: null
   },
   data: {
-    photos: []
+    photos: [],
+    reserved: false
   }
 };
 
@@ -23527,6 +23543,14 @@ function line() {
   var action = arguments[1];
 
   switch (action.type) {
+    case 'LINE_HAS_RESERVED':
+      return _extends({}, state, {
+        data: _extends({}, state.data, {
+          reserved: true
+        })
+      });
+      break;
+
     case 'LINE_FETCH_DATA_START':
       return _extends({}, state, {
         request: _extends({}, _line2.default.request, {
@@ -24086,6 +24110,10 @@ var _lineSaga = __webpack_require__(312);
 
 var _lineSaga2 = _interopRequireDefault(_lineSaga);
 
+var _reservationSaga = __webpack_require__(663);
+
+var _reservationSaga2 = _interopRequireDefault(_reservationSaga);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var _marked = [rootSaga].map(regeneratorRuntime.mark);
@@ -24099,7 +24127,7 @@ function rootSaga() {
       switch (_context.prev = _context.next) {
         case 0:
           _context.next = 2;
-          return (0, _effects.all)([(0, _signUpSaga2.default)(), (0, _signInSaga2.default)(), (0, _linesSaga2.default)(), (0, _lineSaga2.default)()]);
+          return (0, _effects.all)([(0, _signUpSaga2.default)(), (0, _signInSaga2.default)(), (0, _linesSaga2.default)(), (0, _lineSaga2.default)(), (0, _reservationSaga2.default)()]);
 
         case 2:
         case 'end':
@@ -48064,6 +48092,10 @@ function reservation() {
   var action = arguments[1];
 
   switch (action.type) {
+    case 'RESERVATION_REQUEST_CLEAR':
+      return _extends({}, _reservation2.default);
+      break;
+
     case 'RESERVATION_CHANGE_SEATS':
       return _extends({}, state, {
         seats: action.value
@@ -48081,7 +48113,8 @@ function reservation() {
     case 'RESERVATION_SEND_SUCCESSFUL':
       return _extends({}, _reservation2.default, {
         request: _extends({}, _reservation2.default.request, {
-          status: 'successful'
+          status: 'successful',
+          message: action.message
         })
       });
       break;
@@ -48113,7 +48146,8 @@ exports.default = {
   request: {
     sending: false,
     status: null,
-    error: null
+    error: null,
+    message: null
   },
   seats: 1
 };
@@ -48130,6 +48164,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.changeSeats = changeSeats;
 exports.send = send;
+exports.clearReservationMessage = clearReservationMessage;
 function changeSeats(value) {
   return {
     type: 'RESERVATION_CHANGE_SEATS',
@@ -48141,6 +48176,146 @@ function send() {
   return {
     type: 'RESERVATION_SEND_START'
   };
+}
+
+function clearReservationMessage() {
+  return {
+    type: 'RESERVATION_REQUEST_CLEAR'
+  };
+}
+
+/***/ }),
+/* 663 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.reservationSagaWorker = reservationSagaWorker;
+exports.default = reservationSagaWatcher;
+
+var _effects = __webpack_require__(82);
+
+var _axios = __webpack_require__(83);
+
+var _axios2 = _interopRequireDefault(_axios);
+
+var _reservationSelectors = __webpack_require__(664);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var _marked = [reservationSagaWorker, reservationSagaWatcher].map(regeneratorRuntime.mark);
+
+function reservationSagaWorker() {
+  var seats, response;
+  return regeneratorRuntime.wrap(function reservationSagaWorker$(_context) {
+    while (1) {
+      switch (_context.prev = _context.next) {
+        case 0:
+          _context.prev = 0;
+          _context.next = 3;
+          return (0, _effects.select)(_reservationSelectors.getSeatsValue);
+
+        case 3:
+          seats = _context.sent;
+          _context.next = 6;
+          return (0, _effects.call)(_axios2.default.post, '/reserve', { seats: seats });
+
+        case 6:
+          response = _context.sent;
+          _context.next = 9;
+          return (0, _effects.put)({
+            type: 'RESERVATION_SEND_SUCCESSFUL',
+            message: response.data
+          });
+
+        case 9:
+          _context.next = 11;
+          return (0, _effects.put)({ type: 'LINE_HAS_RESERVED' });
+
+        case 11:
+          _context.next = 22;
+          break;
+
+        case 13:
+          _context.prev = 13;
+          _context.t0 = _context['catch'](0);
+
+          if (!(!_context.t0.response && _context.t0.message.toLowerCase() == 'network error')) {
+            _context.next = 20;
+            break;
+          }
+
+          _context.next = 18;
+          return (0, _effects.put)({
+            type: 'RESERVATION_SEND_FAILED',
+            message: 'We couldn\'t connect to the server, please check your internet connection.'
+          });
+
+        case 18:
+          _context.next = 22;
+          break;
+
+        case 20:
+          _context.next = 22;
+          return (0, _effects.put)({
+            type: 'RESERVATION_SEND_FAILED',
+            message: 'We have encountered an unexpected error while processing your request. The server responded with the following `' + _context.t0.response.status + ' : ' + _context.t0.response.statusText + '`'
+          });
+
+        case 22:
+        case 'end':
+          return _context.stop();
+      }
+    }
+  }, _marked[0], this, [[0, 13]]);
+}
+
+function reservationSagaWatcher() {
+  return regeneratorRuntime.wrap(function reservationSagaWatcher$(_context2) {
+    while (1) {
+      switch (_context2.prev = _context2.next) {
+        case 0:
+          if (false) {
+            _context2.next = 7;
+            break;
+          }
+
+          _context2.next = 3;
+          return (0, _effects.take)('RESERVATION_SEND_START');
+
+        case 3:
+          _context2.next = 5;
+          return (0, _effects.fork)(reservationSagaWorker);
+
+        case 5:
+          _context2.next = 0;
+          break;
+
+        case 7:
+        case 'end':
+          return _context2.stop();
+      }
+    }
+  }, _marked[1], this);
+}
+
+/***/ }),
+/* 664 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.getSeatsValue = getSeatsValue;
+function getSeatsValue(state) {
+  return state.reservation.seats;
 }
 
 /***/ })

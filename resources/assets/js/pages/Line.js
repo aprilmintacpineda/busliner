@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import Topbar from '../containers/Topbar';
 import Footer from '../components/Footer';
 import Carousel from '../components/Carousel';
+import PopMessage from '../components/PopMessage';
 
 import InputNumber from '../components/forms/InputNumber';
 import InputButton from '../components/forms/InputButton';
@@ -37,6 +38,13 @@ class Line extends Component {
     return (
       <div className="travel-line">
         <Topbar />
+
+        {this.props.reservation.request.status == 'successful'?
+          <PopMessage
+          title="Reservation successful"
+          message={this.props.reservation.request.message}
+          onClick={this.props.clearReservationMessage} />
+        : null}
 
         {this.props.line.request.sending?
           <div className="loading-content">
@@ -91,22 +99,28 @@ class Line extends Component {
                   <h1 className="section-title">Reserve your seat now</h1>
 
                   <div className="indented-info">
-                    <ul className="reserve-form-wrapper">
-                      <li>Seats
-                        <InputNumber
-                          min={1}
-                          max={10}
-                          value={this.props.reservation.seats}
-                          onChange={value => this.props.changeSeats(value)} />
-                      </li>
-                      <li>
-                        <InputButton
-                          value="Reserve now"
-                          sending={this.props.reservation.request.sending}
-                          disabled={false}
-                          onClick={this.props.sendReservation} />
-                      </li>
-                    </ul>
+                    {this.props.line.data.reserved?
+                      <InputButton
+                        value="Cancel my reservation"
+                        sending={false}
+                        disabled={false}
+                        onClick={() => console.log('test')} />
+                    : <ul className="reserve-form-wrapper">
+                        <li>Seats
+                          <InputNumber
+                            min={1}
+                            max={10}
+                            value={this.props.reservation.seats}
+                            onChange={value => this.props.changeSeats(value)} />
+                        </li>
+                        <li>
+                          <InputButton
+                            value="Reserve now"
+                            sending={this.props.reservation.request.sending}
+                            disabled={false}
+                            onClick={this.props.sendReservation} />
+                        </li>
+                      </ul>}
                   </div>
                 </section>
 
@@ -137,5 +151,6 @@ export default connect(store => ({
   clearData: lineActions.clearData,
 
   changeSeats: reservationActions.changeSeats,
-  sendReservation: reservationActions.send
+  sendReservation: reservationActions.send,
+  clearReservationMessage: reservationActions.clearReservationMessage
 })(Line);

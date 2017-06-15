@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Auth;
 
 use App\Driver;
 use App\Photo;
@@ -24,5 +25,13 @@ class Line extends Model
 
   public function reservations() {
     return $this->hasMany(Reservation::class, 'line_id', 'id');
+  }
+
+  public function reserved() {
+    return Auth::check() && $this->hasMany(Reservation::class, 'line_id', 'id')
+      ->where([
+        ['user_id', '=', Auth::user()->id],
+        ['is_cancelled', false]
+      ])->first()? true : false;
   }
 }

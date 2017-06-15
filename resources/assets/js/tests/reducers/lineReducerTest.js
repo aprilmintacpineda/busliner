@@ -80,4 +80,16 @@ describe('reducers/lineReducer', () => {
       type: 'LINE_FETCH_DATA_CLEAR'
     })).to.deep.equal(initial_state);
   });
+
+  it('handles LINE_HAS_RESERVED', () => {
+    expect(subject(initial_state, {
+      type: 'LINE_HAS_RESERVED'
+    })).to.deep.equal({
+      ...initial_state,
+      data: {
+        ...initial_state.data,
+        reserved: true
+      }
+    });
+  });
 });

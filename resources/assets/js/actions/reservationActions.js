@@ -10,3 +10,9 @@ export function send() {
     type: 'RESERVATION_SEND_START'
   }
 }
+
+export function clearReservationMessage() {
+  return {
+    type: 'RESERVATION_REQUEST_CLEAR'
+  }
+}

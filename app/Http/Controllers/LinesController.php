@@ -38,6 +38,7 @@ class LinesController extends Controller
       $line->reservations = $line->reservations()
         ->where('is_cancelled', false)
         ->get();
+      $line->reserved = $line->reserved();
 
       return $line;
     } catch(ModelNotFoundException $exception) {
