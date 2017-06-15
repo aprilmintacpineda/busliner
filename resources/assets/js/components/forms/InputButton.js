@@ -7,7 +7,8 @@ class InputButton extends Component {
     onClick: PropTypes.func.isRequired,
     sending: PropTypes.bool.isRequired,
     disabled: PropTypes.bool.isRequired,
-    errors: PropTypes.array
+    errors: PropTypes.array,
+    className: PropTypes.string
   }
 
   render() {
@@ -16,7 +17,7 @@ class InputButton extends Component {
     : null;
 
     return (
-      <div className="input-button-wrapper">
+      <div className={this.props.className? 'input-button-wrapper ' + this.props.className : 'input-button-wrapper'}>
         {errors}
         {this.props.sending?
           <div

@@ -5,6 +5,7 @@ import { Link } from 'react-router';
 import Topbar from '../containers/Topbar';
 import Footer from '../components/Footer';
 import PopMessage from '../components/PopMessage';
+import Err from '../components/errors/Err';
 
 import settings from '../_settings';
 import { toFormalDateTime } from '../helpers/DateTime';
@@ -26,7 +27,16 @@ class Lines extends Component {
 
         <div className="line-details">
           <h1>To {line.terminal.terminal_name}</h1>
-          <p>Schedule: {toFormalDateTime(line.schedule)}</p>
+          {line.is_close?
+            <div className="flag-negative">
+              <p><span className="label">Status</span>Closed</p>
+              <p><span className="label">Close reason</span>{this.props.line.close_reason}</p>
+            </div>
+          : line.reservations.length == line.max_passengers?
+            <p className="flag-negative"><span className="label">Status</span>Full</p>
+          : <p className="flag-positive"><span className="label">Status</span>Open</p>}
+          <p><span className="label">Date and time of departure</span> {toFormalDateTime(line.date_leaving)}</p>
+          <p><span className="label">Estimated date and time of arrival</span> {toFormalDateTime(line.date_arriving)}</p>
           <div className="buttons">
             <Link to={'/travel-lines/' + line.id}>
               More Details
@@ -57,10 +67,7 @@ class Lines extends Component {
               </div>
             </div>
           : this.props.lines.request.error && !this.props.lines.data.length?
-            <div className="error-container">
-              <h1>Opsss... We got an error.</h1>
-              <p>{this.props.lines.request.error}</p>
-            </div>
+            <Err body={this.props.lines.request.error} />
           : lines}
         </div>
 

@@ -6,6 +6,7 @@ import popMessage from './popMessageReducer';
 import user from './userReducer';
 import lines from './linesReducer';
 import line from './lineReducer';
+import reservation from './reservationReducer';
 
 export default combineReducers({
   signUpForm,
@@ -13,5 +14,6 @@ export default combineReducers({
   popMessage,
   user,
   lines,
-  line
+  line,
+  reservation
 });

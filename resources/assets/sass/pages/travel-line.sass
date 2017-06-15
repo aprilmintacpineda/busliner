@@ -1,4 +1,97 @@
 .travel-line
+  .line-wrapper
+    max-width: 1000px
+    margin: 0 auto
+    padding: 10px
+    width: 100%
+    +clearFloat
+  .right-column, .left-column
+    @media all and (max-width: $mobileWidth)
+      float: none
+      width: 100%
+      padding: 0
+    width: 50%
+    float: left
+    section
+      margin-bottom: 10px
+      &:last-child
+        margin-bottom: 0
+      .indented-info
+        padding-left: 15px
+      .section-title
+        font-size: 16px
+        font-weight: bold
+        border-left: 5px solid gray
+        padding: 10px
+        margin: 10px 0
+  .left-column
+    padding-right: 5px
+    img
+      width: 100%
+      height: auto
+      border: 1px solid #d0d1d5
+  .right-column
+    padding-left: 5px
+    +clearFloat
+    .reserve-form-wrapper
+      li
+        margin-bottom: 5px
+        list-style: none
+        &:last-child
+          margin: 0
+      .button.icon-active
+        padding-left: 35px
+        background: #2d862d !important
+        color: #40bf40
+      .button.disabled
+        opacity: 0.6
+        cursor: not-allowed
+      .input-button-wrapper
+        .errors
+          color: red
+      .button
+        position: relative
+        padding: 10px
+        border: 1px solid #2d862d
+        background: #40bf40
+        +fitWidth
+        color: #fff
+        cursor: pointer
+        .sending
+          position: absolute
+          +vCenter
+          left: 10px
+    section
+      @media all and (max-width: $mobileWidth)
+        float: none
+        width: 100%
+      width: 50%
+      float: left
+      img
+        @media all and (max-width: $mobileWidth)
+          width: 100%
+          height: auto
+        width: 150px
+        height: 200px
+        border: 1px solid #d0d1d5
+  h1
+    font-weight: normal
+  p
+    margin-bottom: 5px
+    position: relative
+    padding-top: 14px
+    &:last-child
+      margin-bottom: 0
+    .label
+      position: absolute
+      top: 0
+      left: 0
+      color: gray
+      font-size: 14px
+  .flag-negative
+    color: #ff3300
+  .flag-positive
+    color: #40bf40
   .loading-content
     position: relative
     height: 400px

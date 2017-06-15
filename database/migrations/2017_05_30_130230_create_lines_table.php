@@ -25,7 +25,10 @@ class CreateLinesTable extends Migration
             $table->timestamp('left_at')->nullable();
             $table->integer('max_passengers')->unsigned();
             $table->integer('terminal_id')->unsigned();
-            $table->datetime('schedule');
+            $table->datetime('date_leaving');
+            $table->datetime('date_arriving');
+            $table->boolean('is_closed')->default(false);
+            $table->string('close_reason', 255)->nullable();
             $table->timestamps();
 
             $table->primary('id');

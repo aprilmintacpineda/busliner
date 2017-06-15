@@ -13372,7 +13372,7 @@ var InputButton = function (_Component) {
 
       return _react2.default.createElement(
         'div',
-        { className: 'input-button-wrapper' },
+        { className: this.props.className ? 'input-button-wrapper ' + this.props.className : 'input-button-wrapper' },
         errors,
         this.props.sending ? _react2.default.createElement(
           'div',
@@ -13408,7 +13408,8 @@ InputButton.propTypes = {
   onClick: _propTypes2.default.func.isRequired,
   sending: _propTypes2.default.bool.isRequired,
   disabled: _propTypes2.default.bool.isRequired,
-  errors: _propTypes2.default.array
+  errors: _propTypes2.default.array,
+  className: _propTypes2.default.string
 };
 exports.default = InputButton;
 
@@ -20900,9 +20901,23 @@ var _Carousel = __webpack_require__(295);
 
 var _Carousel2 = _interopRequireDefault(_Carousel);
 
+var _InputNumber = __webpack_require__(659);
+
+var _InputNumber2 = _interopRequireDefault(_InputNumber);
+
+var _InputButton = __webpack_require__(180);
+
+var _InputButton2 = _interopRequireDefault(_InputButton);
+
 var _E = __webpack_require__(296);
 
 var _E2 = _interopRequireDefault(_E);
+
+var _Err = __webpack_require__(658);
+
+var _Err2 = _interopRequireDefault(_Err);
+
+var _DateTime = __webpack_require__(298);
 
 var _settings = __webpack_require__(55);
 
@@ -20910,7 +20925,11 @@ var _settings2 = _interopRequireDefault(_settings);
 
 var _lineActions = __webpack_require__(290);
 
-var actions = _interopRequireWildcard(_lineActions);
+var lineActions = _interopRequireWildcard(_lineActions);
+
+var _reservationActions = __webpack_require__(662);
+
+var reservationActions = _interopRequireWildcard(_reservationActions);
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 
@@ -20946,35 +20965,233 @@ var Line = function (_Component) {
   }, {
     key: 'render',
     value: function render() {
-      console.log(this.props.line.data.photos);
+      var _this2 = this;
 
       var images = this.props.line.data.photos.map(function (photo, index) {
         return _react2.default.createElement('img', { key: index, src: _settings2.default.storage_path + '/' + photo.file_name });
       });
 
+      console.log(this.props.line.data);
+
       return _react2.default.createElement(
         'div',
         { className: 'travel-line' },
         _react2.default.createElement(_Topbar2.default, null),
-        _react2.default.createElement(
+        this.props.line.request.sending ? _react2.default.createElement(
           'div',
-          { className: 'line-wrapper' },
-          this.props.line.request.sending ? _react2.default.createElement(
+          { className: 'loading-content' },
+          _react2.default.createElement(
             'div',
-            { className: 'loading-content' },
+            { className: 'loading' },
+            _react2.default.createElement('i', { className: 'fa fa-circle-o-notch fa-3x fast-spin' })
+          )
+        ) : this.props.line.request.error == 404 ? _react2.default.createElement(_E2.default, null) : this.props.line.request.error ? _react2.default.createElement(_Err2.default, { body: this.props.line.request.error }) : this.props.line.request.status == 'fetched' ? _react2.default.createElement(
+          'div',
+          { className: 'travel-line' },
+          _react2.default.createElement(_Carousel2.default, {
+            items: images,
+            speed: 20 }),
+          _react2.default.createElement(
+            'div',
+            { className: 'line-wrapper' },
             _react2.default.createElement(
               'div',
-              { className: 'loading' },
-              _react2.default.createElement('i', { className: 'fa fa-circle-o-notch fa-3x fast-spin' })
+              { className: 'left-column' },
+              _react2.default.createElement(
+                'section',
+                null,
+                _react2.default.createElement('img', { src: _settings2.default.storage_path + '/' + this.props.line.data.terminal.cover_image }),
+                _react2.default.createElement(
+                  'h1',
+                  { className: 'section-title' },
+                  'Terminal information'
+                ),
+                _react2.default.createElement(
+                  'div',
+                  { className: 'indented-info' },
+                  _react2.default.createElement(
+                    'h1',
+                    null,
+                    this.props.line.data.terminal.terminal_name
+                  ),
+                  _react2.default.createElement(
+                    'p',
+                    null,
+                    _react2.default.createElement(
+                      'span',
+                      { className: 'label' },
+                      'Address'
+                    ),
+                    this.props.line.data.terminal.full_address
+                  )
+                )
+              )
+            ),
+            _react2.default.createElement(
+              'div',
+              { className: 'right-column' },
+              _react2.default.createElement(
+                'section',
+                null,
+                _react2.default.createElement(
+                  'h1',
+                  { className: 'section-title' },
+                  'Line information'
+                ),
+                _react2.default.createElement(
+                  'div',
+                  { className: 'indented-info' },
+                  _react2.default.createElement(
+                    'p',
+                    null,
+                    _react2.default.createElement(
+                      'span',
+                      { className: 'label' },
+                      'Trace number'
+                    ),
+                    this.props.line.data.id
+                  ),
+                  this.props.line.data.is_close ? _react2.default.createElement(
+                    'div',
+                    { className: 'flag-negative' },
+                    _react2.default.createElement(
+                      'p',
+                      null,
+                      _react2.default.createElement(
+                        'span',
+                        { className: 'label' },
+                        'Status'
+                      ),
+                      'Closed'
+                    ),
+                    _react2.default.createElement(
+                      'p',
+                      null,
+                      _react2.default.createElement(
+                        'span',
+                        { className: 'label' },
+                        'Close reason'
+                      ),
+                      this.props.line.data.close_reason
+                    )
+                  ) : this.props.line.data.reservations.length == this.props.line.data.max_passengers ? _react2.default.createElement(
+                    'p',
+                    { className: 'flag-negative' },
+                    _react2.default.createElement(
+                      'span',
+                      { className: 'label' },
+                      'Status'
+                    ),
+                    'Full'
+                  ) : _react2.default.createElement(
+                    'p',
+                    { className: 'flag-positive' },
+                    _react2.default.createElement(
+                      'span',
+                      { className: 'label' },
+                      'Status'
+                    ),
+                    'Open'
+                  ),
+                  _react2.default.createElement(
+                    'p',
+                    null,
+                    _react2.default.createElement(
+                      'span',
+                      { className: 'label' },
+                      'Date and time of departure'
+                    ),
+                    (0, _DateTime.toFormalDateTime)(this.props.line.data.date_leaving)
+                  ),
+                  _react2.default.createElement(
+                    'p',
+                    null,
+                    _react2.default.createElement(
+                      'span',
+                      { className: 'label' },
+                      'Estimated date and time of arrival'
+                    ),
+                    (0, _DateTime.toFormalDateTime)(this.props.line.data.date_arriving)
+                  ),
+                  _react2.default.createElement(
+                    'p',
+                    null,
+                    _react2.default.createElement(
+                      'span',
+                      { className: 'label' },
+                      'Reserved passengers'
+                    ),
+                    this.props.line.data.reservations.length,
+                    ' ',
+                    this.props.line.data.reservations.length > 1 || this.props.line.data.reservations.length == 0 ? 'Passengers' : 'Passenger'
+                  )
+                ),
+                _react2.default.createElement(
+                  'h1',
+                  { className: 'section-title' },
+                  'Reserve your seat now'
+                ),
+                _react2.default.createElement(
+                  'div',
+                  { className: 'indented-info' },
+                  _react2.default.createElement(
+                    'ul',
+                    { className: 'reserve-form-wrapper' },
+                    _react2.default.createElement(
+                      'li',
+                      null,
+                      'Seats',
+                      _react2.default.createElement(_InputNumber2.default, {
+                        min: 1,
+                        max: 10,
+                        value: this.props.reservation.seats,
+                        onChange: function onChange(value) {
+                          return _this2.props.changeSeats(value);
+                        } })
+                    ),
+                    _react2.default.createElement(
+                      'li',
+                      null,
+                      _react2.default.createElement(_InputButton2.default, {
+                        value: 'Reserve now',
+                        sending: this.props.reservation.request.sending,
+                        disabled: false,
+                        onClick: this.props.sendReservation })
+                    )
+                  )
+                )
+              ),
+              _react2.default.createElement(
+                'section',
+                null,
+                _react2.default.createElement('img', { src: _settings2.default.storage_path + '/' + this.props.line.data.driver.cover_image }),
+                _react2.default.createElement(
+                  'h1',
+                  { className: 'section-title' },
+                  'Driver information'
+                ),
+                _react2.default.createElement(
+                  'div',
+                  { className: 'indented-info' },
+                  _react2.default.createElement(
+                    'p',
+                    null,
+                    _react2.default.createElement(
+                      'span',
+                      { className: 'label' },
+                      'Name'
+                    ),
+                    this.props.line.data.driver.first_name,
+                    ' ',
+                    this.props.line.data.driver.middle_name,
+                    ' ',
+                    this.props.line.data.driver.surname
+                  )
+                )
+              )
             )
-          ) : this.props.line.request.error == 404 ? _react2.default.createElement(_E2.default, null) : _react2.default.createElement(
-            'div',
-            null,
-            _react2.default.createElement(_Carousel2.default, {
-              items: images,
-              speed: 20 })
           )
-        ),
+        ) : null,
         _react2.default.createElement(_Footer2.default, null)
       );
     }
@@ -20985,11 +21202,15 @@ var Line = function (_Component) {
 
 exports.default = (0, _reactRedux.connect)(function (store) {
   return {
-    line: _extends({}, store.line)
+    line: _extends({}, store.line),
+    reservation: _extends({}, store.reservation)
   };
 }, {
-  fetchData: actions.fetchData,
-  clearData: actions.clearData
+  fetchData: lineActions.fetchData,
+  clearData: lineActions.clearData,
+
+  changeSeats: reservationActions.changeSeats,
+  sendReservation: reservationActions.send
 })(Line);
 
 /***/ }),
@@ -21026,6 +21247,10 @@ var _Footer2 = _interopRequireDefault(_Footer);
 var _PopMessage = __webpack_require__(118);
 
 var _PopMessage2 = _interopRequireDefault(_PopMessage);
+
+var _Err = __webpack_require__(658);
+
+var _Err2 = _interopRequireDefault(_Err);
 
 var _settings = __webpack_require__(55);
 
@@ -21084,11 +21309,69 @@ var Lines = function (_Component) {
               'To ',
               line.terminal.terminal_name
             ),
+            line.is_close ? _react2.default.createElement(
+              'div',
+              { className: 'flag-negative' },
+              _react2.default.createElement(
+                'p',
+                null,
+                _react2.default.createElement(
+                  'span',
+                  { className: 'label' },
+                  'Status'
+                ),
+                'Closed'
+              ),
+              _react2.default.createElement(
+                'p',
+                null,
+                _react2.default.createElement(
+                  'span',
+                  { className: 'label' },
+                  'Close reason'
+                ),
+                _this2.props.line.close_reason
+              )
+            ) : line.reservations.length == line.max_passengers ? _react2.default.createElement(
+              'p',
+              { className: 'flag-negative' },
+              _react2.default.createElement(
+                'span',
+                { className: 'label' },
+                'Status'
+              ),
+              'Full'
+            ) : _react2.default.createElement(
+              'p',
+              { className: 'flag-positive' },
+              _react2.default.createElement(
+                'span',
+                { className: 'label' },
+                'Status'
+              ),
+              'Open'
+            ),
             _react2.default.createElement(
               'p',
               null,
-              'Schedule: ',
-              (0, _DateTime.toFormalDateTime)(line.schedule)
+              _react2.default.createElement(
+                'span',
+                { className: 'label' },
+                'Date and time of departure'
+              ),
+              ' ',
+              (0, _DateTime.toFormalDateTime)(line.date_leaving)
+            ),
+            _react2.default.createElement(
+              'p',
+              null,
+              _react2.default.createElement(
+                'span',
+                { className: 'label' },
+                'Estimated date and time of arrival'
+              ),
+              ' ',
+              (0, _DateTime.toFormalDateTime)(line.date_arriving)
             ),
             _react2.default.createElement(
               'div',
@@ -21126,20 +21409,7 @@ var Lines = function (_Component) {
               { className: 'loading' },
               _react2.default.createElement('i', { className: 'fa fa-circle-o-notch fa-3x fast-spin' })
             )
-          ) : this.props.lines.request.error && !this.props.lines.data.length ? _react2.default.createElement(
-            'div',
-            { className: 'error-container' },
-            _react2.default.createElement(
-              'h1',
-              null,
-              'Opsss... We got an error.'
-            ),
-            _react2.default.createElement(
-              'p',
-              null,
-              this.props.lines.request.error
-            )
-          ) : lines
+          ) : this.props.lines.request.error && !this.props.lines.data.length ? _react2.default.createElement(_Err2.default, { body: this.props.lines.request.error }) : lines
         ),
         _react2.default.createElement(_Footer2.default, null)
       );
@@ -22923,7 +23193,6 @@ var E404 = function (_Component) {
         _react2.default.createElement(
           'div',
           { className: 'error-body' },
-          _react2.default.createElement('img', { src: _settings2.default.public_path + '/vader404.jpg' }),
           _react2.default.createElement(
             'h1',
             null,
@@ -23036,10 +23305,14 @@ var months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'A
 
 function toFormalDateTime(timestamp) {
   var date = new Date(timestamp);
+
   var hours_raw = date.getHours();
   var notation = hours_raw >= 12 ? 'PM' : 'AM';
 
-  return months[date.getMonth()] + ' ' + date.getDate() + ', ' + date.getFullYear() + ' ' + ((hours_raw + 11) % 12 + 1) + ':' + date.getMinutes() + ' ' + notation;
+  var minutes = date.getMinutes();
+  minutes = minutes < 10 ? '0' + minutes : minutes;
+
+  return months[date.getMonth()] + ' ' + date.getDate() + ', ' + date.getFullYear() + ' ' + ((hours_raw + 11) % 12 + 1) + ':' + minutes + ' ' + notation;
 }
 
 /***/ }),
@@ -23079,6 +23352,10 @@ var _lineReducer = __webpack_require__(305);
 
 var _lineReducer2 = _interopRequireDefault(_lineReducer);
 
+var _reservationReducer = __webpack_require__(660);
+
+var _reservationReducer2 = _interopRequireDefault(_reservationReducer);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 exports.default = (0, _redux.combineReducers)({
@@ -23087,7 +23364,8 @@ exports.default = (0, _redux.combineReducers)({
   popMessage: _popMessageReducer2.default,
   user: _userReducer2.default,
   lines: _linesReducer2.default,
-  line: _lineReducer2.default
+  line: _lineReducer2.default,
+  reservation: _reservationReducer2.default
 });
 
 /***/ }),
@@ -47577,6 +47855,293 @@ module.exports = function(module) {
 	return module;
 };
 
+
+/***/ }),
+/* 658 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(9);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _propTypes = __webpack_require__(17);
+
+var _propTypes2 = _interopRequireDefault(_propTypes);
+
+var _settings = __webpack_require__(55);
+
+var _settings2 = _interopRequireDefault(_settings);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var Err = function (_Component) {
+  _inherits(Err, _Component);
+
+  function Err() {
+    _classCallCheck(this, Err);
+
+    return _possibleConstructorReturn(this, (Err.__proto__ || Object.getPrototypeOf(Err)).apply(this, arguments));
+  }
+
+  _createClass(Err, [{
+    key: 'render',
+    value: function render() {
+      return _react2.default.createElement(
+        'div',
+        { className: 'error-body-wrapper' },
+        _react2.default.createElement(
+          'div',
+          { className: 'error-body' },
+          _react2.default.createElement(
+            'h1',
+            null,
+            'Opsss... We got an error.'
+          ),
+          _react2.default.createElement(
+            'p',
+            null,
+            this.props.body
+          )
+        )
+      );
+    }
+  }]);
+
+  return Err;
+}(_react.Component);
+
+Err.propTypes = {
+  body: _propTypes2.default.string.isRequired
+};
+exports.default = Err;
+
+/***/ }),
+/* 659 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(9);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _propTypes = __webpack_require__(17);
+
+var _propTypes2 = _interopRequireDefault(_propTypes);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var InputNumber = function (_Component) {
+  _inherits(InputNumber, _Component);
+
+  function InputNumber(props) {
+    _classCallCheck(this, InputNumber);
+
+    var _this = _possibleConstructorReturn(this, (InputNumber.__proto__ || Object.getPrototypeOf(InputNumber)).call(this, props));
+
+    _this.increment = _this.increment.bind(_this);
+    _this.decrement = _this.decrement.bind(_this);
+    return _this;
+  }
+
+  _createClass(InputNumber, [{
+    key: 'increment',
+    value: function increment() {
+      var incremented_value = this.props.value + 1;
+
+      if (incremented_value <= this.props.max) {
+        this.props.onChange(incremented_value);
+      }
+    }
+  }, {
+    key: 'decrement',
+    value: function decrement() {
+      var decremented_value = this.props.value - 1;
+
+      if (decremented_value >= this.props.min) {
+        this.props.onChange(decremented_value);
+      }
+    }
+  }, {
+    key: 'render',
+    value: function render() {
+      return _react2.default.createElement(
+        'div',
+        { className: 'input-number-wrapper' },
+        _react2.default.createElement(
+          'ul',
+          null,
+          _react2.default.createElement(
+            'li',
+            null,
+            _react2.default.createElement('input', { type: 'text', value: this.props.value, readOnly: true })
+          ),
+          _react2.default.createElement(
+            'li',
+            null,
+            _react2.default.createElement(
+              'div',
+              null,
+              _react2.default.createElement(
+                'a',
+                { onClick: this.increment, className: 'increment' },
+                _react2.default.createElement('i', { className: 'fa fa-chevron-up', 'aria-hidden': 'true' })
+              ),
+              _react2.default.createElement(
+                'a',
+                { onClick: this.decrement, className: 'decrement' },
+                _react2.default.createElement('i', { className: 'fa fa-chevron-down', 'aria-hidden': 'true' })
+              )
+            )
+          )
+        )
+      );
+    }
+  }]);
+
+  return InputNumber;
+}(_react.Component);
+
+InputNumber.propTypes = {
+  min: _propTypes2.default.number.isRequired,
+  max: _propTypes2.default.number.isRequired,
+  onChange: _propTypes2.default.func.isRequired,
+  value: _propTypes2.default.number.isRequired
+};
+exports.default = InputNumber;
+
+/***/ }),
+/* 660 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+exports.default = reservation;
+
+var _reservation = __webpack_require__(661);
+
+var _reservation2 = _interopRequireDefault(_reservation);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function reservation() {
+  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : _reservation2.default;
+  var action = arguments[1];
+
+  switch (action.type) {
+    case 'RESERVATION_CHANGE_SEATS':
+      return _extends({}, state, {
+        seats: action.value
+      });
+      break;
+
+    case 'RESERVATION_SEND_START':
+      return _extends({}, state, {
+        request: _extends({}, state.request, {
+          sending: true
+        })
+      });
+      break;
+
+    case 'RESERVATION_SEND_SUCCESSFUL':
+      return _extends({}, _reservation2.default, {
+        request: _extends({}, _reservation2.default.request, {
+          status: 'successful'
+        })
+      });
+      break;
+
+    case 'RESERVATION_SEND_FAILED':
+      return _extends({}, state, {
+        request: _extends({}, _reservation2.default.request, {
+          status: 'failed',
+          error: action.message
+        })
+      });
+      break;
+  }
+
+  return state;
+}
+
+/***/ }),
+/* 661 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = {
+  request: {
+    sending: false,
+    status: null,
+    error: null
+  },
+  seats: 1
+};
+
+/***/ }),
+/* 662 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.changeSeats = changeSeats;
+exports.send = send;
+function changeSeats(value) {
+  return {
+    type: 'RESERVATION_CHANGE_SEATS',
+    value: value
+  };
+}
+
+function send() {
+  return {
+    type: 'RESERVATION_SEND_START'
+  };
+}
 
 /***/ })
 /******/ ]);

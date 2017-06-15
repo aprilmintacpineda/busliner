@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 use App\Driver;
 use App\Photo;
+use App\Reservation;
 
 class Line extends Model
 {
@@ -19,5 +20,9 @@ class Line extends Model
 
   public function terminal() {
     return $this->hasOne(Terminal::class, 'id', 'terminal_id');
+  }
+
+  public function reservations() {
+    return $this->hasMany(Reservation::class, 'line_id', 'id');
   }
 }

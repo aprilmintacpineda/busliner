@@ -1,18 +1,23 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
 import settings from '../../_settings';
 
-class E404 extends Component {
+class Err extends Component {
+  static propTypes = {
+    body: PropTypes.string.isRequired
+  }
+
   render() {
     return (
       <div className="error-body-wrapper">
         <div className="error-body">
-          <h1>Page not found</h1>
-          <p>The link you followed may be broken or the page may have been removed.</p>
+          <h1>Opsss... We got an error.</h1>
+          <p>{this.props.body}</p>
         </div>
       </div>
     );
   }
 }
 
-export default E404;
+export default Err;

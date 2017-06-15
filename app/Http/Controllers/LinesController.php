@@ -18,11 +18,12 @@ class LinesController extends Controller
         ['has_left', false]
       ])->offset($offset)
       ->limit($limit)
-      ->orderBy('schedule', 'desc')
+      ->orderBy('date_leaving', 'desc')
       ->get();
 
     foreach($lines as $line) {
       $line->terminal;
+      $line->reservations;
     }
 
     return $lines;
@@ -33,6 +34,10 @@ class LinesController extends Controller
       $line = Line::findOrFail($id);
       $line->photos;
       $line->driver;
+      $line->terminal;
+      $line->reservations = $line->reservations()
+        ->where('is_cancelled', false)
+        ->get();
 
       return $line;
     } catch(ModelNotFoundException $exception) {
