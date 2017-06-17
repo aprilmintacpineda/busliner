@@ -14,15 +14,16 @@ class CreateReservationsTable extends Migration
     public function up()
     {
         Schema::create('reservations', function (Blueprint $table) {
-            $table->integer('id')->unsigned();
             $table->integer('line_id')->unsigned();
             $table->integer('user_id')->unsigned();
+            $table->integer('trace_number')->unsigned()->unique();
+            $table->integer('seats')->unsigned();
             $table->boolean('is_cancelled')->default(false);
             $table->string('cancel_reason', 255)->nullable();
             $table->timestamp('cancelled_at')->nullable();
             $table->timestamps();
 
-            $table->primary('id');
+            $table->primary(['line_id', 'user_id']);
             $table->foreign('line_id')->references('id')->on('lines');
             $table->foreign('user_id')->references('id')->on('users');
         });

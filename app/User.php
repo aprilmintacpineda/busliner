@@ -7,6 +7,8 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class User extends Authenticatable
 {
+  public $remember_token = false;
+
   public $fillable = [
     'id',
     'email',

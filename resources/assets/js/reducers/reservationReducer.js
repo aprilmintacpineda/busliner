@@ -42,7 +42,7 @@ export default function reservation(state = initial_state, action) {
         request: {
           ...initial_state.request,
           status: 'failed',
-          error: action.message
+          message: action.message
         }
       }
     break;

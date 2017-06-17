@@ -63,7 +63,7 @@ describe('reducers/reservationReducer', () => {
         ...initial_state.request,
         sending: false,
         status: 'failed',
-        error: 'something bad happened'
+        message: 'something bad happened'
       }
     });
   });

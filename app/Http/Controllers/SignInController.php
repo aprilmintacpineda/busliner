@@ -17,11 +17,28 @@ class SignInController extends Controller
       'email' => $inputs['email'],
       'password' => $inputs['password']
     ])) {
-      return response()->json(Auth::user());
+      $user = Auth::user();
+      if($user->is_verified) {
+        return response()->json($user);
+      } else {
+        Auth::logout();
+
+        return response()->json([
+          'submit' => ['You must verify your email first.']
+        ], 422);
+      }
     }
 
     return response()->json([
       'submit' => ['Invalid credentials']
     ], 422);
+  }
+
+  public function logout() {
+    if(Auth::check()) {
+      Auth::logout();
+    }
+
+    return redirect('/sign-in');
   }
 }

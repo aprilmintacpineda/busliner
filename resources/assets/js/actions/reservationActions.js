@@ -5,9 +5,10 @@ export function changeSeats(value) {
   }
 }
 
-export function send() {
+export function send(line_id) {
   return {
-    type: 'RESERVATION_SEND_START'
+    type: 'RESERVATION_SEND_START',
+    line_id
   }
 }
 

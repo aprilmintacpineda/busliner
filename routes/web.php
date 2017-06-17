@@ -25,7 +25,11 @@ Route::post('sign-in', 'SignInController@attempt');
 
 Route::get('/lines/{page}', 'LinesController@get');
 Route::get('/line/{id}', 'LinesController@show');
-Route::post('/reserve', 'ReservationsController@reserve');
+
+Route::post('/reservation/make', 'ReservationsController@make');
+Route::post('/reservation/cancel', 'ReservationsController@cancel');
+
+Route::get('/user/{id}/logout', 'SignInController@logout');
 
 Route::get('/', 'LandingController@index');
 Route::get('{slug}', 'LandingController@slug')

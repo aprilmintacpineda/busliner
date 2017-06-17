@@ -13,7 +13,7 @@ describe('sagas/reservationSagaWorker', () => {
   });
 
   it('call the axios.post to the api', () => {
-    expect(iterator.next(3).value).to.deep.equal(call(axios.post, '/reserve', { seats: 3 }));
+    expect(iterator.next(3).value).to.deep.equal(call(axios.post, '/reservation/make', { seats: 3 }));
   });
 
   it('dispatches RESERVATION_SEND_SUCCESSFUL', () => {

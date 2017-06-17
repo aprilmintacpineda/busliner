@@ -7,6 +7,12 @@ import Topbar from '../../containers/Topbar';
 import Footer from '../../components/Footer';
 
 class Dashboard extends Component {
+  componentWillMount() {
+    if(!this.props.user.logged_in) {
+      this.props.router.push('/sign-in');
+    }
+  }
+
   render() {
     return (
       <div className="dashboard">
@@ -20,4 +26,8 @@ class Dashboard extends Component {
   }
 }
 
-export default Dashboard;
+export default connect(store => ({
+  user: {...store.user}
+}), {
+
+})(Dashboard);

@@ -24,6 +24,7 @@ class LinesController extends Controller
     foreach($lines as $line) {
       $line->terminal;
       $line->reservations;
+      $line->reserved = $line->reserved();
     }
 
     return $lines;
