@@ -7,7 +7,7 @@ export function changeSeats(value) {
 
 export function send(line_id) {
   return {
-    type: 'RESERVATION_SEND_START',
+    type: 'RESERVATION_MAKE_START',
     line_id
   }
 }
@@ -15,5 +15,12 @@ export function send(line_id) {
 export function clearReservationMessage() {
   return {
     type: 'RESERVATION_REQUEST_CLEAR'
+  }
+}
+
+export function cancelReservation(line_id) {
+  return {
+    type: 'RESERVATION_CANCEL_START',
+    line_id
   }
 }

@@ -38,12 +38,17 @@ class Line extends Component {
       <div className="travel-line">
         <Topbar />
 
-        {this.props.reservation.request.status == 'successful'?
+        {this.props.reservation.request.status == 'made'?
           <PopMessage
           title="Reservation successful"
           message={this.props.reservation.request.message}
           onClick={this.props.clearReservationMessage} />
-        : this.props.reservation.request.message?
+        : this.props.reservation.request.status == 'cancelled'?
+          <PopMessage
+          title="Reservation cancelled"
+          message={this.props.reservation.request.message}
+          onClick={this.props.clearReservationMessage} />
+        : this.props.reservation.request.status == 'failed'?
           <PopMessage
           title="Opsss... We got an error."
           message={this.props.reservation.request.message}
@@ -108,9 +113,9 @@ class Line extends Component {
                         {this.props.line.data.reserved?
                           <InputButton
                             value="Cancel my reservation"
-                            sending={false}
-                            disabled={false}
-                            onClick={() => console.log('test')} />
+                            sending={this.props.reservation.request.sending}
+                            disabled={this.props.reservation.request.sending}
+                            onClick={() => this.props.cancelReservation(this.props.params.id)} />
                         : <ul className="reserve-form-wrapper">
                             <li>Seats
                               <InputNumber
@@ -123,7 +128,7 @@ class Line extends Component {
                               <InputButton
                                 value="Reserve now"
                                 sending={this.props.reservation.request.sending}
-                                disabled={false}
+                                disabled={this.props.reservation.request.sending}
                                 onClick={() => this.props.sendReservation(this.props.params.id)} />
                             </li>
                           </ul>}
@@ -161,5 +166,6 @@ export default connect(store => ({
 
   changeSeats: reservationActions.changeSeats,
   sendReservation: reservationActions.send,
-  clearReservationMessage: reservationActions.clearReservationMessage
+  clearReservationMessage: reservationActions.clearReservationMessage,
+  cancelReservation: reservationActions.cancelReservation
 })(Line);

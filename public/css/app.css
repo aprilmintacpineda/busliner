@@ -471,7 +471,7 @@ a.link-default {
         width: 80%; } }
     .home .welcome-banner .centered img {
       width: 100px;
-      height: auto;
+      height: 100px;
       position: relative;
       border: 1px solid #595959;
       border-radius: 100%;
@@ -524,7 +524,7 @@ a.link-default {
           color: #262626; }
         .home .image-columned-container .wrapper section header img {
           width: 100px;
-          height: auto;
+          height: 100px;
           display: block;
           margin: 0 auto; }
 

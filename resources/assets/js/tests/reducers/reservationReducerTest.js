@@ -14,9 +14,9 @@ describe('reducers/reservationReducer', () => {
     });
   });
 
-  it('handles RESERVATION_SEND_START', () => {
+  it('handles RESERVATION_MAKE_START', () => {
     expect(subject(initial_state, {
-      type: 'RESERVATION_SEND_START'
+      type: 'RESERVATION_MAKE_START'
     })).to.deep.equal({
       ...initial_state,
       request: {
@@ -26,7 +26,7 @@ describe('reducers/reservationReducer', () => {
     });
   });
 
-  it('handles RESERVATION_SEND_SUCCESSFUL', () => {
+  it('handles RESERVATION_MAKE_SUCCESSFUL', () => {
     expect(subject({
       ...initial_state,
       request: {
@@ -34,20 +34,20 @@ describe('reducers/reservationReducer', () => {
         sending: true
       }
     }, {
-      type: 'RESERVATION_SEND_SUCCESSFUL',
+      type: 'RESERVATION_MAKE_SUCCESSFUL',
       message: 'blah blah blah'
     })).to.deep.equal({
       ...initial_state,
       request: {
         ...initial_state.request,
         sending: false,
-        status: 'successful',
+        status: 'made',
         message: 'blah blah blah'
       }
     });
   });
 
-  it('handles RESERVATION_SEND_FAILED', () => {
+  it('handles RESERVATION_MAKE_FAILED', () => {
     expect(subject({
       ...initial_state,
       request: {
@@ -55,7 +55,7 @@ describe('reducers/reservationReducer', () => {
         sending: true
       }
     }, {
-      type: 'RESERVATION_SEND_FAILED',
+      type: 'RESERVATION_MAKE_FAILED',
       message: 'something bad happened'
     })).to.deep.equal({
       ...initial_state,
@@ -79,5 +79,25 @@ describe('reducers/reservationReducer', () => {
     }, {
       type: 'RESERVATION_REQUEST_CLEAR'
     })).to.deep.equal(initial_state);
+  });
+
+  it('handles RESERVATION_CANCEL_START', () => {
+    expect(subject({
+      ...initial_state,
+      request: {
+        ...initial_state.request,
+        status: 'fetched'
+      }
+    }, {
+      type: 'RESERVATION_CANCEL_START',
+      line_id: 123
+    })).to.deep.equal({
+      ...initial_state,
+      request: {
+        ...initial_state.request,
+        status: 'fetched',
+        sending: true
+      }
+    });
   });
 });

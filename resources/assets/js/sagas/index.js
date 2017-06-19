@@ -5,7 +5,8 @@ import signUpSaga from './signUpSaga';
 import signInSaga from './signInSaga';
 import linesSaga from './linesSaga';
 import lineSaga from './lineSaga';
-import reservationSaga from './reservationSaga';
+import makeReservationSaga from './makeReservationSaga';
+import cancelReservationSaga from './cancelReservationSaga';
 
 export default function* rootSaga() {
   yield all([
@@ -13,6 +14,7 @@ export default function* rootSaga() {
     signInSaga(),
     linesSaga(),
     lineSaga(),
-    reservationSaga()
+    makeReservationSaga(),
+    cancelReservationSaga()
   ]);
 }

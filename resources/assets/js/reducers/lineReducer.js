@@ -12,6 +12,16 @@ export default function line(state = initial_state, action) {
       }
     break;
 
+    case 'LINE_HASNT_RESERVED':
+      return {
+        ...state,
+        data: {
+          ...state.data,
+          reserved: false
+        }
+      }
+    break;
+
     case 'LINE_FETCH_DATA_START':
       return {
         ...state,
