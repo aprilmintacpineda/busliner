@@ -9,6 +9,7 @@ use App\Reservation;
 use App\Helpers\Generator;
 
 use App\Http\Requests\MakeReservationRequest;
+use App\Http\Requests\CancelReservationRequest;
 
 class ReservationsController extends Controller
 {
@@ -27,7 +28,17 @@ class ReservationsController extends Controller
     ');
   }
 
-  public function cancel() {
-    return response(200);
+  public function cancel(CancelReservationRequest $request) {
+    $inputs = Input::all();
+
+    Reservation::where([
+      ['line_id', '=', $inputs['line_id']],
+      ['user_id', '=', Auth::user()->id]
+    ])->update([
+      'is_cancelled' => true,
+      'cancelled_at' => Generator::current_timestamp()
+    ]);
+
+    return response()->json('You have successfully cancelled your reservation. We hope to travel with you soon.');
   }
 }

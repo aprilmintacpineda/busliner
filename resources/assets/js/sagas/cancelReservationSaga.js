@@ -9,7 +9,7 @@ export function* cancelReservationSagaWorker(action) {
 
     yield put({
       type: 'RESERVATION_CANCEL_SUCCESSFUL',
-      message: 'You have successfully cancelled your reservation. We hope to travel with you soon.'
+      message: response.data
     });
 
     yield put({ type: 'LINE_HASNT_RESERVED' });

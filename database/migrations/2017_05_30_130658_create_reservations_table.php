@@ -19,7 +19,6 @@ class CreateReservationsTable extends Migration
             $table->integer('trace_number')->unsigned()->unique();
             $table->integer('seats')->unsigned();
             $table->boolean('is_cancelled')->default(false);
-            $table->string('cancel_reason', 255)->nullable();
             $table->timestamp('cancelled_at')->nullable();
             $table->timestamps();
 

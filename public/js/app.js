@@ -48480,7 +48480,7 @@ function cancelReservationSagaWorker(action) {
           _context.next = 6;
           return (0, _effects.put)({
             type: 'RESERVATION_CANCEL_SUCCESSFUL',
-            message: 'You have successfully cancelled your reservation. We hope to travel with you soon.'
+            message: response.data
           });
 
         case 6:
