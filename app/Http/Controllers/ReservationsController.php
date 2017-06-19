@@ -16,12 +16,27 @@ class ReservationsController extends Controller
   public function make(MakeReservationRequest $request) {
     $inputs = Input::all();
 
-    $reservation = Reservation::create([
-      'trace_number' => Generator::id(),
-      'line_id' => $inputs['line_id'],
-      'user_id' => Auth::user()->id,
+    $reservation = Reservation::where([
+      ['line_id', '=', $inputs['line_id']],
+      ['user_id', '=', Auth::user()->id]
+    ])->update([
+      'is_cancelled' => false,
       'seats' => $inputs['seats']
     ]);
+
+    if(!$reservation) {
+      $reservation = Reservation::create([
+        'trace_number' => Generator::id(),
+        'line_id' => $inputs['line_id'],
+        'user_id' => Auth::user()->id,
+        'seats' => $inputs['seats']
+      ]);
+    } else {
+      $reservation = Reservation::where([
+        ['line_id', '=', $inputs['line_id']],
+        ['user_id', '=', Auth::user()->id]
+      ])->first();
+    }
 
     return response()->json('
       You have successfully made a reservation for '. $inputs['seats'] .' seat'. ($inputs['seats'] > 1? 's' : '') .'. your reservation trace number is '. $reservation->trace_number .', please write it down and present it to the cashier on the terminal. Please come 15 minutes before the time of departure. Thank you for travelling with us.
