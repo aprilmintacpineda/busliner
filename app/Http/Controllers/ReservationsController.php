@@ -56,4 +56,15 @@ class ReservationsController extends Controller
 
     return response()->json('You have successfully cancelled your reservation. We hope to travel with you soon.');
   }
+
+  public function list($page) {
+    $limit = 10;
+    $offset = ($limit * $page) - $limit;
+
+    return response()->json(Auth::user()
+      ->reservations()
+      ->limit($limit)
+      ->offset($offset)
+      ->get());
+  }
 }

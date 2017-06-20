@@ -1,7 +1,7 @@
 import { take, put, select, fork, call } from 'redux-saga/effects';
 import axios from 'axios';
 
-import { getSeatsValue } from './selectors/reservationSelectors';
+import { getSeatsValue } from '../selectors/reservationSelectors';
 
 export function* makeReservationSagaWorker(action) {
   try {

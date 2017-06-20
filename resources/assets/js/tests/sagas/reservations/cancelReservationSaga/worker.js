@@ -4,7 +4,7 @@ import { put, call } from 'redux-saga/effects';
 import { expect } from 'chai'
 import axios from 'axios';
 
-import { cancelReservationSagaWorker } from '../../../sagas/cancelReservationSaga';
+import { cancelReservationSagaWorker } from '../../../../sagas/reservations/cancelReservationSaga';
 
 const iterator = cancelReservationSagaWorker({
   type: 'RESERVATION_CANCEL_RECORD',
@@ -20,7 +20,8 @@ describe('sagas/cancelReservationSagaWorker', () => {
 
   it('dispatches RESERVATION_CANCEL_SUCCESSFUL', () => {
     expect(iterator.next({
-      status: 200
+      status: 200,
+      data: 'You have successfully cancelled your reservation. We hope to travel with you soon.'
     }).value).to.deep.equal(put({
       type: 'RESERVATION_CANCEL_SUCCESSFUL',
       message: 'You have successfully cancelled your reservation. We hope to travel with you soon.'

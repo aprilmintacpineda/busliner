@@ -1,7 +1,7 @@
 import { expect } from 'chai';
 import { take, fork } from 'redux-saga/effects';
 
-import reservationSagaWatcher, { makeReservationSagaWorker } from '../../../sagas/makeReservationSaga';
+import reservationSagaWatcher, { makeReservationSagaWorker } from '../../../../sagas/reservations/makeReservationSaga';
 
 const iterator = reservationSagaWatcher();
 

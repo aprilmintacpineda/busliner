@@ -3,7 +3,7 @@ import 'babel-polyfill';
 import { take, fork } from 'redux-saga/effects';
 import { expect } from 'chai';
 
-import cancelReservationSagaWatcher, { cancelReservationSagaWorker } from '../../../sagas/cancelReservationSaga';
+import cancelReservationSagaWatcher, { cancelReservationSagaWorker } from '../../../../sagas/reservations/cancelReservationSaga';
 
 const iterator = cancelReservationSagaWatcher();
 

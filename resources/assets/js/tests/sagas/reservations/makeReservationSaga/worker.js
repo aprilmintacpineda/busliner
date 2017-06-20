@@ -2,8 +2,8 @@ import { expect } from 'chai';
 import { put, call, select } from 'redux-saga/effects';
 import axios from 'axios';
 
-import { makeReservationSagaWorker } from '../../../sagas/makeReservationSaga';
-import { getSeatsValue } from '../../../sagas/selectors/reservationSelectors';
+import { makeReservationSagaWorker } from '../../../../sagas/reservations/makeReservationSaga';
+import { getSeatsValue } from '../../../../sagas/selectors/reservationSelectors';
 
 const iterator = makeReservationSagaWorker({
   line_id: 123

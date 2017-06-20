@@ -21,10 +21,10 @@ class Lines extends Component {
   render() {
     let lines = this.props.lines.data.map((line, index) => (
       <div className="line-wrapper" key={index}>
-        <img src={settings.storage_path + '/' + line.terminal.cover_image} />
+        <img src={settings.storage_path + '/' + line.from_terminal.cover_image} />
 
         <div className="line-details">
-          <h1>To {line.terminal.terminal_name}</h1>
+          <h1>{line.from_terminal.terminal_name}</h1>
           {line.is_close?
             <div className="flag-negative">
               <p><span className="label">Status</span>Closed</p>
@@ -34,6 +34,7 @@ class Lines extends Component {
             <p className="flag-negative"><span className="label">Status</span>Full</p>
           : <p className="flag-positive"><span className="label">Status</span>Open</p>}
           <p><span className="label">Reservation status</span>{line.reserved? <span className="flag-positive">You have reserved</span> : <span className="flag-negative">You have not reserved yet</span>}</p>
+          <p><span className="label">Destination</span>{line.to_terminal.terminal_name}</p>
           <p><span className="label">Date and time of departure</span> {toFormalDateTime(line.date_leaving)}</p>
           <p><span className="label">Estimated date and time of arrival</span> {toFormalDateTime(line.date_arriving)}</p>
           <div className="buttons">

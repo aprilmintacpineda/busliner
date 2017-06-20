@@ -23,7 +23,8 @@ class LinesTableSeeder extends Seeder
       $line->id = Generator::id();
       $line->driver_id = $drivers[$a]->id;
       $line->max_passengers = 30;
-      $line->terminal_id = $terminals[$a]->id;
+      $line->from_terminal = $a == 0? $terminals[$a + 1]->id : $terminals[$a - 1]->id;
+      $line->to_terminal = $terminals[$a]->id;
       $line->date_leaving = date('Y-m-d H:i:s', time() + (86400 * 3));
       $line->date_arriving = date('Y-m-d H:i:s', time() + ((86400 * 3) + (3600 * 15)));
       $line->save();

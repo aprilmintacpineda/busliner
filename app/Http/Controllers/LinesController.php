@@ -22,7 +22,8 @@ class LinesController extends Controller
       ->get();
 
     foreach($lines as $line) {
-      $line->terminal;
+      $line->from_terminal = $line->from_terminal()->first();
+      $line->to_terminal = $line->to_terminal()->first();
       $line->reservations;
       $line->reserved = $line->reserved();
     }
@@ -35,7 +36,8 @@ class LinesController extends Controller
       $line = Line::findOrFail($id);
       $line->photos;
       $line->driver;
-      $line->terminal;
+      $line->from_terminal = $line->from_terminal()->first();
+      $line->to_terminal = $line->to_terminal()->first();
       $line->reservations = $line->reservations()
         ->where('is_cancelled', false)
         ->get();

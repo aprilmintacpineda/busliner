@@ -74,12 +74,22 @@ class Line extends Component {
             <div className="line-wrapper">
               <div className="left-column">
                 <section>
-                  <img src={settings.storage_path + '/' + this.props.line.data.terminal.cover_image} />
-                  <h1 className="section-title">Terminal information</h1>
+                  <img src={settings.storage_path + '/' + this.props.line.data.from_terminal.cover_image} />
+                  <h1 className="section-title">Source terminal information</h1>
                   
                   <div className="indented-info">
-                    <h1>{this.props.line.data.terminal.terminal_name}</h1>
-                    <p><span className="label">Address</span>{this.props.line.data.terminal.full_address}</p>
+                    <h1>{this.props.line.data.from_terminal.terminal_name}</h1>
+                    <p><span className="label">Address</span>{this.props.line.data.from_terminal.full_address}</p>
+                  </div>
+                </section>
+
+                <section>
+                  <img src={settings.storage_path + '/' + this.props.line.data.to_terminal.cover_image} />
+                  <h1 className="section-title">Destination terminal information</h1>
+                  
+                  <div className="indented-info">
+                    <h1>{this.props.line.data.to_terminal.terminal_name}</h1>
+                    <p><span className="label">Address</span>{this.props.line.data.to_terminal.full_address}</p>
                   </div>
                 </section>
               </div>

@@ -19,8 +19,12 @@ class Line extends Model
     return $this->hasMany(Photo::class, 'line_id', 'id');
   }
 
-  public function terminal() {
-    return $this->hasOne(Terminal::class, 'id', 'terminal_id');
+  public function from_terminal() {
+    return $this->hasOne(Terminal::class, 'id', 'from_terminal');
+  }
+
+  public function to_terminal() {
+    return $this->hasOne(Terminal::class, 'id', 'to_terminal');
   }
 
   public function reservations() {
