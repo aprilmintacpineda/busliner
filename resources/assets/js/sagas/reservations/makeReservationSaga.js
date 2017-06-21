@@ -14,7 +14,10 @@ export function* makeReservationSagaWorker(action) {
       type: 'RESERVATION_MAKE_SUCCESSFUL',
       message: response.data
     });
-    yield put({ type: 'LINE_HAS_RESERVED' });
+    yield put({
+      type: 'LINE_HAS_RESERVED',
+      seats
+    });
   } catch(exception) {
     if(!exception.response && exception.message.toLowerCase() == 'network error') {
       yield put({
@@ -26,6 +29,13 @@ export function* makeReservationSagaWorker(action) {
         type: 'RESERVATION_MAKE_FAILED',
         message: 'You must be logged in before you can make/cancel any reservations.'
       });
+    } else if(exception.response.status == 422) {
+      if(exception.response.data.available_seats) {
+        yield put({
+          type: 'RESERVATION_MAKE_FAILED',
+          message: exception.response.data.available_seats[0]
+        });
+      }
     } else {
       yield put({
         type: 'RESERVATION_MAKE_FAILED',

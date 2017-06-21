@@ -28,7 +28,18 @@ class Line extends Model
   }
 
   public function reservations() {
-    return $this->hasMany(Reservation::class, 'line_id', 'id');
+    return $this->hasMany(Reservation::class, 'line_id', 'id')
+      ->where('is_cancelled', false);
+  }
+
+  public function available_seats() {
+    $available_seats = $this->max_passengers;
+
+    foreach($this->reservations as $reservation) {
+      $available_seats -= $reservation->seats;
+    }
+
+    return $available_seats;
   }
 
   public function reserved() {

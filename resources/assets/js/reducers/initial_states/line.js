@@ -6,6 +6,7 @@ export default {
   },
   data: {
     photos: [],
-    reserved: false
+    reserved: false,
+    seats: 0
   }
 }

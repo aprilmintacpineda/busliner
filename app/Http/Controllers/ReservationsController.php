@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Auth;
 use App\Reservation;
+use App\Line;
 use App\Helpers\Generator;
 
 use App\Http\Requests\MakeReservationRequest;
@@ -26,7 +27,7 @@ class ReservationsController extends Controller
 
     if(!$reservation) {
       $reservation = Reservation::create([
-        'trace_number' => Generator::id(),
+        'ref_num' => Generator::id(),
         'line_id' => $inputs['line_id'],
         'user_id' => Auth::user()->id,
         'seats' => $inputs['seats']
@@ -39,14 +40,14 @@ class ReservationsController extends Controller
     }
 
     return response()->json('
-      You have successfully made a reservation for '. $inputs['seats'] .' seat'. ($inputs['seats'] > 1? 's' : '') .'. your reservation trace number is '. $reservation->trace_number .', please write it down and present it to the cashier on the terminal. Please come 15 minutes before the time of departure. Thank you for travelling with us.
+      You have successfully made a reservation for '. $inputs['seats'] .' seat'. ($inputs['seats'] > 1? 's' : '') .'. your reservation trace number is '. $reservation->ref_num .', please write it down and present it to the cashier on the terminal. Please come 15 minutes before the time of departure. Thank you for travelling with us.
     ');
   }
 
   public function cancel(CancelReservationRequest $request) {
     $inputs = Input::all();
 
-    Reservation::where([
+    $reservation = Reservation::where([
       ['line_id', '=', $inputs['line_id']],
       ['user_id', '=', Auth::user()->id]
     ])->update([
@@ -54,7 +55,19 @@ class ReservationsController extends Controller
       'cancelled_at' => Generator::current_timestamp()
     ]);
 
-    return response()->json('You have successfully cancelled your reservation. We hope to travel with you soon.');
+    if($reservation) {
+      $reservation = Reservation::where([
+        ['line_id', '=', $inputs['line_id']],
+        ['user_id', '=', Auth::user()->id]
+      ])->first();
+
+      return response()->json([
+        'seats' => $reservation->seats,
+        'message' => 'You have successfully cancelled your reservation. We hope to travel with you soon.'
+      ]);
+    } else {
+      return response()->json('You have successfully cancelled your reservation. We hope to travel with you soon.', 422);
+    }
   }
 
   public function list($page) {
@@ -62,9 +75,6 @@ class ReservationsController extends Controller
     $offset = ($limit * $page) - $limit;
 
     return response()->json(Auth::user()
-      ->reservations()
-      ->limit($limit)
-      ->offset($offset)
-      ->get());
+      ->reservations($limit, $offset));
   }
 }

@@ -26,6 +26,7 @@ class LinesController extends Controller
       $line->to_terminal = $line->to_terminal()->first();
       $line->reservations;
       $line->reserved = $line->reserved();
+      $line->available_seats = $line->available_seats();
     }
 
     return $lines;
@@ -38,10 +39,13 @@ class LinesController extends Controller
       $line->driver;
       $line->from_terminal = $line->from_terminal()->first();
       $line->to_terminal = $line->to_terminal()->first();
+
       $line->reservations = $line->reservations()
         ->where('is_cancelled', false)
         ->get();
+        
       $line->reserved = $line->reserved();
+      $line->available_seats = $line->available_seats();
 
       return $line;
     } catch(ModelNotFoundException $exception) {

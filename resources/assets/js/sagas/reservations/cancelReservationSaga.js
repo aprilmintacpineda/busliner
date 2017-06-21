@@ -9,10 +9,13 @@ export function* cancelReservationSagaWorker(action) {
 
     yield put({
       type: 'RESERVATION_CANCEL_SUCCESSFUL',
-      message: response.data
+      message: response.data.message
     });
 
-    yield put({ type: 'LINE_HASNT_RESERVED' });
+    yield put({
+    type: 'LINE_HASNT_RESERVED',
+    seats: response.data.seats
+    });
   } catch(exception) {
     if(!exception.response && exception.message.toLowerCase() == 'network error') {
       yield put({
@@ -23,6 +26,11 @@ export function* cancelReservationSagaWorker(action) {
       yield put({
         type: 'RESERVATION_CANCEL_FAILED',
         message: 'You must be logged in before you can make/cancel any reservations.'
+      });
+    } else if(exception.response.status == 422) {
+      yield put({
+        type: 'RESERVATION_CANCEL_FAILED',
+        message: exception.response.data
       });
     } else {
       yield put({

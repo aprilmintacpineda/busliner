@@ -16,7 +16,7 @@ class CreateReservationsTable extends Migration
         Schema::create('reservations', function (Blueprint $table) {
             $table->integer('line_id')->unsigned();
             $table->integer('user_id')->unsigned();
-            $table->integer('trace_number')->unsigned()->unique();
+            $table->integer('ref_num')->unsigned()->unique();
             $table->integer('seats')->unsigned();
             $table->boolean('is_cancelled')->default(false);
             $table->timestamp('cancelled_at')->nullable();

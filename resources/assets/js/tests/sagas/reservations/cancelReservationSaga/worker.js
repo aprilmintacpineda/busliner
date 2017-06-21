@@ -21,7 +21,10 @@ describe('sagas/cancelReservationSagaWorker', () => {
   it('dispatches RESERVATION_CANCEL_SUCCESSFUL', () => {
     expect(iterator.next({
       status: 200,
-      data: 'You have successfully cancelled your reservation. We hope to travel with you soon.'
+      data: {
+        seats: 2,
+        message: 'You have successfully cancelled your reservation. We hope to travel with you soon.'
+      }
     }).value).to.deep.equal(put({
       type: 'RESERVATION_CANCEL_SUCCESSFUL',
       message: 'You have successfully cancelled your reservation. We hope to travel with you soon.'
@@ -30,7 +33,8 @@ describe('sagas/cancelReservationSagaWorker', () => {
 
   it('dispatches LINE_HASNT_RESERVED', () => {
     expect(iterator.next().value).to.deep.equal(put({
-      type: 'LINE_HASNT_RESERVED'
+      type: 'LINE_HASNT_RESERVED',
+      seats: 2
     }));
   });
 

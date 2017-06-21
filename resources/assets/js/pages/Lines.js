@@ -13,6 +13,9 @@ import * as actions from '../actions/linesActions';
 
 class Lines extends Component {
   componentWillMount() {
+    document.title = 'Reach your destination with maximum security.';
+    window.scrollTo(0, 0);
+    
     if(!this.props.lines.request.sending && !this.props.lines.data.length) {
       this.props.fetchData();
     }
@@ -34,6 +37,13 @@ class Lines extends Component {
             <p className="flag-negative"><span className="label">Status</span>Full</p>
           : <p className="flag-positive"><span className="label">Status</span>Open</p>}
           <p><span className="label">Reservation status</span>{line.reserved? <span className="flag-positive">You have reserved</span> : <span className="flag-negative">You have not reserved yet</span>}</p>
+          <p><span className="label">Available Seats</span>
+            {line.available_seats == 0?
+              <span className="flag-negative">No more seats available</span>
+            : line.available_seats > 1?
+              <span className="flag-positive">{line.available_seats} Seats</span>
+            : <span className="flag-positive">{line.available_seats} Seat</span>}
+          </p>
           <p><span className="label">Destination</span>{line.to_terminal.terminal_name}</p>
           <p><span className="label">Date and time of departure</span> {toFormalDateTime(line.date_leaving)}</p>
           <p><span className="label">Estimated date and time of arrival</span> {toFormalDateTime(line.date_arriving)}</p>

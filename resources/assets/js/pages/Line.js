@@ -20,6 +20,9 @@ import * as reservationActions from '../actions/reservationActions';
 
 class Line extends Component {
   componentWillMount() {
+    document.title = 'Reach your destination with maximum security.';
+    window.scrollTo(0, 0);
+    
     if(!this.props.line.request.status) {
       this.props.fetchData(this.props.params.id);
     }
@@ -110,6 +113,13 @@ class Line extends Component {
                       <p className="flag-negative"><span className="label">Status</span>Full</p>
                     : <p className="flag-positive"><span className="label">Status</span>Open</p>}
 
+                    <p><span className="label">Available seats</span>
+                      {this.props.line.data.available_seats == 0?
+                        <span className="flag-negative">No more seats available</span>
+                      : this.props.line.data.available_seats > 1?
+                        <span className="flag-positive">{this.props.line.data.available_seats} Seats</span>
+                      : <span className="flag-positive">{this.props.line.data.available_seats} Seat</span>}
+                    </p>
                     <p><span className="label">Date and time of departure</span>{toFormalDateTime(this.props.line.data.date_leaving)}</p>
                     <p><span className="label">Estimated date and time of arrival</span>{toFormalDateTime(this.props.line.data.date_arriving)}</p>
                     <p><span className="label">Reserved passengers</span>{this.props.line.data.reservations.length} {this.props.line.data.reservations.length > 1 || this.props.line.data.reservations.length == 0? 'Passengers' : 'Passenger'}</p>
@@ -130,7 +140,7 @@ class Line extends Component {
                             <li>Seats
                               <InputNumber
                                 min={1}
-                                max={10}
+                                max={this.props.line.data.available_seats}
                                 value={this.props.reservation.seats}
                                 onChange={value => this.props.changeSeats(value)} />
                             </li>

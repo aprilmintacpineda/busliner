@@ -7,11 +7,11 @@ body {
   width: 100%;
   min-height: 100vh;
   box-sizing: border-box;
-  padding-bottom: 409px;
+  padding-bottom: 242px;
   position: relative; }
   @media all and (max-width: 480px) {
     body {
-      padding-bottom: 737px; } }
+      padding-bottom: 570px; } }
 
 a.link-default {
   color: #006699;
@@ -240,57 +240,6 @@ a.link-default {
     padding: 10px;
     color: gray;
     font-weight: bold; }
-  .page-footer .connect-with-us {
-    background: #006699;
-    padding: 30px 0; }
-    .page-footer .connect-with-us h1 {
-      margin-bottom: 20px;
-      color: #fff;
-      text-align: center; }
-    .page-footer .connect-with-us ul {
-      width: -webkit-max-content;
-      width: -moz-max-content;
-      width: -ms-max-content;
-      width: -o-max-content;
-      width: max-content;
-      margin: 0 auto; }
-      .page-footer .connect-with-us ul:after {
-        clear: both;
-        content: '';
-        display: block; }
-      .page-footer .connect-with-us ul li {
-        list-style: none;
-        float: left;
-        margin-right: 10px; }
-        .page-footer .connect-with-us ul li:last-child {
-          margin-right: 0; }
-        .page-footer .connect-with-us ul li a {
-          position: relative;
-          width: 50px;
-          height: 50px;
-          display: block;
-          cursor: pointer; }
-          .page-footer .connect-with-us ul li a:hover .decor {
-            opacity: 1; }
-          .page-footer .connect-with-us ul li a:hover img {
-            top: -20px; }
-          .page-footer .connect-with-us ul li a .decor {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            padding: 3px;
-            border-radius: 4px;
-            background: #ff9900;
-            opacity: 0;
-            transition: opacity 0.4s; }
-          .page-footer .connect-with-us ul li a img {
-            width: 50px;
-            height: auto;
-            position: absolute;
-            top: 0;
-            left: 0;
-            transition: top 0.4s; }
 
 .modal-wrapper {
   position: fixed;
@@ -557,6 +506,58 @@ a.link-default {
   background: #f2f2f2; }
   .home .location .map-holder {
     border-top: 1px solid #d0d1d5; }
+
+.home .connect-with-us {
+  background: #006699;
+  padding: 30px 0; }
+  .home .connect-with-us h1 {
+    margin-bottom: 20px;
+    color: #fff;
+    text-align: center; }
+  .home .connect-with-us ul {
+    width: -webkit-max-content;
+    width: -moz-max-content;
+    width: -ms-max-content;
+    width: -o-max-content;
+    width: max-content;
+    margin: 0 auto; }
+    .home .connect-with-us ul:after {
+      clear: both;
+      content: '';
+      display: block; }
+    .home .connect-with-us ul li {
+      list-style: none;
+      float: left;
+      margin-right: 10px; }
+      .home .connect-with-us ul li:last-child {
+        margin-right: 0; }
+      .home .connect-with-us ul li a {
+        position: relative;
+        width: 50px;
+        height: 50px;
+        display: block;
+        cursor: pointer; }
+        .home .connect-with-us ul li a:hover .decor {
+          opacity: 1; }
+        .home .connect-with-us ul li a:hover img {
+          top: -20px; }
+        .home .connect-with-us ul li a .decor {
+          position: absolute;
+          bottom: 0;
+          left: 0;
+          right: 0;
+          padding: 3px;
+          border-radius: 4px;
+          background: #ff9900;
+          opacity: 0;
+          transition: opacity 0.4s; }
+        .home .connect-with-us ul li a img {
+          width: 50px;
+          height: auto;
+          position: absolute;
+          top: 0;
+          left: 0;
+          transition: top 0.4s; }
 
 .sign-up .sign-form, .sign-in .sign-form {
   padding: 30px 0; }
@@ -931,3 +932,58 @@ a.link-default {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%); }
+
+.dashboard .reservations-list-wrapper {
+  max-width: 1000px;
+  margin: 0 auto; }
+  .dashboard .reservations-list-wrapper .reservation-wrapper {
+    margin: 10px;
+    margin-bottom: 0;
+    padding: 10px; }
+    .dashboard .reservations-list-wrapper .reservation-wrapper:after {
+      clear: both;
+      content: '';
+      display: block; }
+    .dashboard .reservations-list-wrapper .reservation-wrapper:last-child {
+      margin-bottom: 10px; }
+    .dashboard .reservations-list-wrapper .reservation-wrapper:hover {
+      background: #f2f2f2; }
+    .dashboard .reservations-list-wrapper .reservation-wrapper section {
+      float: left;
+      margin-right: 10px; }
+      .dashboard .reservations-list-wrapper .reservation-wrapper section:last-child {
+        margin-right: 0; }
+      .dashboard .reservations-list-wrapper .reservation-wrapper section .section-title {
+        font-size: 16px;
+        font-weight: bold;
+        border-left: 5px solid gray;
+        padding: 10px;
+        margin: 10px 0; }
+      .dashboard .reservations-list-wrapper .reservation-wrapper section .indented-info {
+        padding-left: 15px; }
+      .dashboard .reservations-list-wrapper .reservation-wrapper section .input-button-wrapper .errors {
+        color: red; }
+      .dashboard .reservations-list-wrapper .reservation-wrapper section .input-button-wrapper .button.icon-active {
+        padding-left: 35px;
+        background: #ff5c33 !important;
+        color: #ff3300; }
+      .dashboard .reservations-list-wrapper .reservation-wrapper section .input-button-wrapper .button.disabled {
+        opacity: 0.6;
+        cursor: not-allowed; }
+      .dashboard .reservations-list-wrapper .reservation-wrapper section .input-button-wrapper .button {
+        position: relative;
+        padding: 10px;
+        border: 1px solid #ff3300;
+        background: #ff5c33;
+        width: -webkit-max-content;
+        width: -moz-max-content;
+        width: -ms-max-content;
+        width: -o-max-content;
+        width: max-content;
+        color: #fff;
+        cursor: pointer; }
+        .dashboard .reservations-list-wrapper .reservation-wrapper section .input-button-wrapper .button .sending {
+          position: absolute;
+          top: 50%;
+          transform: translate(0, -50%);
+          left: 10px; }

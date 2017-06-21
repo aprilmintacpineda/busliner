@@ -7,7 +7,8 @@ export default function line(state = initial_state, action) {
         ...state,
         data: {
           ...state.data,
-          reserved: true
+          reserved: true,
+          available_seats: state.data.available_seats - action.seats,
         }
       }
     break;
@@ -17,6 +18,7 @@ export default function line(state = initial_state, action) {
         ...state,
         data: {
           ...state.data,
+          available_seats: state.data.available_seats + action.seats,
           reserved: false
         }
       }

@@ -6,16 +6,6 @@ class Footer extends Component {
   render() {
     return (
       <footer className="page-footer">
-        <div className="connect-with-us">
-          <h1>Connect with us</h1>
-          <ul>
-            <li><a href="#" target="_new"><img src={settings.public_path + '/connect-fb.png'} /><span className="decor" /></a></li>
-            <li><a href="#" target="_new"><img src={settings.public_path + '/connect-tw.png'} /><span className="decor" /></a></li>
-            <li><a href="#" target="_new"><img src={settings.public_path + '/connect-yt.png'} /><span className="decor" /></a></li>
-            <li><a href="#" target="_new"><img src={settings.public_path + '/connect-bg.png'} /><span className="decor" /></a></li>
-          </ul>
-        </div>
-
         <div className="columned-container">
           <section>
             <ul>

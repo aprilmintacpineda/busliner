@@ -82,13 +82,40 @@ describe('reducers/lineReducer', () => {
   });
 
   it('handles LINE_HAS_RESERVED', () => {
-    expect(subject(initial_state, {
-      type: 'LINE_HAS_RESERVED'
+    expect(subject({
+      ...initial_state,
+      data: {
+        ...initial_state.data,
+        available_seats: 8
+      }
+    }, {
+      type: 'LINE_HAS_RESERVED',
+      seats: 5
     })).to.deep.equal({
       ...initial_state,
       data: {
         ...initial_state.data,
+        available_seats: 3,
         reserved: true
+      }
+    });
+  });
+
+  it('handles LINE_HASNT_RESERVED', () => {
+    expect(subject({
+      ...initial_state,
+      data: {
+        ...initial_state.data,
+        available_seats: 5
+      }
+    }, {
+      type: 'LINE_HASNT_RESERVED',
+      seats: 3
+    })).to.deep.equal({
+      ...initial_state,
+      data: {
+        ...initial_state.data,
+        available_seats: 8
       }
     });
   });

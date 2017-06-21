@@ -28,7 +28,7 @@ describe('sagas/makeReservationSagaWorker', () => {
   });
 
   it('dispatches LINE_HAS_RESERVED', () => {
-    expect(iterator.next().value).to.deep.equal(put({ type: 'LINE_HAS_RESERVED' }));
+    expect(iterator.next().value).to.deep.equal(put({ type: 'LINE_HAS_RESERVED', seats: 3 }));
   });
 
   it('dispatches RESERVATION_MAKE_FAILED on failure', () => {
