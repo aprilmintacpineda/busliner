@@ -16,9 +16,13 @@ class Lines extends Component {
     document.title = 'Reach your destination with maximum security.';
     window.scrollTo(0, 0);
     
-    if(!this.props.lines.request.sending && !this.props.lines.data.length) {
+    if(!this.props.lines.request.sending) {
       this.props.fetchData();
     }
+  }
+
+  componentWillUnmount() {
+    this.props.clearAllLines();
   }
 
   render() {
@@ -91,5 +95,6 @@ export default connect(store => ({
   lines: {...store.lines}
 }), {
   fetchData: actions.fetchData,
-  clearRequestError: actions.clearRequestError
+  clearRequestError: actions.clearRequestError,
+  clearAllLines: actions.clearAllLines
 })(Lines);

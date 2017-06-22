@@ -11,3 +11,16 @@ export function cancelReservation(line_id) {
   }
 }
 
+export function undoCancelReservation(line_id, seats) {
+  return {
+    type: 'USER_RESERVATIONS_UNDO_START',
+    line_id,
+    seats
+  }
+}
+
+export function clearAllData() {
+  return {
+    type: 'USER_CLEAR_ALL'
+  }
+}

@@ -21493,9 +21493,14 @@ var Lines = function (_Component) {
       document.title = 'Reach your destination with maximum security.';
       window.scrollTo(0, 0);
 
-      if (!this.props.lines.request.sending && !this.props.lines.data.length) {
+      if (!this.props.lines.request.sending) {
         this.props.fetchData();
       }
+    }
+  }, {
+    key: 'componentWillUnmount',
+    value: function componentWillUnmount() {
+      this.props.clearAllLines();
     }
   }, {
     key: 'render',
@@ -21683,7 +21688,8 @@ exports.default = (0, _reactRedux.connect)(function (store) {
   };
 }, {
   fetchData: actions.fetchData,
-  clearRequestError: actions.clearRequestError
+  clearRequestError: actions.clearRequestError,
+  clearAllLines: actions.clearAllLines
 })(Lines);
 
 /***/ }),
@@ -22198,6 +22204,10 @@ var _Footer = __webpack_require__(70);
 
 var _Footer2 = _interopRequireDefault(_Footer);
 
+var _Err = __webpack_require__(182);
+
+var _Err2 = _interopRequireDefault(_Err);
+
 var _InputButton = __webpack_require__(95);
 
 var _InputButton2 = _interopRequireDefault(_InputButton);
@@ -22235,9 +22245,14 @@ var Dashboard = function (_Component) {
       document.title = 'Reach your destination with maximum security.';
       window.scrollTo(0, 0);
 
-      if (!this.props.user.reservations.data.length) {
+      if (!this.props.user.reservations.request.sending) {
         this.props.reservationListFetch();
       }
+    }
+  }, {
+    key: 'componentWillUnmount',
+    value: function componentWillUnmount() {
+      this.props.clearAllData();
     }
   }, {
     key: 'render',
@@ -22380,40 +22395,28 @@ var Dashboard = function (_Component) {
               'More Details',
               _react2.default.createElement('span', { className: 'decor' })
             ) : null,
-            !reservation.deleted && !reservation.is_cancelled ? _react2.default.createElement(_InputButton2.default, {
+            !reservation.is_cancelled ? _react2.default.createElement(_InputButton2.default, {
               value: 'Cancel my reservation',
               sending: reservation.request.sending,
               onClick: function onClick() {
                 return _this2.props.cancelReservation(reservation.line.id);
               },
-              disabled: reservation.request.sending }) : (0, _DateTime.toUnixTimestamp)(reservation.line.date_leaving) > (0, _DateTime.unixTimestampNow)() ? _react2.default.createElement(
-              'div',
-              null,
+              disabled: reservation.request.sending,
+              errors: reservation.request.error ? [reservation.request.error] : [] }) : (0, _DateTime.toUnixTimestamp)(reservation.line.date_leaving) > (0, _DateTime.unixTimestampNow)() ? reservation.request.sending ? _react2.default.createElement(
+              'p',
+              { className: 'flag-green' },
+              _react2.default.createElement('i', { className: 'fa fa-spinner fa-spin', 'aria-hidden': 'true' }),
+              ' Getting your reservation back...'
+            ) : _react2.default.createElement(
+              'p',
+              { className: 'flag-orange' },
+              'You just cancelled your reservation. ',
               _react2.default.createElement(
-                'p',
-                null,
-                _react2.default.createElement(
-                  'span',
-                  { className: 'label' },
-                  'Number of seats to reserve'
-                )
-              ),
-              _react2.default.createElement(_InputNumber2.default, {
-                min: 1,
-                max: reservation.line.available_seats,
-                value: _this2.props.user.reservations.seats,
-                onChange: function onChange() {
-                  return console.log('change');
-                } }),
-              _react2.default.createElement(
-                'p',
-                { className: 'flag-orange' },
-                'You just cancelled your reservation. ',
-                _react2.default.createElement(
-                  'a',
-                  { className: 'link-default' },
-                  'Undo'
-                )
+                'a',
+                { className: 'link-default', onClick: function onClick() {
+                    return _this2.props.undoCancelReservation(reservation.line.id);
+                  } },
+                'Undo'
               )
             ) : _react2.default.createElement(
               'p',
@@ -22436,7 +22439,7 @@ var Dashboard = function (_Component) {
             { className: 'loading' },
             _react2.default.createElement('i', { className: 'fa fa-circle-o-notch fa-3x fast-spin' })
           )
-        ) : this.props.user.reservations.data.length ? _react2.default.createElement(
+        ) : this.props.user.reservations.request.error ? _react2.default.createElement(_Err2.default, { body: this.props.user.reservations.request.error }) : this.props.user.reservations.data.length ? _react2.default.createElement(
           'div',
           { className: 'reservations-list-wrapper' },
           reservationsList
@@ -22459,7 +22462,9 @@ exports.default = (0, _reactRedux.connect)(function (store) {
   };
 }, {
   reservationListFetch: userActions.reservationListFetch,
-  cancelReservation: userActions.cancelReservation
+  cancelReservation: userActions.cancelReservation,
+  undoCancelReservation: userActions.undoCancelReservation,
+  clearAllData: userActions.clearAllData
 })(Dashboard);
 
 /***/ }),
@@ -23346,6 +23351,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.fetchData = fetchData;
 exports.clearRequestError = clearRequestError;
+exports.clearAllLines = clearAllLines;
 function fetchData() {
   return {
     type: 'LINES_FETCH_DATA_START'
@@ -23355,6 +23361,12 @@ function fetchData() {
 function clearRequestError() {
   return {
     type: 'LINES_REQUEST_ERROR_CLEAR'
+  };
+}
+
+function clearAllLines() {
+  return {
+    type: 'LINES_CLEAR_ALL'
   };
 }
 
@@ -23540,6 +23552,8 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.reservationListFetch = reservationListFetch;
 exports.cancelReservation = cancelReservation;
+exports.undoCancelReservation = undoCancelReservation;
+exports.clearAllData = clearAllData;
 function reservationListFetch() {
   return {
     type: 'USER_RESERVATIONS_FETCH_START'
@@ -23550,6 +23564,20 @@ function cancelReservation(line_id) {
   return {
     type: 'USER_RESERVATIONS_CANCEL_START',
     line_id: line_id
+  };
+}
+
+function undoCancelReservation(line_id, seats) {
+  return {
+    type: 'USER_RESERVATIONS_UNDO_START',
+    line_id: line_id,
+    seats: seats
+  };
+}
+
+function clearAllData() {
+  return {
+    type: 'USER_CLEAR_ALL'
   };
 }
 
@@ -24168,13 +24196,11 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 var initial_state = {
   reservations: {
     request: {
-      status: null,
-      message: null,
+      error: null,
       sending: false,
       page: 1
     },
-    data: [],
-    seats: 1
+    data: []
   }
 };
 
@@ -24326,6 +24352,10 @@ function lines() {
           error: null
         })
       });
+      break;
+
+    case 'LINES_CLEAR_ALL':
+      return _extends({}, _lines2.default);
       break;
   }
 
@@ -24843,19 +24873,73 @@ function userReducer() {
   var reservation_list = void 0;
 
   switch (action.type) {
+    case 'USER_CLEAR_ALL':
+      return _extends({}, _user2.default);
+      break;
+
     case 'USER_LOGIN':
       return _extends({}, state, {
         logged_in: true
       }, action.data);
       break;
 
-    case 'USER_RESERVATIONS_CANCEL_START':
-      reservation_list = state.reservations.data.map(function (reservation, index) {
+    case 'USER_RESERVATIONS_UNDO_START':
+      reservation_list = state.reservations.data.map(function (reservation) {
         return reservation.line.id == action.line_id ? _extends({}, reservation, {
           request: _extends({}, reservation.request, {
             sending: true
-          }),
-          deleted: false
+          })
+        }) : reservation;
+      });
+
+      return _extends({}, state, {
+        reservations: _extends({}, state.reservations, {
+          data: [].concat(_toConsumableArray(reservation_list))
+        })
+      });
+      break;
+
+    case 'USER_RESERVATIONS_UNDO_SUCCESSFUL':
+      reservation_list = state.reservations.data.map(function (reservation) {
+        return reservation.line.id == action.line_id ? _extends({}, reservation, {
+          is_cancelled: 0,
+          request: {
+            sending: false,
+            error: null
+          }
+        }) : reservation;
+      });
+
+      return _extends({}, state, {
+        reservations: _extends({}, state.reservations, {
+          data: [].concat(_toConsumableArray(reservation_list))
+        })
+      });
+      break;
+
+    case 'USER_RESERVATIONS_UNDO_FAILED':
+      reservation_list = state.reservations.data.map(function (reservation) {
+        return reservation.line.id == action.line_id ? _extends({}, reservation, {
+          request: _extends({}, reservation.request, {
+            sending: false,
+            error: action.message
+          })
+        }) : reservation;
+      });
+
+      return _extends({}, state, {
+        reservations: _extends({}, state.reservations, {
+          data: [].concat(_toConsumableArray(reservation_list))
+        })
+      });
+      break;
+
+    case 'USER_RESERVATIONS_CANCEL_START':
+      reservation_list = state.reservations.data.map(function (reservation) {
+        return reservation.line.id == action.line_id ? _extends({}, reservation, {
+          request: _extends({}, reservation.request, {
+            sending: true
+          })
         }) : reservation;
       });
 
@@ -24867,12 +24951,28 @@ function userReducer() {
       break;
 
     case 'USER_RESERVATIONS_CANCEL_SUCCESSFUL':
-      reservation_list = state.reservations.data.map(function (reservation, index) {
+      reservation_list = state.reservations.data.map(function (reservation) {
         return reservation.line.id == action.line_id ? _extends({}, reservation, {
-          deleted: true,
+          is_cancelled: 1,
+          request: _extends({}, reservation.request, {
+            sending: false
+          })
+        }) : reservation;
+      });
+
+      return _extends({}, state, {
+        reservations: _extends({}, state.reservations, {
+          data: [].concat(_toConsumableArray(reservation_list))
+        })
+      });
+      break;
+
+    case 'USER_RESERVATIONS_CANCEL_FAILED':
+      reservation_list = state.reservations.data.map(function (reservation) {
+        return reservation.line.id == action.line_id ? _extends({}, reservation, {
           request: _extends({}, reservation.request, {
             sending: false,
-            status: 'successful'
+            error: action.message
           })
         }) : reservation;
       });
@@ -24897,11 +24997,9 @@ function userReducer() {
     case 'USER_RESERVATIONS_FETCH_SUCCESSFUL':
       reservation_list = action.data.map(function (action) {
         return _extends({}, action, {
-          deleted: false,
           request: {
             sending: false,
-            status: null,
-            message: null
+            error: null
           }
         });
       });
@@ -24909,7 +25007,6 @@ function userReducer() {
       return _extends({}, state, {
         reservations: _extends({}, state.reservations, {
           request: _extends({}, _user2.default.reservations.request, {
-            status: 'successful',
             page: state.reservations.request.page + 1
           }),
           data: [].concat(_toConsumableArray(state.reservations.data), _toConsumableArray(reservation_list))
@@ -24918,6 +25015,14 @@ function userReducer() {
       break;
 
     case 'USER_RESERVATIONS_FETCH_FAILED':
+      return _extends({}, state, {
+        reservations: _extends({}, state.reservations, {
+          request: _extends({}, _user2.default.reservations.request, {
+            error: action.message
+          }),
+          data: [].concat(_toConsumableArray(state.reservations.data))
+        })
+      });
       break;
   }
 
@@ -24970,6 +25075,10 @@ var _cancelReservationSaga3 = __webpack_require__(669);
 
 var _cancelReservationSaga4 = _interopRequireDefault(_cancelReservationSaga3);
 
+var _redoReservationSaga = __webpack_require__(671);
+
+var _redoReservationSaga2 = _interopRequireDefault(_redoReservationSaga);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var _marked = [rootSaga].map(regeneratorRuntime.mark);
@@ -24987,7 +25096,7 @@ function rootSaga() {
           // reservations
           (0, _makeReservationSaga2.default)(), (0, _cancelReservationSaga2.default)(), (0, _fetchReservationSaga2.default)(),
           // user
-          (0, _cancelReservationSaga4.default)()]);
+          (0, _cancelReservationSaga4.default)(), (0, _redoReservationSaga2.default)()]);
 
         case 2:
         case 'end':
@@ -49363,6 +49472,154 @@ function fetchReservationSagaWatcher() {
           break;
 
         case 7:
+        case 'end':
+          return _context2.stop();
+      }
+    }
+  }, _marked[1], this);
+}
+
+/***/ }),
+/* 671 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.redoReservationSagaWorker = redoReservationSagaWorker;
+exports.default = redoReservationSagaWatcher;
+
+var _effects = __webpack_require__(47);
+
+var _axios = __webpack_require__(48);
+
+var _axios2 = _interopRequireDefault(_axios);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var _marked = [redoReservationSagaWorker, redoReservationSagaWatcher].map(regeneratorRuntime.mark);
+
+function redoReservationSagaWorker(action) {
+  var response;
+  return regeneratorRuntime.wrap(function redoReservationSagaWorker$(_context) {
+    while (1) {
+      switch (_context.prev = _context.next) {
+        case 0:
+          _context.prev = 0;
+          _context.next = 3;
+          return (0, _effects.call)(_axios2.default.post, '/reservation/redo', {
+            line_id: action.line_id
+          });
+
+        case 3:
+          response = _context.sent;
+          _context.next = 6;
+          return (0, _effects.put)({
+            type: 'USER_RESERVATIONS_UNDO_SUCCESSFUL',
+            line_id: action.line_id
+          });
+
+        case 6:
+          _context.next = 27;
+          break;
+
+        case 8:
+          _context.prev = 8;
+          _context.t0 = _context['catch'](0);
+
+          if (!(!_context.t0.response && _context.t0.message.toLowerCase() == 'network error')) {
+            _context.next = 15;
+            break;
+          }
+
+          _context.next = 13;
+          return (0, _effects.put)({
+            type: 'USER_RESERVATIONS_UNDO_FAILED',
+            line_id: action.line_id,
+            message: 'We couldn\'t connect to the server, please check your internet connection.'
+          });
+
+        case 13:
+          _context.next = 27;
+          break;
+
+        case 15:
+          if (!(_context.t0.response.status == 403)) {
+            _context.next = 20;
+            break;
+          }
+
+          _context.next = 18;
+          return (0, _effects.put)({
+            type: 'USER_RESERVATIONS_UNDO_FAILED',
+            line_id: action.line_id,
+            message: 'You must be logged in before you can make/cancel any reservations.'
+          });
+
+        case 18:
+          _context.next = 27;
+          break;
+
+        case 20:
+          if (!(_context.t0.response.status == 422)) {
+            _context.next = 25;
+            break;
+          }
+
+          _context.next = 23;
+          return (0, _effects.put)({
+            type: 'USER_RESERVATIONS_UNDO_FAILED',
+            line_id: action.line_id,
+            message: _context.t0.response.data
+          });
+
+        case 23:
+          _context.next = 27;
+          break;
+
+        case 25:
+          _context.next = 27;
+          return (0, _effects.put)({
+            type: 'USER_RESERVATIONS_UNDO_FAILED',
+            line_id: action.line_id,
+            message: 'We have encountered an unexpected error while processing your request. The server responded with the following `' + _context.t0.response.status + ' : ' + _context.t0.response.statusText + '`'
+          });
+
+        case 27:
+        case 'end':
+          return _context.stop();
+      }
+    }
+  }, _marked[0], this, [[0, 8]]);
+}
+
+function redoReservationSagaWatcher() {
+  var action;
+  return regeneratorRuntime.wrap(function redoReservationSagaWatcher$(_context2) {
+    while (1) {
+      switch (_context2.prev = _context2.next) {
+        case 0:
+          if (false) {
+            _context2.next = 8;
+            break;
+          }
+
+          _context2.next = 3;
+          return (0, _effects.take)('USER_RESERVATIONS_UNDO_START');
+
+        case 3:
+          action = _context2.sent;
+          _context2.next = 6;
+          return (0, _effects.fork)(redoReservationSagaWorker, action);
+
+        case 6:
+          _context2.next = 0;
+          break;
+
+        case 8:
         case 'end':
           return _context2.stop();
       }

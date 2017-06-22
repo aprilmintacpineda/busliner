@@ -4,13 +4,11 @@
 const initial_state = {
   reservations: {
     request: {
-      status: null,
-      message: null,
+      error: null,
       sending: false,
       page: 1
     },
-    data: [],
-    seats: 1
+    data: []
   }
 }
 

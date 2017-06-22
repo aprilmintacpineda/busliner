@@ -48,6 +48,10 @@ export default function lines(state = initial_state, action) {
         }
       }
     break;
+
+    case 'LINES_CLEAR_ALL':
+      return {...initial_state}
+    break;
   }
 
   return state;

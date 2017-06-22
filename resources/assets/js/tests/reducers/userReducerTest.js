@@ -59,31 +59,52 @@ describe('reducers/userReducer', () => {
         ...initial_state.reservations,
         request: {
           ...initial_state.reservations.request,
-          status: 'successful',
           page: 2
         },
         data: [
           {
             id: 1,
             name: 'test',
-            deleted: false,
             request: {
               sending: false,
-              status: null,
-              message: null
+              error: null
             }
           },
           {
             id: 2,
             name: 'test again',
-            deleted: false,
             request: {
               sending: false,
-              status: null,
-              message: null
+              error: null
             }
           }
         ]
+      }
+    });
+  });
+
+  it('handles USER_RESERVATIONS_FETCH_FAILED', () => {
+    expect(subject({
+      ...initial_state,
+      reservations: {
+        ...initial_state.reservations,
+        request: {
+          ...initial_state.reservations.request,
+          sending: true
+        }
+      }
+    }, {
+      type: 'USER_RESERVATIONS_FETCH_FAILED',
+      message: 'blah blah'
+    })).to.deep.equal({
+      ...initial_state,
+      reservations: {
+        ...initial_state.reservations,
+        request: {
+          ...initial_state.reservations.request,
+          sending: false,
+          error: 'blah blah'
+        }
       }
     });
   });
@@ -99,23 +120,19 @@ describe('reducers/userReducer', () => {
               id: 1
             },
             name: 'test',
-            deleted: false,
             request: {
               sending: false,
-              status: null,
-              message: null
+              error: null
             }
           },
           {
             line: {
               id: 2
             },
-            deleted: false,
             name: 'test again',
             request: {
               sending: false,
-              status: null,
-              message: null
+              error: null
             }
           }
         ]
@@ -133,11 +150,9 @@ describe('reducers/userReducer', () => {
               id: 1
             },
             name: 'test',
-            deleted: false,
             request: {
               sending: false,
-              status: null,
-              message: null
+              error: null
             }
           },
           {
@@ -145,11 +160,9 @@ describe('reducers/userReducer', () => {
               id: 2
             },
             name: 'test again',
-            deleted: false,
             request: {
               sending: true,
-              status: null,
-              message: null
+              error: null
             }
           }
         ]
@@ -167,24 +180,22 @@ describe('reducers/userReducer', () => {
             line: {
               id: 1
             },
+            is_cancelled: 0,
             name: 'test',
-            deleted: false,
             request: {
               sending: false,
-              status: null,
-              message: null
+              error: null
             }
           },
           {
             line: {
               id: 2
             },
+            is_cancelled: 0,
             name: 'test again',
-            deleted: false,
             request: {
               sending: true,
-              status: null,
-              message: null
+              error: null
             }
           }
         ]
@@ -201,27 +212,142 @@ describe('reducers/userReducer', () => {
             line: {
               id: 1
             },
+            is_cancelled: 0,
             name: 'test',
-            deleted: false,
             request: {
               sending: false,
-              status: null,
-              message: null
+              error: null
             }
           },
           {
             line: {
               id: 2
             },
+            is_cancelled: 1,
             name: 'test again',
-            deleted: true,
             request: {
               sending: false,
-              status: 'successful',
-              message: null
+              error: null
             }
           }
         ]
+      }
+    });
+  });
+
+  it('handles USER_RESERVATIONS_CANCEL_FAILED', () => {
+    expect(subject({
+      ...initial_state,
+      reservations: {
+        ...initial_state.reservations,
+        data: [{
+          line: {
+            id: 1
+          },
+          is_cancelled: 0,
+          name: 'test',
+          request: {
+            error: null,
+            sending: true
+          }
+        }]
+      }
+    }, {
+      type: 'USER_RESERVATIONS_CANCEL_FAILED',
+      message: 'blah blah',
+      line_id: 1
+    })).to.deep.equal({
+      ...initial_state,
+      reservations: {
+        ...initial_state.reservations,
+        data: [{
+          line: {
+            id: 1
+          },
+          is_cancelled: 0,
+          name: 'test',
+          request: {
+            error: 'blah blah',
+            sending: false
+          }
+        }]
+      }
+    });
+  });
+
+  it('handles USER_RESERVATIONS_UNDO_SUCCESSFUL', () => {
+    expect(subject({
+      ...initial_state,
+      reservations: {
+        ...initial_state.reservations,
+        data: [{
+          line: {
+            id: 1
+          },
+          is_cancelled: 1,
+          name: 'test',
+          request: {
+            sending: true,
+            error: null
+          }
+        }]
+      }
+    }, {
+      type: 'USER_RESERVATIONS_UNDO_SUCCESSFUL',
+      line_id: 1
+    })).to.deep.equal({
+      ...initial_state,
+      reservations: {
+        ...initial_state.reservations,
+        data: [{
+          line: {
+            id: 1
+          },
+          is_cancelled: 0,
+          name: 'test',
+          request: {
+            sending: false,
+            error: null
+          }
+        }]
+      }
+    });
+  });
+
+  it('handles USER_RESERVATIONS_UNDO_FAILED', () => {
+    expect(subject({
+      ...initial_state,
+      reservations: {
+        ...initial_state.reservations,
+        data: [{
+          line: {
+            id: 1
+          },
+          name: 'test',
+          request: {
+            sending: true,
+            error: null
+          }
+        }]
+      }
+    }, {
+      type: 'USER_RESERVATIONS_UNDO_FAILED',
+      line_id: 1,
+      message: 'blah blah'
+    })).to.deep.equal({
+      ...initial_state,
+      reservations: {
+        ...initial_state.reservations,
+        data: [{
+          line: {
+            id: 1
+          },
+          name: 'test',
+          request: {
+            sending: false,
+            error: 'blah blah'
+          }
+        }]
       }
     });
   });

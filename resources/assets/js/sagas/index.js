@@ -10,6 +10,7 @@ import makeReservationSaga from './reservations/makeReservationSaga';
 import cancelReservationSaga from './reservations/cancelReservationSaga';
 import fetchReservationSaga from './users/reservations/fetchReservationSaga';
 import userCancelReservationSaga from './users/reservations/cancelReservationSaga';
+import userRedoReservationSaga from './users/reservations/redoReservationSaga';
 
 export default function* rootSaga() {
   yield all([
@@ -22,6 +23,7 @@ export default function* rootSaga() {
     cancelReservationSaga(),
     fetchReservationSaga(),
     // user
-    userCancelReservationSaga()
+    userCancelReservationSaga(),
+    userRedoReservationSaga()
   ]);
 }

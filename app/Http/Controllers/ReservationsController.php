@@ -11,6 +11,7 @@ use App\Helpers\Generator;
 
 use App\Http\Requests\MakeReservationRequest;
 use App\Http\Requests\CancelReservationRequest;
+use App\Http\Requests\RedoReservationRequest;
 
 class ReservationsController extends Controller
 {
@@ -76,5 +77,18 @@ class ReservationsController extends Controller
 
     return response()->json(Auth::user()
       ->reservations($limit, $offset));
+  }
+
+  public function redo(RedoReservationRequest $request) {
+    $inputs = Input::all();
+
+    $reservation = Reservation::where([
+      ['line_id', '=', $inputs['line_id']],
+      ['user_id', '=', Auth::user()->id]
+    ])->update([
+      'is_cancelled' => false
+    ]);
+
+    return response(200);
   }
 }

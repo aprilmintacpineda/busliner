@@ -28,6 +28,7 @@ Route::get('/line/{id}', 'LinesController@show');
 
 Route::post('/reservation/make', 'ReservationsController@make');
 Route::post('/reservation/cancel', 'ReservationsController@cancel');
+Route::post('/reservation/redo', 'ReservationsController@redo');
 Route::get('/reservation/list/{page}', 'ReservationsController@list');
 
 Route::get('/user/{id}/logout', 'SignInController@logout');

@@ -9,3 +9,9 @@ export function clearRequestError() {
     type: 'LINES_REQUEST_ERROR_CLEAR'
   }
 }
+
+export function clearAllLines() {
+  return {
+    type: 'LINES_CLEAR_ALL'
+  }
+}
