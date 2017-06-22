@@ -22,8 +22,53 @@
       section
         float: left
         margin-right: 10px
+        min-width: 210px
         &:last-child
           margin-right: 0
+          min-width: 0
+        .flag-red
+          color: #ff3300
+        .flag-green
+          color: #40bf40
+        .flag-orange
+          color: #ff9900
+        a.more-details
+          margin-bottom: 10px
+          display: inline-block
+          padding: 10px
+          text-decoration: none
+          position: relative
+          background: #006699
+          color: #fff
+          cursor: pointer
+          transition: background 0.4s
+          &:hover
+            background: transparent
+            color: #006699
+            .decor
+              opacity: 1
+          .decor
+            border-radius: 4px
+            position: absolute
+            bottom: 0
+            left: 0
+            padding: 3px
+            background: #ff9900
+            width: 100%
+            opacity: 0
+            transition: opacity 0.4s
+        p
+          margin-bottom: 5px
+          position: relative
+          padding-top: 14px
+          &:last-child
+            margin-bottom: 0
+          .label
+            position: absolute
+            top: 0
+            left: 0
+            color: gray
+            font-size: 14px
         .section-title
           font-size: 16px
           font-weight: bold
@@ -50,6 +95,9 @@
             +fitWidth
             color: #fff
             cursor: pointer
+            opacity: 0.9
+            &:hover
+              opacity: 1
             .sending
               position: absolute
               +vCenter

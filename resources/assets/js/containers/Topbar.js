@@ -8,6 +8,7 @@ class Topbar extends Component {
       <ul className="links">
         <li className="dropdown-menu">
           Profile
+          <span className="pointer" />
           <ul>
             <li><Link to={'/user/' + this.props.user.id}>Dashboard</Link></li>
             <li><Link to={'/user/' + this.props.user.id + '/settings'}>Settings</Link></li>

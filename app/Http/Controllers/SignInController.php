@@ -39,6 +39,11 @@ class SignInController extends Controller
       Auth::logout();
     }
 
-    return redirect('/sign-in');
+    return redirect('/sign-in')->with([
+        'pop_message' => [
+          'title' => 'Logged out',
+          'message' => 'Your account has been successfully logged out. We hope to see you again soon.'
+        ]
+      ]);
   }
 }

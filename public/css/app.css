@@ -15,6 +15,7 @@ body {
 
 a.link-default {
   color: #006699;
+  cursor: pointer;
   text-decoration: none; }
   a.link-default:hover {
     text-decoration: underline; }
@@ -158,16 +159,30 @@ a.link-default {
         border-radius: 4px;
         cursor: pointer;
         padding: 10px; }
+        .topbar-outer-container .topbar-inner-container .links .dropdown-menu .pointer {
+          position: absolute;
+          content: '';
+          border-left: 10px solid transparent;
+          border-right: 10px solid transparent;
+          border-bottom: 10px solid #d0d1d5;
+          bottom: 0;
+          display: none;
+          left: 50%;
+          transform: translate(-50%, 0); }
         .topbar-outer-container .topbar-inner-container .links .dropdown-menu:hover {
           background: #006699;
-          color: #fff; }
-        .topbar-outer-container .topbar-inner-container .links .dropdown-menu:hover ul {
-          display: block; }
+          color: #fff;
+          border-radius: 4px 4px 0 0; }
+          .topbar-outer-container .topbar-inner-container .links .dropdown-menu:hover ul {
+            display: block; }
+          .topbar-outer-container .topbar-inner-container .links .dropdown-menu:hover .pointer {
+            display: block; }
         .topbar-outer-container .topbar-inner-container .links .dropdown-menu ul {
           display: none;
           background: #fff;
           position: absolute;
           right: 0;
+          top: 100%;
           border: 1px solid #d0d1d5;
           box-shadow: 0 0 5px #d0d1d5; }
           .topbar-outer-container .topbar-inner-container .links .dropdown-menu ul li {
@@ -755,12 +770,13 @@ a.link-default {
           background: #006699;
           color: #fff;
           cursor: pointer;
-          transition: background 0.4s; }
+          transition: background 0.4s;
+          position: relative; }
           .travel-lines-schedules-wrapper .line-wrapper .line-details .buttons a:hover {
             background: transparent;
             color: #006699; }
-          .travel-lines-schedules-wrapper .line-wrapper .line-details .buttons a:hover .decor {
-            opacity: 1; }
+            .travel-lines-schedules-wrapper .line-wrapper .line-details .buttons a:hover .decor {
+              opacity: 1; }
           .travel-lines-schedules-wrapper .line-wrapper .line-details .buttons a .decor {
             border-radius: 4px;
             position: absolute;
@@ -836,7 +852,10 @@ a.link-default {
     width: -o-max-content;
     width: max-content;
     color: #fff;
-    cursor: pointer; }
+    cursor: pointer;
+    opacity: 0.9; }
+    .travel-line .right-column .button:hover {
+      opacity: 1; }
     .travel-line .right-column .button .sending {
       position: absolute;
       top: 50%;
@@ -950,9 +969,54 @@ a.link-default {
       background: #f2f2f2; }
     .dashboard .reservations-list-wrapper .reservation-wrapper section {
       float: left;
-      margin-right: 10px; }
+      margin-right: 10px;
+      min-width: 210px; }
       .dashboard .reservations-list-wrapper .reservation-wrapper section:last-child {
-        margin-right: 0; }
+        margin-right: 0;
+        min-width: 0; }
+      .dashboard .reservations-list-wrapper .reservation-wrapper section .flag-red {
+        color: #ff3300; }
+      .dashboard .reservations-list-wrapper .reservation-wrapper section .flag-green {
+        color: #40bf40; }
+      .dashboard .reservations-list-wrapper .reservation-wrapper section .flag-orange {
+        color: #ff9900; }
+      .dashboard .reservations-list-wrapper .reservation-wrapper section a.more-details {
+        margin-bottom: 10px;
+        display: inline-block;
+        padding: 10px;
+        text-decoration: none;
+        position: relative;
+        background: #006699;
+        color: #fff;
+        cursor: pointer;
+        transition: background 0.4s; }
+        .dashboard .reservations-list-wrapper .reservation-wrapper section a.more-details:hover {
+          background: transparent;
+          color: #006699; }
+          .dashboard .reservations-list-wrapper .reservation-wrapper section a.more-details:hover .decor {
+            opacity: 1; }
+        .dashboard .reservations-list-wrapper .reservation-wrapper section a.more-details .decor {
+          border-radius: 4px;
+          position: absolute;
+          bottom: 0;
+          left: 0;
+          padding: 3px;
+          background: #ff9900;
+          width: 100%;
+          opacity: 0;
+          transition: opacity 0.4s; }
+      .dashboard .reservations-list-wrapper .reservation-wrapper section p {
+        margin-bottom: 5px;
+        position: relative;
+        padding-top: 14px; }
+        .dashboard .reservations-list-wrapper .reservation-wrapper section p:last-child {
+          margin-bottom: 0; }
+        .dashboard .reservations-list-wrapper .reservation-wrapper section p .label {
+          position: absolute;
+          top: 0;
+          left: 0;
+          color: gray;
+          font-size: 14px; }
       .dashboard .reservations-list-wrapper .reservation-wrapper section .section-title {
         font-size: 16px;
         font-weight: bold;
@@ -981,7 +1045,10 @@ a.link-default {
         width: -o-max-content;
         width: max-content;
         color: #fff;
-        cursor: pointer; }
+        cursor: pointer;
+        opacity: 0.9; }
+        .dashboard .reservations-list-wrapper .reservation-wrapper section .input-button-wrapper .button:hover {
+          opacity: 1; }
         .dashboard .reservations-list-wrapper .reservation-wrapper section .input-button-wrapper .button .sending {
           position: absolute;
           top: 50%;

@@ -9,7 +9,8 @@ const initial_state = {
       sending: false,
       page: 1
     },
-    data: []
+    data: [],
+    seats: 1
   }
 }
 

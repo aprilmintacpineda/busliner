@@ -40,7 +40,7 @@ class ReservationsController extends Controller
     }
 
     return response()->json('
-      You have successfully made a reservation for '. $inputs['seats'] .' seat'. ($inputs['seats'] > 1? 's' : '') .'. your reservation trace number is '. $reservation->ref_num .', please write it down and present it to the cashier on the terminal. Please come 15 minutes before the time of departure. Thank you for travelling with us.
+      You have successfully made a reservation for '. $inputs['seats'] .' seat'. ($inputs['seats'] > 1? 's' : '') .'. your reference number is '. $reservation->ref_num .', please write it down and present it to the cashier on the terminal. Please come 15 minutes before the time of departure. Thank you for travelling with us.
     ');
   }
 
@@ -66,7 +66,7 @@ class ReservationsController extends Controller
         'message' => 'You have successfully cancelled your reservation. We hope to travel with you soon.'
       ]);
     } else {
-      return response()->json('You have successfully cancelled your reservation. We hope to travel with you soon.', 422);
+      return response()->json('You were not reserved in this line.', 422);
     }
   }
 

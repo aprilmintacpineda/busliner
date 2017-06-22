@@ -36,6 +36,7 @@ class User extends Authenticatable
         $reservation->line;
         $reservation->line->from_terminal = $reservation->line->from_terminal()->first();
         $reservation->line->to_terminal = $reservation->line->to_terminal()->first();
+        $reservation->line->available_seats = $reservation->line->available_seats();
 
         return $reservation;
       });

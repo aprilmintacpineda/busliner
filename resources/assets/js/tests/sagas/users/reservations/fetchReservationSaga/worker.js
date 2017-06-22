@@ -3,8 +3,8 @@ import { expect } from 'chai';
 import { put, call, select } from 'redux-saga/effects';
 import axios from 'axios';
 
-import { fetchReservationSagaWorker } from '../../../../sagas/reservations/fetchReservationSaga';
-import { getReservationListPage } from '../../../../sagas/selectors/userSelectors';
+import { fetchReservationSagaWorker } from '../../../../../sagas/users/reservations/fetchReservationSaga';
+import { getReservationListPage } from '../../../../../sagas/selectors/userSelectors';
 
 const iterator = fetchReservationSagaWorker();
 

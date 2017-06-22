@@ -1,7 +1,7 @@
 import { take, put, fork, call, select } from 'redux-saga/effects';
 import axios from 'axios';
 
-import { getReservationListPage } from '../selectors/userSelectors';
+import { getReservationListPage } from '../../selectors/userSelectors';
 
 export function* fetchReservationSagaWorker() {
   try {

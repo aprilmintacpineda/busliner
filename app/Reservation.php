@@ -9,7 +9,7 @@ use App\Line;
 class Reservation extends Model
 {
   public $fillable = [
-    'trace_number',
+    'ref_num',
     'line_id',
     'user_id',
     'seats'

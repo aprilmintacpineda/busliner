@@ -65,16 +65,29 @@
         border-radius: 4px
         cursor: pointer
         padding: 10px
+        .pointer
+          position: absolute
+          content: ''
+          border-left: 10px solid transparent
+          border-right: 10px solid transparent
+          border-bottom: 10px solid #d0d1d5
+          bottom: 0
+          display: none
+          +hCenter
         &:hover
           background: #006699
           color: #fff
-        &:hover ul
-          display: block
+          border-radius: 4px 4px 0 0
+          ul
+            display: block
+          .pointer
+            display: block
         ul
           display: none
           background: #fff
           position: absolute
           right: 0
+          top: 100%
           border: 1px solid #d0d1d5
           box-shadow: 0 0 5px #d0d1d5
           li

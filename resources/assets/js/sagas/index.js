@@ -8,7 +8,8 @@ import lineSaga from './lineSaga';
 
 import makeReservationSaga from './reservations/makeReservationSaga';
 import cancelReservationSaga from './reservations/cancelReservationSaga';
-import fetchReservationSaga from './reservations/fetchReservationSaga';
+import fetchReservationSaga from './users/reservations/fetchReservationSaga';
+import userCancelReservationSaga from './users/reservations/cancelReservationSaga';
 
 export default function* rootSaga() {
   yield all([
@@ -19,6 +20,8 @@ export default function* rootSaga() {
     // reservations
     makeReservationSaga(),
     cancelReservationSaga(),
-    fetchReservationSaga()
+    fetchReservationSaga(),
+    // user
+    userCancelReservationSaga()
   ]);
 }
