@@ -39,7 +39,7 @@ class Lines extends Component {
             </div>
           : line.reservations.length == line.max_passengers?
             <p className="flag-negative"><span className="label">Status</span>Full</p>
-          : <p className="flag-positive"><span className="label">Status</span>Open</p>}
+          :  <p className="flag-positive"><span className="label">Status</span>Open</p>}
           <p><span className="label">Reservation status</span>{line.reserved? <span className="flag-positive">You have reserved</span> : <span className="flag-negative">You have not reserved yet</span>}</p>
           <p><span className="label">Available Seats</span>
             {line.available_seats == 0?

@@ -10,7 +10,8 @@ import SignIn from './pages/SignIn';
 import Lines from './pages/Lines';
 import Line from './pages/Line';
 // user
-import Dashboard from './pages/user/Dashboard';
+import UserDashboard from './pages/user/UserDashboard';
+import UserSettings from './pages/user/UserSettings';
 
 import store from './createStore';
 import settings from './_settings';
@@ -30,7 +31,8 @@ render(
       <Route path="/travel-lines" component={Lines} />
       <Route path="/travel-lines/:id" component={Line} />
 
-      <Route path="/user/:id" component={Dashboard} />
+      <Route path="/user/:id" component={UserDashboard} />
+      <Route path="/user/:id/settings/:section" component={UserSettings} />
     </Router>
   </Provider>,
   document.querySelector('#main')

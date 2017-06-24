@@ -56,6 +56,12 @@
         position: relative
       position: absolute
       right: 10px
+      .icon-left
+        padding-right: 10px
+        display: inline
+      .icon-right
+        padding-left: 10px
+        display: inline
       +vCenter
       +clearFloat
       .dropdown-menu
@@ -83,6 +89,8 @@
           .pointer
             display: block
         ul
+          @media all and (max-width: $mobileWidth)
+            left: 0
           display: none
           background: #fff
           position: absolute
@@ -99,12 +107,13 @@
               width: 100%
               display: block
             a
+              opacity: 0.7
               display: block
               border-radius: 0
               &:hover
+                opacity: 1
                 background: none
                 color: #006699
-                text-decoration: underline
       li
         @media all and (max-width: $mobileWidth)
           float: none

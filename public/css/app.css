@@ -148,6 +148,12 @@ a.link-default {
           transform: none;
           background: #fff;
           position: relative; } }
+      .topbar-outer-container .topbar-inner-container .links .icon-left {
+        padding-right: 10px;
+        display: inline; }
+      .topbar-outer-container .topbar-inner-container .links .icon-right {
+        padding-left: 10px;
+        display: inline; }
       .topbar-outer-container .topbar-inner-container .links:after {
         clear: both;
         content: '';
@@ -185,6 +191,9 @@ a.link-default {
           top: 100%;
           border: 1px solid #d0d1d5;
           box-shadow: 0 0 5px #d0d1d5; }
+          @media all and (max-width: 480px) {
+            .topbar-outer-container .topbar-inner-container .links .dropdown-menu ul {
+              left: 0; } }
           .topbar-outer-container .topbar-inner-container .links .dropdown-menu ul li {
             float: none;
             margin: 0; }
@@ -194,12 +203,13 @@ a.link-default {
               width: 100%;
               display: block; }
             .topbar-outer-container .topbar-inner-container .links .dropdown-menu ul li a {
+              opacity: 0.7;
               display: block;
               border-radius: 0; }
               .topbar-outer-container .topbar-inner-container .links .dropdown-menu ul li a:hover {
+                opacity: 1;
                 background: none;
-                color: #006699;
-                text-decoration: underline; }
+                color: #006699; }
       .topbar-outer-container .topbar-inner-container .links li {
         float: left;
         list-style: none;
@@ -941,46 +951,46 @@ a.link-default {
     left: 50%;
     transform: translate(-50%, -50%); }
 
-.dashboard .loading-content {
+.user-dashboard .loading-content {
   position: relative;
   height: 400px;
   width: 100%; }
-  .dashboard .loading-content .loading {
+  .user-dashboard .loading-content .loading {
     display: block;
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%); }
 
-.dashboard .reservations-list-wrapper {
+.user-dashboard .reservations-list-wrapper {
   max-width: 1000px;
   margin: 0 auto; }
-  .dashboard .reservations-list-wrapper .reservation-wrapper {
+  .user-dashboard .reservations-list-wrapper .reservation-wrapper {
     margin: 10px;
     margin-bottom: 0;
     padding: 10px; }
-    .dashboard .reservations-list-wrapper .reservation-wrapper:after {
+    .user-dashboard .reservations-list-wrapper .reservation-wrapper:after {
       clear: both;
       content: '';
       display: block; }
-    .dashboard .reservations-list-wrapper .reservation-wrapper:last-child {
+    .user-dashboard .reservations-list-wrapper .reservation-wrapper:last-child {
       margin-bottom: 10px; }
-    .dashboard .reservations-list-wrapper .reservation-wrapper:hover {
+    .user-dashboard .reservations-list-wrapper .reservation-wrapper:hover {
       background: #f2f2f2; }
-    .dashboard .reservations-list-wrapper .reservation-wrapper section {
+    .user-dashboard .reservations-list-wrapper .reservation-wrapper section {
       float: left;
       margin-right: 10px;
       min-width: 210px; }
-      .dashboard .reservations-list-wrapper .reservation-wrapper section:last-child {
+      .user-dashboard .reservations-list-wrapper .reservation-wrapper section:last-child {
         margin-right: 0;
         min-width: 0; }
-      .dashboard .reservations-list-wrapper .reservation-wrapper section .flag-red {
+      .user-dashboard .reservations-list-wrapper .reservation-wrapper section .flag-red {
         color: #ff3300; }
-      .dashboard .reservations-list-wrapper .reservation-wrapper section .flag-green {
+      .user-dashboard .reservations-list-wrapper .reservation-wrapper section .flag-green {
         color: #40bf40; }
-      .dashboard .reservations-list-wrapper .reservation-wrapper section .flag-orange {
+      .user-dashboard .reservations-list-wrapper .reservation-wrapper section .flag-orange {
         color: #ff9900; }
-      .dashboard .reservations-list-wrapper .reservation-wrapper section a.more-details {
+      .user-dashboard .reservations-list-wrapper .reservation-wrapper section a.more-details {
         margin-bottom: 10px;
         display: inline-block;
         padding: 10px;
@@ -990,12 +1000,12 @@ a.link-default {
         color: #fff;
         cursor: pointer;
         transition: background 0.4s; }
-        .dashboard .reservations-list-wrapper .reservation-wrapper section a.more-details:hover {
+        .user-dashboard .reservations-list-wrapper .reservation-wrapper section a.more-details:hover {
           background: transparent;
           color: #006699; }
-          .dashboard .reservations-list-wrapper .reservation-wrapper section a.more-details:hover .decor {
+          .user-dashboard .reservations-list-wrapper .reservation-wrapper section a.more-details:hover .decor {
             opacity: 1; }
-        .dashboard .reservations-list-wrapper .reservation-wrapper section a.more-details .decor {
+        .user-dashboard .reservations-list-wrapper .reservation-wrapper section a.more-details .decor {
           border-radius: 4px;
           position: absolute;
           bottom: 0;
@@ -1005,36 +1015,36 @@ a.link-default {
           width: 100%;
           opacity: 0;
           transition: opacity 0.4s; }
-      .dashboard .reservations-list-wrapper .reservation-wrapper section p {
+      .user-dashboard .reservations-list-wrapper .reservation-wrapper section p {
         margin-bottom: 5px;
         position: relative;
         padding-top: 14px; }
-        .dashboard .reservations-list-wrapper .reservation-wrapper section p:last-child {
+        .user-dashboard .reservations-list-wrapper .reservation-wrapper section p:last-child {
           margin-bottom: 0; }
-        .dashboard .reservations-list-wrapper .reservation-wrapper section p .label {
+        .user-dashboard .reservations-list-wrapper .reservation-wrapper section p .label {
           position: absolute;
           top: 0;
           left: 0;
           color: gray;
           font-size: 14px; }
-      .dashboard .reservations-list-wrapper .reservation-wrapper section .section-title {
+      .user-dashboard .reservations-list-wrapper .reservation-wrapper section .section-title {
         font-size: 16px;
         font-weight: bold;
         border-left: 5px solid gray;
         padding: 10px;
         margin: 10px 0; }
-      .dashboard .reservations-list-wrapper .reservation-wrapper section .indented-info {
+      .user-dashboard .reservations-list-wrapper .reservation-wrapper section .indented-info {
         padding-left: 15px; }
-      .dashboard .reservations-list-wrapper .reservation-wrapper section .input-button-wrapper .errors {
+      .user-dashboard .reservations-list-wrapper .reservation-wrapper section .input-button-wrapper .errors {
         color: red; }
-      .dashboard .reservations-list-wrapper .reservation-wrapper section .input-button-wrapper .button.icon-active {
+      .user-dashboard .reservations-list-wrapper .reservation-wrapper section .input-button-wrapper .button.icon-active {
         padding-left: 35px;
         background: #ff5c33 !important;
         color: #ff3300; }
-      .dashboard .reservations-list-wrapper .reservation-wrapper section .input-button-wrapper .button.disabled {
+      .user-dashboard .reservations-list-wrapper .reservation-wrapper section .input-button-wrapper .button.disabled {
         opacity: 0.6;
         cursor: not-allowed; }
-      .dashboard .reservations-list-wrapper .reservation-wrapper section .input-button-wrapper .button {
+      .user-dashboard .reservations-list-wrapper .reservation-wrapper section .input-button-wrapper .button {
         position: relative;
         padding: 10px;
         border: 1px solid #ff3300;
@@ -1047,10 +1057,122 @@ a.link-default {
         color: #fff;
         cursor: pointer;
         opacity: 0.9; }
-        .dashboard .reservations-list-wrapper .reservation-wrapper section .input-button-wrapper .button:hover {
+        .user-dashboard .reservations-list-wrapper .reservation-wrapper section .input-button-wrapper .button:hover {
           opacity: 1; }
-        .dashboard .reservations-list-wrapper .reservation-wrapper section .input-button-wrapper .button .sending {
+        .user-dashboard .reservations-list-wrapper .reservation-wrapper section .input-button-wrapper .button .sending {
           position: absolute;
           top: 50%;
           transform: translate(0, -50%);
           left: 10px; }
+
+.user-settings .settings-wrapper {
+  max-width: 1000px;
+  margin: 0 auto; }
+  .user-settings .settings-wrapper:after {
+    clear: both;
+    content: '';
+    display: block; }
+
+.user-settings .left, .user-settings .right {
+  float: left;
+  padding-top: 20px;
+  margin-bottom: 20px; }
+
+.user-settings .right {
+  min-height: 400px;
+  border: 1px solid #006699;
+  border-top: 0;
+  padding-left: 20px;
+  width: 80%; }
+  .user-settings .right ul .buttons div {
+    float: left; }
+    .user-settings .right ul .buttons div a {
+      display: block;
+      padding: 10px;
+      color: #006699;
+      cursor: pointer; }
+      .user-settings .right ul .buttons div a:hover {
+        text-decoration: underline; }
+  .user-settings .right ul li {
+    list-style: none;
+    margin-bottom: 10px;
+    position: relative; }
+    .user-settings .right ul li:last-child {
+      margin-bottom: 0; }
+  .user-settings .right .input-type-box {
+    position: relative;
+    width: -webkit-max-content;
+    width: -moz-max-content;
+    width: -ms-max-content;
+    width: -o-max-content;
+    width: max-content; }
+    @media all and (max-width: 480px) {
+      .user-settings .right .input-type-box {
+        width: 100%; } }
+  .user-settings .right .button.icon-active {
+    padding-left: 35px;
+    background: #2d862d !important;
+    color: #40bf40; }
+  .user-settings .right .button.disabled {
+    opacity: 0.6;
+    cursor: not-allowed; }
+  .user-settings .right .input-button-wrapper:after {
+    clear: both;
+    content: '';
+    display: block; }
+  .user-settings .right .input-button-wrapper .errors {
+    color: red; }
+  .user-settings .right .button {
+    position: relative;
+    padding: 10px;
+    border: 1px solid #2d862d;
+    background: #40bf40;
+    color: #fff;
+    width: -webkit-max-content;
+    width: -moz-max-content;
+    width: -ms-max-content;
+    width: -o-max-content;
+    width: max-content;
+    cursor: pointer; }
+    .user-settings .right .button .sending {
+      position: absolute;
+      top: 50%;
+      transform: translate(0, -50%);
+      left: 10px; }
+  .user-settings .right input[type="text"], .user-settings .right input[type="password"] {
+    padding: 10px;
+    padding-right: 30%;
+    border: 0;
+    border-bottom: 1px solid #d0d1d5;
+    background: #fff;
+    outline: none;
+    width: 450px; }
+    @media all and (max-width: 480px) {
+      .user-settings .right input[type="text"], .user-settings .right input[type="password"] {
+        width: 100%; } }
+    .user-settings .right input[type="text"]:focus ~ .decor, .user-settings .right input[type="password"]:focus ~ .decor {
+      width: 100%; }
+  .user-settings .right .decor {
+    position: absolute;
+    bottom: 0;
+    height: 1px;
+    width: 0;
+    transition: width 0.4s;
+    left: 50%;
+    transform: translate(-50%, 0);
+    background: #006699; }
+
+.user-settings .left {
+  width: 20%; }
+  .user-settings .left ul li {
+    list-style: none; }
+    .user-settings .left ul li a {
+      display: block;
+      padding: 10px;
+      color: #006699;
+      text-decoration: none; }
+    .user-settings .left ul li .onlink {
+      background: #006699;
+      color: #fff; }
+    .user-settings .left ul li .icon-left {
+      padding-right: 10px; }

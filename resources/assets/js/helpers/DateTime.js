@@ -28,10 +28,9 @@ export function toFormalDateTime(timestamp) {
 
 export function toUnixTimestamp(timestamp) {
   let date = new Date(timestamp);
-
-  return date.getTime() / 1000;
+  return Math.floor(date.getTime() / 1000);
 }
 
 export function unixTimestampNow() {
-  return Date.now() / 1000;
+  return Math.floor(Date.now() / 1000);
 }

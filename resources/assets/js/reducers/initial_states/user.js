@@ -12,7 +12,7 @@ const initial_state = {
   }
 }
 
-export default window && window.logged_in_user? {
+export default window.logged_in_user? {
   ...initial_state,
   logged_in: true,
   ...window.logged_in_user

@@ -13,7 +13,7 @@ import Err from '../../components/errors/Err';
 import InputButton from '../../components/forms/InputButton';
 import InputNumber from '../../components/forms/InputNumber';
 
-class Dashboard extends Component {
+class UserDashboard extends Component {
   componentWillMount() {
     if(!this.props.user.logged_in) {
       return this.props.router.push('/sign-in');
@@ -32,8 +32,6 @@ class Dashboard extends Component {
   }
 
   render() {
-    console.log(this.props.user.reservations);
-
     let reservationsList = this.props.user.reservations.data.map((reservation, index) => (
       <div className="reservation-wrapper" key={index}>
         <section>
@@ -90,7 +88,7 @@ class Dashboard extends Component {
     ));
 
     return (
-      <div className="dashboard">
+      <div className="user-dashboard">
         <Topbar />
 
         {this.props.user.reservations.request.sending?
@@ -120,4 +118,4 @@ export default connect(store => ({
   cancelReservation: userActions.cancelReservation,
   undoCancelReservation: userActions.undoCancelReservation,
   clearAllData: userActions.clearAllData
-})(Dashboard);
+})(UserDashboard);

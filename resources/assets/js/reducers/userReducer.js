@@ -5,7 +5,12 @@ export default function userReducer(state = initial_state, action) {
 
   switch(action.type) {
     case 'USER_CLEAR_ALL':
-      return {...initial_state}
+      return {
+        ...state,
+        reservations: {
+          ...initial_state.reservations
+        }
+      }
     break;
 
     case 'USER_LOGIN':

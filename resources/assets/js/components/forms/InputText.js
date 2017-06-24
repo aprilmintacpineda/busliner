@@ -8,9 +8,9 @@ class InputText extends Component {
     onChange: PropTypes.func.isRequired,
     errors: PropTypes.array.isRequired,
     disabled: PropTypes.bool.isRequired,
+    maxlength: PropTypes.number.isRequired,
     children: PropTypes.element,
-    password: PropTypes.bool,
-    maxlength: PropTypes.number.isRequired
+    password: PropTypes.bool
   }
 
   render() {
